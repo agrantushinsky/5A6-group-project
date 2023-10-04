@@ -1,4 +1,4 @@
-# PROJECT NAME TBD
+# Fresh Tomatoes
 
 ## Goal
 Our goal is to provide users a dynamic appilcation to rank movies they have watched.
