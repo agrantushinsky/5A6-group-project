@@ -15,7 +15,7 @@ fun MainLayout(
 ){
     Scaffold(
         modifier = modifier,
-        topBar = {TopTomatoeBar()},
+        topBar = { TopTomatoBar() },
         bottomBar = { BottomBar() },
     ) {
         Column(modifier = Modifier.padding(it)) {
