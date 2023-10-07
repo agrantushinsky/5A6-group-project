@@ -1,7 +1,7 @@
 # Fresh Tomatoes
 
 ## Goal
-Our goal is to provide users a dynamic appilcation to rank movies they have watched.
+Our goal is to provide users a dynamic application to rank movies they have watched.
 
 ## Quick-start
 - TBD
