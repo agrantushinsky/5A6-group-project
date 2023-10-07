@@ -6,7 +6,5 @@ import com.project.freshtomatoes.ui.layout.MainLayout
 @Composable
 fun Movie()
 {
-    MainLayout {
 
-    }
 }

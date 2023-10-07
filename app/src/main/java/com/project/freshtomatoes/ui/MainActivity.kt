@@ -28,8 +28,10 @@ class MainActivity : ComponentActivity() {
             AppTheme(useDarkTheme = false) {
                 val navController = rememberNavController()
                 CompositionLocalProvider(LocalNavController provides navController) {
-
+                    MainLayout {
                         NavGraph()
+                    }
+
 
                 }
 

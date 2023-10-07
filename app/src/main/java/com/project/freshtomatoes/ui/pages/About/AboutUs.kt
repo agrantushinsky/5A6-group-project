@@ -25,12 +25,11 @@ import com.project.freshtomatoes.ui.layout.MainLayout
 @Composable
 fun AboutUs(modifier : Modifier = Modifier)
 {
-    MainLayout ()
-    {
+    Column {
         Text(text ="About Us", fontSize = 48.sp, textAlign = TextAlign.Center, modifier = Modifier.fillMaxWidth())
 
         Text(text = "Our goal is to provide users a dynamic application to rank movies they have watched.",
-                modifier = Modifier.padding(16.dp))
+            modifier = Modifier.padding(16.dp))
 
         Spacer(Modifier.height(10.dp))
 
@@ -42,7 +41,9 @@ fun AboutUs(modifier : Modifier = Modifier)
         {
             Column (horizontalAlignment = Alignment.CenterHorizontally){
                 Text(text = "Aidan")
-                Image(modifier = Modifier.size(100.dp).padding(5.dp) ,
+                Image(modifier = Modifier
+                    .size(100.dp)
+                    .padding(5.dp) ,
                     painter = painterResource(id = R.drawable.aidan),
                     contentDescription = "Aidan",
                     contentScale = ContentScale.Crop)
@@ -50,7 +51,9 @@ fun AboutUs(modifier : Modifier = Modifier)
             Spacer(Modifier.width(20.dp))
             Column(horizontalAlignment = Alignment.CenterHorizontally){
                 Text("Nitpreet")
-                Image(modifier = Modifier.size(100.dp).padding(5.dp),
+                Image(modifier = Modifier
+                    .size(100.dp)
+                    .padding(5.dp),
                     painter = painterResource(id = R.drawable.nit),
                     contentDescription = "Nitpreet",
                     contentScale = ContentScale.Crop)
@@ -58,12 +61,16 @@ fun AboutUs(modifier : Modifier = Modifier)
             Spacer(Modifier.width(20.dp))
             Column (horizontalAlignment = Alignment.CenterHorizontally){
                 Text("Jose")
-                Image(modifier = Modifier.size(100.dp).padding(5.dp),
+                Image(modifier = Modifier
+                    .size(100.dp)
+                    .padding(5.dp),
                     painter = painterResource(id = R.drawable.jose),
                     contentDescription = "Jose",
                     contentScale = ContentScale.Crop)
             }
         }
     }
+
+
 
 }
