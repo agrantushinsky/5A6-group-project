@@ -25,7 +25,7 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            AppTheme(useDarkTheme = false
+            AppTheme(useDarkTheme = true
             ) {
                 val navController = rememberNavController()
                 CompositionLocalProvider(LocalNavController provides navController) {
