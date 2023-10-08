@@ -14,16 +14,10 @@ import androidx.compose.ui.unit.em
 @Composable
 fun Home() {
     Column(modifier = Modifier.padding(15.dp)) {
-        Text(text = "Welcome To the home page", fontSize = 5.em, )
+        Text(text = "Welcome To the home page", fontSize = 5.em)
         Spacer(modifier = Modifier.height(15.dp))
         Button(onClick = { /*TODO*/ }) {
             Text(text = "Add a movie to review")
         }
-        
     }
-
-    
-    
-    
-    
 }

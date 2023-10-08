@@ -5,7 +5,6 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Info
-import androidx.compose.material.icons.filled.ShoppingCart
 import androidx.compose.material3.BottomAppBar
 import androidx.compose.material3.Icon
 import androidx.compose.material3.NavigationBar
@@ -22,53 +21,35 @@ import com.project.freshtomatoes.LocalNavController
 import com.project.freshtomatoes.ui.Router
 
 data class NavBarIcon(
-
     val route: String,
-
     val icon: ImageVector
-
 )
-val items = listOf(NavBarIcon(route = Router.Home.route, icon = Icons.Filled.Home),
 
-    NavBarIcon(route=Router.About.route, icon= Icons.Filled.Info),
-
-    NavBarIcon(route=Router.Movie.route, icon= Icons.Filled.Favorite))
-
-
-
-
+val items = listOf(
+    NavBarIcon(route = Router.Home.route, icon = Icons.Filled.Home),
+    NavBarIcon(route = Router.About.route, icon = Icons.Filled.Info),
+    NavBarIcon(route = Router.Movie.route, icon = Icons.Filled.Favorite)
+)
 
 @Composable
 fun BottomBar(modifier: Modifier = Modifier) {
-
     val navController = LocalNavController.current
-
     val navBackStackEntry by navController.currentBackStackEntryAsState()
-
     val currentDestination = navBackStackEntry?.destination
-    BottomAppBar(modifier = modifier.statusBarsPadding(), tonalElevation = 0.dp)
-    {
 
+    BottomAppBar(modifier = modifier.statusBarsPadding(), tonalElevation = 0.dp) {
         NavigationBar {
             items.forEachIndexed { index, item ->
                 NavigationBarItem(
-
                     icon = { Icon(item.icon, contentDescription = item.route) },
-
                     selected = currentDestination?.hierarchy?.any {
-
                         currentDestination.route?.substringBefore('/') ==
-
-                                item.route.substringBefore('/')
+                            item.route.substringBefore('/')
                     } == true,
-
                     onClick = { navController.navigate(item.route) },
                     label = { Text(text = item.route) }
-
                 )
             }
         }
-
-
     }
 }

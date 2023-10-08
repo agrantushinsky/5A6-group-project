@@ -8,22 +8,18 @@ import com.project.freshtomatoes.ui.pages.About.AboutUs
 import com.project.freshtomatoes.ui.pages.Home.Home
 import com.project.freshtomatoes.ui.pages.Movies.Movie
 
-sealed class Router(val route:String) {
-    object  Home : Router("Home")
+sealed class Router(val route: String) {
+    object Home : Router("Home")
     object About : Router("About")
-
     object Movie : Router("Movie")
 }
 
 @Composable
 fun NavGraph() {
     val navController = LocalNavController.current
-
-    NavHost(navController = navController, startDestination = "Home"){
-        composable(Router.Home.route){ Home() }
-        composable(Router.About.route){ AboutUs() }
-        composable(Router.Movie.route){ Movie() }
+    NavHost(navController = navController, startDestination = "Home") {
+        composable(Router.Home.route) { Home() }
+        composable(Router.About.route) { AboutUs() }
+        composable(Router.Movie.route) { Movie() }
     }
-
-
 }
