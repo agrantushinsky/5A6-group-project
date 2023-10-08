@@ -37,9 +37,9 @@ jobs:
 
       # Check the code with ktlint
       - name: Run Kotlin Linter
-        run: ./gradlew ktlintStagingDebugCheck
+        run: ./gradlew ktlintCheck
         
       # Check the code with Android linter
       - name: Run Android Linter
-        run: ./gradlew lintStagingDebug
+        run: ./gradlew lint
         
