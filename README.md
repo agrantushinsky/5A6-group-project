@@ -4,7 +4,10 @@
 Our goal is to provide users a dynamic appilcation to rank movies they have watched.
 
 ## Quick-start
-- TBD
+### How to install and run appilcation.
+1. Download project from github.
+2. Open in IDE (Android Studio) 
+3. Press the run button and enjoy!
 
 ## Screenshots of application
 
@@ -17,7 +20,6 @@ Our goal is to provide users a dynamic appilcation to rank movies they have watc
 
 
 - About Us Page Page
-
 
 
 
