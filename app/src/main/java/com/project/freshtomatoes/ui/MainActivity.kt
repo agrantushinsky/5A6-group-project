@@ -18,7 +18,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             AppTheme(
-                useDarkTheme = false
+                useDarkTheme = true
             ) {
                 val navController = rememberNavController()
                 CompositionLocalProvider(LocalNavController provides navController) {
