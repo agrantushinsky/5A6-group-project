@@ -19,9 +19,7 @@ subprojects {
     configure<org.jlleitschuh.gradle.ktlint.KtlintExtension> {
         debug.set(true)
     }
-
 }
-
 
 ktlint {
     verbose.set(true)
@@ -37,4 +35,3 @@ ktlint {
         exclude("**/build/**")
     }
 }
-
