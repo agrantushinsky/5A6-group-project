@@ -12,11 +12,11 @@ import androidx.compose.ui.Modifier
 fun MainLayout(
     modifier: Modifier = Modifier,
     content: @Composable () -> Unit
-){
+) {
     Scaffold(
         modifier = modifier,
         topBar = { TopTomatoBar() },
-        bottomBar = { BottomBar() },
+        bottomBar = { BottomBar() }
     ) {
         Column(modifier = Modifier.padding(it)) {
             content()
