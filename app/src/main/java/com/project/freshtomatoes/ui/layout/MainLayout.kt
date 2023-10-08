@@ -1,6 +1,7 @@
 package com.project.freshtomatoes.ui.layout
 
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
@@ -18,7 +19,7 @@ fun MainLayout(
         topBar = { TopTomatoBar() },
         bottomBar = { BottomBar() }
     ) {
-        Column(modifier = Modifier.padding(it)) {
+        Column(modifier = Modifier.padding(it).fillMaxHeight()) {
             content()
         }
     }
