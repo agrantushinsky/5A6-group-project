@@ -25,7 +25,7 @@ fun Movie() {
             modifier = Modifier
                 .size(300.dp)
                 .padding(16.dp),
-            shape = RoundedCornerShape(8.dp),
+            shape = RoundedCornerShape(8.dp)
         ) {
             Column(modifier = Modifier.padding(8.dp)) {
                 Image(
