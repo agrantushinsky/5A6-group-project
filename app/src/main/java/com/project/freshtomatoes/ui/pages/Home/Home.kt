@@ -10,13 +10,20 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.em
+import com.project.freshtomatoes.data.TmdbRequest
+import kotlinx.coroutines.runBlocking
 
 @Composable
 fun Home() {
     Column(modifier = Modifier.padding(15.dp)) {
         Text(text = "Welcome To the home page", fontSize = 5.em)
         Spacer(modifier = Modifier.height(15.dp))
-        Button(onClick = { /*TODO*/ }) {
+        Button(onClick = {
+            val a = TmdbRequest()
+            runBlocking {
+                a.searchMovie()
+            }
+        }) {
             Text(text = "Add a movie to review")
         }
     }
