@@ -1,5 +1,6 @@
 package com.project.freshtomatoes.ui.pages.Home
 
+import android.annotation.SuppressLint
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -26,6 +27,7 @@ import androidx.compose.ui.unit.em
 import coil.compose.AsyncImage
 import com.project.freshtomatoes.data.Movie
 import com.project.freshtomatoes.data.TmdbRequest
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 
@@ -41,9 +43,10 @@ fun Home() {
 @Composable
 fun PopularMoviesList() {
     var movieList by remember { mutableStateOf<List<Movie>>(emptyList()) }
+    val scope = rememberCoroutineScope()
 
-    runBlocking {
-        launch {
+    LaunchedEffect(0) {
+        scope.launch(Dispatchers.IO) {
             val requester = TmdbRequest()
             val response = requester.popularMovies()
             if (response.results.isNotEmpty()) {
@@ -65,16 +68,17 @@ fun PopularMoviesList() {
 @Composable
 fun NewMovies() {
     var movieList by remember { mutableStateOf<List<Movie>>(emptyList()) }
+    val scope = rememberCoroutineScope()
 
-    runBlocking {
-        launch {
-            val requester = TmdbRequest()
-            val response = requester.nowPlayingMovies()
-            if (response.results.isNotEmpty()) {
-                movieList = response.results
-            }
-        }
-    }
+     LaunchedEffect(0) {
+         scope.launch(Dispatchers.IO) {
+             val requester = TmdbRequest()
+             val response = requester.nowPlayingMovies()
+             if (response.results.isNotEmpty()) {
+                 movieList = response.results
+             }
+         }
+     }
 
     Column {
         Text(text = "New Movies")

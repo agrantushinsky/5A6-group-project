@@ -11,6 +11,7 @@ import io.ktor.http.URLProtocol
 import io.ktor.http.appendPathSegments
 import io.ktor.serialization.gson.gson
 
+
 class TmdbRequest {
     private val BASE_URL = "api.themoviedb.org"
     private val client = HttpClient(CIO) {
