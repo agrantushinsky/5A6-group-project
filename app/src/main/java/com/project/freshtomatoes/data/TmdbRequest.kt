@@ -48,7 +48,7 @@ class TmdbRequest {
         return response.body()
     }
 
-    suspend fun popularMovies(page: Int = 1) {
+    suspend fun popularMovies(page: Int = 1): MovieResponse {
         val response = getTmdb(listOf("movie", "popular")) {
             url {
                 parameters.append("page", page.toString())
@@ -57,7 +57,7 @@ class TmdbRequest {
         return response.body()
     }
 
-    suspend fun nowPlayingMovies(page: Int = 1) {
+    suspend fun nowPlayingMovies(page: Int = 1): MovieResponse {
         val response = getTmdb(listOf("movie", "now_playing")) {
             url {
                 parameters.append("page", page.toString())
