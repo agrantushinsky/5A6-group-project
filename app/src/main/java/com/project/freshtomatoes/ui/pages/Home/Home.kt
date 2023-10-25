@@ -27,6 +27,7 @@ import coil.compose.AsyncImage
 import com.project.freshtomatoes.data.Movie
 import com.project.freshtomatoes.data.TmdbRequest
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 
 @Composable
 fun Home() {
@@ -40,10 +41,9 @@ fun Home() {
 @Composable
 fun PopularMoviesList() {
     var movieList by remember { mutableStateOf<List<Movie>>(emptyList()) }
-    val coroutineScope = rememberCoroutineScope()
 
-    LaunchedEffect(Unit) {
-        coroutineScope.launch {
+    runBlocking {
+        launch {
             val requester = TmdbRequest()
             val response = requester.popularMovies()
             if (response.results.isNotEmpty()) {
@@ -52,30 +52,22 @@ fun PopularMoviesList() {
         }
     }
 
-    Surface(
-        modifier = Modifier.fillMaxSize(),
-        color = MaterialTheme.colorScheme.background
-    ) {
-        Column {
-            Text(text = "Popular Movies")
-            LazyRow {
-                items(movieList) { movie ->
-                    MovieItem(movie)
-                }
+    Column {
+        Text(text = "Popular Movies")
+        LazyRow {
+            items(movieList) { movie ->
+                MovieItem(movie)
             }
         }
-
     }
 }
-
 
 @Composable
 fun NewMovies() {
     var movieList by remember { mutableStateOf<List<Movie>>(emptyList()) }
-    val coroutineScope = rememberCoroutineScope()
 
-    LaunchedEffect(Unit) {
-        coroutineScope.launch {
+    runBlocking {
+        launch {
             val requester = TmdbRequest()
             val response = requester.nowPlayingMovies()
             if (response.results.isNotEmpty()) {
@@ -84,26 +76,15 @@ fun NewMovies() {
         }
     }
 
-    Surface(
-        modifier = Modifier.fillMaxSize(),
-        color = MaterialTheme.colorScheme.background
-    ) {
-        Column {
-            Text(text = "New Movies")
-            LazyRow {
-                items(movieList) { movie ->
-                    MovieItem(movie)
-                }
+    Column {
+        Text(text = "New Movies")
+        LazyRow {
+            items(movieList) { movie ->
+                MovieItem(movie)
             }
         }
-
     }
 }
-
-
-
-
-
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
