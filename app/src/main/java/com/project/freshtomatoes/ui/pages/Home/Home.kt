@@ -25,14 +25,17 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.em
 import coil.compose.AsyncImage
+import com.project.freshtomatoes.LocalNavController
 import com.project.freshtomatoes.data.Movie
 import com.project.freshtomatoes.data.TmdbRequest
+import com.project.freshtomatoes.ui.Router
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 
 @Composable
 fun Home() {
+
     Column(modifier = Modifier.padding(15.dp)) {
         Text(text = "Welcome To the home page", fontSize = 5.em)
         PopularMoviesList()
@@ -93,7 +96,8 @@ fun NewMovies() {
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MovieItem(movie: Movie) {
-    Card(onClick = { /*TODO*/ }, modifier = Modifier.padding(10.dp)) {
+    val navController = LocalNavController.current
+    Card(onClick = { navController.navigate( Router.MovieDetails.go(movie.id)) }, modifier = Modifier.padding(10.dp)) {
         AsyncImage(
             model = "https://image.tmdb.org/t/p/w500/${movie.poster_path}",
             contentDescription = "Translated description of what the image contains"

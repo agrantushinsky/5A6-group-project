@@ -66,4 +66,9 @@ class TmdbRequest {
         }
         return response.body()
     }
+
+    suspend fun details(id: Int): Movie {
+        val response = getTmdb(listOf("movie", id.toString()))
+        return response.body()
+    }
 }
