@@ -36,6 +36,7 @@ fun AuthLoginScreen(authViewModel: AuthViewModel =
     Column (modifier = Modifier.padding(20.dp).fillMaxWidth(), horizontalAlignment = Alignment.CenterHorizontally){
         if (userState.value == null) {
             Text("Not logged in", fontSize = 24.sp, modifier = Modifier.padding(20.dp))
+            //add the email placeholder inside the textfield
             TextField(value = email, onValueChange = { email = it }, modifier = Modifier.padding(20.dp))
             Row (horizontalArrangement = Arrangement.SpaceEvenly, modifier = Modifier.fillMaxWidth()){
                 Button(onClick = {
