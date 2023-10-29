@@ -41,11 +41,7 @@ class TmdbRequest {
     }
 
     suspend fun searchMovies(query: String): MovieResponse {
-        val response = getTmdb(listOf("search", "movie")) {
-            url {
-                parameters.append("query", query)
-            }
-        }
+        val response = getTmdb(listOf("search/movie",query))
         return response.body()
     }
 
