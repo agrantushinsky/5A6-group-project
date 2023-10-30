@@ -58,11 +58,9 @@ fun AuthLoginScreen(authViewModel: AuthViewModel =
                     navController.navigate(Router.Home.route)
 
                 }) {
-                    Text("Sign in")
+                    Text("Log In")
                 }
             }
-
-
         } else {
 
             Text("Welcome ${userState.value!!.email}")

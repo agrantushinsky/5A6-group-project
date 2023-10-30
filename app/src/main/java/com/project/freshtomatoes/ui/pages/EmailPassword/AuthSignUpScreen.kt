@@ -1,7 +1,9 @@
 package com.project.freshtomatoes.ui.pages.EmailPassword
 
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.material3.Button
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -59,21 +61,26 @@ fun AuthSignUpScreen(authViewModel: AuthViewModel = viewModel(factory = AuthView
         TextField(value = password, onValueChange = {password = it}, label = {Text("Password")}, modifier = Modifier.padding(20.dp))
         TextField(value = confirmPassword, onValueChange = {confirmPassword = it}, label =  {Text("Confirm Password")}, modifier = Modifier.padding(20.dp))
         Spacer(modifier = Modifier.height(10.dp))
-        Button(onClick = {
-            if(email == "" || password == "" || confirmPassword == ""){
-                isValid = false
-                errorMessage = "One or more fields are empty."
+        Row (horizontalArrangement = Arrangement.SpaceEvenly, modifier = Modifier.fillMaxWidth()){
+            Button(onClick = {
+                if (email == "" || password == "" || confirmPassword == "") {
+                    isValid = false
+                    errorMessage = "One or more fields are empty."
+                } else if (password != confirmPassword) {
+                    isValid = false
+                    errorMessage = "The passwords do not match."
+                } else {
+                    authViewModel.signUp("$email", "$password")
+                    navController.navigate(Router.Home.route)
+                }
+            }) {
+                Text("Sign Up")
             }
-            else if(password != confirmPassword){
-                isValid = false
-                errorMessage = "The passwords do not match."
+            Button(onClick = {
+                navController.navigate(Router.Account.route)
+            }) {
+                Text("Log In")
             }
-            else{
-                authViewModel.signUp("$email", "$password")
-                navController.navigate(Router.Home.route)
-            }
-        }){
-            Text("Sign Up")
         }
         if(!isValid){
             Text("$errorMessage", color = Color.Red)
