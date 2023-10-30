@@ -29,13 +29,15 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.PopupProperties
-import coil.compose.AsyncImage
 import com.project.freshtomatoes.LocalNavController
 import com.project.freshtomatoes.data.Movie
 import com.project.freshtomatoes.data.TmdbRequest
 import com.project.freshtomatoes.ui.Router
+import com.project.freshtomatoes.ui.components.SearchBar
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import coil.compose.AsyncImage
+import com.project.freshtomatoes.ui.components.MovieCard
 
 @Composable
 fun Home() {
@@ -50,57 +52,6 @@ fun Home() {
     }
 }
 
-@OptIn(ExperimentalMaterial3Api::class)
-@Composable
-fun SearchBar() {
-    var movieList by remember { mutableStateOf<List<Movie>>(emptyList()) }
-    val scope = rememberCoroutineScope()
-    var text by remember { mutableStateOf("") }
-    var expanded by remember { mutableStateOf(false) }
-    Column {
-        TextField(
-            value = text,
-            modifier = Modifier.fillMaxWidth(),
-            onValueChange = {
-                text = it
-                if (text.isNotEmpty()) {
-                    scope.launch(Dispatchers.IO) {
-                        val requester = TmdbRequest()
-                        val response = requester.searchMovies(text)
-                        if (response.results.isNotEmpty()) {
-                            movieList = response.results
-                        }
-                    }
-                }
-                expanded = !movieList.isEmpty()
-            },
-            placeholder = { Text(text = "Search") },
-            trailingIcon = {
-                Icon(imageVector = Icons.Filled.Search, contentDescription = "This is a search button")
-            }
-        )
-
-        // Only draw the movie list if the search found movies
-        if (movieList.isNotEmpty()) {
-            DropdownMenu(expanded = expanded, onDismissRequest = { expanded = false }, modifier = Modifier.height(240.dp).fillMaxWidth(), properties = PopupProperties(focusable = false)) {
-                movieList.forEachIndexed { index, movie ->
-                    DropdownMenuItem(
-                        text = { Text(text = "${movie.title}") },
-                        onClick = { /*TODO*/ },
-                        leadingIcon = {
-                            IconButton(onClick = { }) {
-                                AsyncImage(
-                                    model = "https://image.tmdb.org/t/p/w500/${movie.poster_path}",
-                                    contentDescription = "Translated description of what the image contains"
-                                )
-                            }
-                        }
-                    )
-                }
-            }
-        }
-    }
-}
 
 @Composable
 fun PopularMoviesList() {
@@ -121,7 +72,7 @@ fun PopularMoviesList() {
         Text(text = "Popular Movies")
         LazyRow {
             items(movieList) { movie ->
-                MovieItem(movie)
+                MovieCard(movie)
             }
         }
     }
@@ -146,20 +97,8 @@ fun NewMovies() {
         Text(text = "New Movies")
         LazyRow {
             items(movieList) { movie ->
-                MovieItem(movie)
+                MovieCard(movie)
             }
         }
-    }
-}
-
-@OptIn(ExperimentalMaterial3Api::class)
-@Composable
-fun MovieItem(movie: Movie) {
-    val navController = LocalNavController.current
-    Card(onClick = { navController.navigate(Router.MovieDetails.go(movie.id)) }, modifier = Modifier.padding(10.dp)) {
-        AsyncImage(
-            model = "https://image.tmdb.org/t/p/w500/${movie.poster_path}",
-            contentDescription = "Translated description of what the image contains"
-        )
     }
 }
