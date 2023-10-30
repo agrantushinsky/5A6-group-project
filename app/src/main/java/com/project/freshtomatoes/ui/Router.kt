@@ -6,6 +6,7 @@ import androidx.navigation.compose.composable
 import com.project.freshtomatoes.LocalNavController
 import com.project.freshtomatoes.ui.pages.About.AboutUs
 import com.project.freshtomatoes.ui.pages.EmailPassword.AuthLoginScreen
+import com.project.freshtomatoes.ui.pages.EmailPassword.AuthSignUpScreen
 import com.project.freshtomatoes.ui.pages.Home.Home
 import com.project.freshtomatoes.ui.pages.Movies.Movie
 
@@ -14,6 +15,8 @@ sealed class Router(val route: String) {
     object About : Router("About")
     object Movie : Router("Movie")
     object Account : Router("Account")
+    object SignUp : Router("SignUp")
+
 }
 
 @Composable
@@ -24,5 +27,6 @@ fun NavGraph() {
         composable(Router.About.route) { AboutUs() }
         composable(Router.Movie.route) { Movie() }
         composable(Router.Account.route){ AuthLoginScreen()}
+        composable(Router.SignUp.route){ AuthSignUpScreen()}
     }
 }

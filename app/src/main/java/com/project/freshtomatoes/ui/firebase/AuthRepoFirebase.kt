@@ -33,6 +33,7 @@ class AuthRepositoryFirebase(private val auth: FirebaseAuth) : AuthRepository {
             auth.signInWithEmailAndPassword(email, password).await()
             return true;
         } catch (e: Exception) {
+            println("********************The exception is: " + e.message)
             return false;
         }
     }
