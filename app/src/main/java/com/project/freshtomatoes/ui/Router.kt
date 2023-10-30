@@ -13,11 +13,9 @@ sealed class Router(val route: String) {
     object Home : Router("Home")
     object About : Router("About")
     object Movie : Router("Movie")
-    object MovieDetails : Router("MovieDetails/{index}"){
+    object MovieDetails : Router("MovieDetails/{index}") {
         fun go(index: Int) = "MovieDetails/$index"
     }
-
-
 }
 
 @Composable
@@ -27,6 +25,6 @@ fun NavGraph() {
         composable(Router.Home.route) { Home() }
         composable(Router.About.route) { AboutUs() }
         composable(Router.Movie.route) { Movie() }
-        composable(Router.MovieDetails.route){ MovieDetails(id = it.arguments?.getString("index")?.toInt() ?: -1)}
+        composable(Router.MovieDetails.route) { MovieDetails(id = it.arguments?.getString("index")?.toInt() ?: -1) }
     }
 }
