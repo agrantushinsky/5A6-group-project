@@ -28,6 +28,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.em
 import coil.compose.AsyncImage
@@ -36,6 +37,7 @@ import com.project.freshtomatoes.data.Movie
 import com.project.freshtomatoes.data.TmdbRequest
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import java.text.NumberFormat
 
 @Composable
 fun MovieDetails(id: Int) {
@@ -52,13 +54,19 @@ fun MovieDetails(id: Int) {
         }
     }
 
-    Column(modifier = Modifier.padding(8.dp).verticalScroll(rememberScrollState())) {
+    Column(modifier = Modifier
+        .padding(8.dp)
+        .verticalScroll(rememberScrollState())) {
         Row(
             horizontalArrangement = Arrangement.SpaceBetween,
             modifier = Modifier
                 .fillMaxWidth()
         ) {
-            Text(text = "${movie?.title}", fontSize = 7.em, modifier = Modifier.width(200.dp))
+            Text(text = "${movie?.title}",
+                fontSize = 7.em,
+                modifier = Modifier.width(200.dp),
+                style = TextStyle(lineHeight = 1.em)
+            )
             Text(text = "Average: 3/5🍅", fontSize = 5.em)
         }
         Text(text = "${movie?.tagline}")
@@ -80,9 +88,25 @@ fun MovieDetails(id: Int) {
                     .width(250.dp)
             )
         }
+
+        Divider()
         Text(text = "Overview:", fontSize = 5.em)
         Spacer(modifier = Modifier.padding(2.dp))
         Text(text = "${movie?.overview}")
+        Spacer(modifier = Modifier.padding(2.dp))
+        Divider()
+        Spacer(modifier = Modifier.padding(2.dp))
+        Row {
+            Column {
+                Text(text = "Released On: ${movie?.release_date}")
+                Text(text = "Length: ${movie?.runtime} min")
+                Text(text = "Revenue: ${movie?.revenue}")
+            }
+        }
+        Divider()
+
+
+
         Button(onClick = { /*TODO*/ }) {
             Text(text = "Rate Movie")
         }
