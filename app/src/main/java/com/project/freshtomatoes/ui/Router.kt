@@ -5,6 +5,8 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.project.freshtomatoes.LocalNavController
 import com.project.freshtomatoes.ui.pages.About.AboutUs
+import com.project.freshtomatoes.ui.pages.EmailPassword.AuthLoginScreen
+import com.project.freshtomatoes.ui.pages.EmailPassword.AuthSignUpScreen
 import com.project.freshtomatoes.ui.pages.Home.Home
 import com.project.freshtomatoes.ui.pages.MovieDetails.MovieDetails
 import com.project.freshtomatoes.ui.pages.Movies.Movie
@@ -16,6 +18,8 @@ sealed class Router(val route: String) {
     object MovieDetails : Router("MovieDetails/{index}") {
         fun go(index: Int) = "MovieDetails/$index"
     }
+    object Account : Router("Account")
+    object SignUp : Router("SignUp")
 }
 
 @Composable
@@ -26,5 +30,7 @@ fun NavGraph() {
         composable(Router.About.route) { AboutUs() }
         composable(Router.Movie.route) { Movie() }
         composable(Router.MovieDetails.route) { MovieDetails(id = it.arguments?.getString("index")?.toInt() ?: -1) }
+        composable(Router.Account.route){ AuthLoginScreen()}
+        composable(Router.SignUp.route){ AuthSignUpScreen()}
     }
 }
