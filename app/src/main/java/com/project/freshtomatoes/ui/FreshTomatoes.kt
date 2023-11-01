@@ -2,7 +2,7 @@ package com.project.freshtomatoes.ui
 
 import android.app.Application
 
-class FreshTomatoes: Application() {
+class FreshTomatoes : Application() {
     /* Always be able to access the module ("static") */
     companion object {
         lateinit var appModule: AppModule

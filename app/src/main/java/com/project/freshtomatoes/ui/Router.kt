@@ -30,7 +30,7 @@ fun NavGraph() {
         composable(Router.About.route) { AboutUs() }
         composable(Router.Movie.route) { Movie() }
         composable(Router.MovieDetails.route) { MovieDetails(id = it.arguments?.getString("index")?.toInt() ?: -1) }
-        composable(Router.Account.route){ AuthLoginScreen()}
-        composable(Router.SignUp.route){ AuthSignUpScreen()}
+        composable(Router.Account.route) { AuthLoginScreen() }
+        composable(Router.SignUp.route) { AuthSignUpScreen() }
     }
 }

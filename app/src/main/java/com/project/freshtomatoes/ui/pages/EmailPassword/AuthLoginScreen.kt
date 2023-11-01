@@ -13,14 +13,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -31,8 +29,9 @@ import com.project.freshtomatoes.ui.viewmodels.AuthViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun AuthLoginScreen(authViewModel: AuthViewModel =
-                        viewModel(factory = AuthViewModelFactory())
+fun AuthLoginScreen(
+    authViewModel: AuthViewModel =
+        viewModel(factory = AuthViewModelFactory())
 ) {
     val userState = authViewModel.currentUser().collectAsState()
     val navController = LocalNavController.current
@@ -42,19 +41,21 @@ fun AuthLoginScreen(authViewModel: AuthViewModel =
     var password by rememberSaveable {
         mutableStateOf("")
     }
-    Column (modifier = Modifier
-        .padding(20.dp)
-        .fillMaxWidth(), horizontalAlignment = Alignment.CenterHorizontally){
+    Column(
+        modifier = Modifier
+            .padding(20.dp)
+            .fillMaxWidth(),
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
         if (userState.value == null) {
-
             var signedInSuccess = rememberSaveable {
                 mutableStateOf(true)
             }
             Text("Log In", fontSize = 32.sp, fontWeight = FontWeight.Bold, modifier = Modifier.padding(20.dp))
-            TextField(value = email, onValueChange = { email = it }, label = {Text("Email")} ,modifier = Modifier.padding(20.dp), )
-            TextField(value = password, onValueChange = {password = it},label = {Text("Password")}, modifier = Modifier.padding(20.dp))
+            TextField(value = email, onValueChange = { email = it }, label = { Text("Email") }, modifier = Modifier.padding(20.dp))
+            TextField(value = password, onValueChange = { password = it }, label = { Text("Password") }, modifier = Modifier.padding(20.dp))
 
-            Row (horizontalArrangement = Arrangement.SpaceEvenly, modifier = Modifier.fillMaxWidth()){
+            Row(horizontalArrangement = Arrangement.SpaceEvenly, modifier = Modifier.fillMaxWidth()) {
                 Button(onClick = {
                     navController.navigate(Router.SignUp.route)
                 }) {
@@ -62,7 +63,7 @@ fun AuthLoginScreen(authViewModel: AuthViewModel =
                 }
                 Button(onClick = {
                     signedInSuccess.value = authViewModel.signIn("$email", "$password")
-                    if(signedInSuccess.value){
+                    if (signedInSuccess.value) {
                         navController.navigate(Router.Home.route)
                     }
                 }) {
@@ -70,26 +71,24 @@ fun AuthLoginScreen(authViewModel: AuthViewModel =
                 }
             }
 
-            if(!signedInSuccess.value){
+            if (!signedInSuccess.value) {
                 Text("Invalid Credentials", color = Color.Red)
             }
         } else {
-
             Text("Welcome ${userState.value!!.email}", fontSize = 24.sp, fontWeight = FontWeight.Bold, modifier = Modifier.padding(20.dp))
 
-            Row (horizontalArrangement = Arrangement.SpaceEvenly, modifier = Modifier.fillMaxWidth()){
+            Row(horizontalArrangement = Arrangement.SpaceEvenly, modifier = Modifier.fillMaxWidth()) {
                 Button(onClick = {
                     authViewModel.signOut()
                 }) {
                     Text("Sign out")
                 }
-                Button(onClick =  {
+                Button(onClick = {
                     authViewModel.delete()
                 }) {
                     Text("Delete account")
                 }
             }
-
         }
     }
 }

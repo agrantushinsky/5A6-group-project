@@ -12,7 +12,7 @@ class AppModule(
     /* Create appropriate repository (backed by a DataStore) on first use.
        Only one copy will be created during lifetime of the application. */
 
-    val authRepository : AuthRepository by lazy {
+    val authRepository: AuthRepository by lazy {
         AuthRepositoryFirebase(Firebase.auth) // inject Firebase auth
     }
 }

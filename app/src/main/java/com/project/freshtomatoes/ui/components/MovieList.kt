@@ -9,14 +9,12 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.PopupProperties
-import com.project.freshtomatoes.data.Movie
 import coil.compose.AsyncImage
+import com.project.freshtomatoes.data.Movie
 
 @Composable
 fun MovieList(expanded: MutableState<Boolean>, movieList: List<Movie>) {
@@ -34,7 +32,7 @@ fun MovieList(expanded: MutableState<Boolean>, movieList: List<Movie>) {
                     IconButton(onClick = { }) {
                         AsyncImage(
                             model = "https://image.tmdb.org/t/p/w500/${movie.poster_path}",
-                            contentDescription = "Translated description of what the image contains",
+                            contentDescription = "Translated description of what the image contains"
                         )
                     }
                 }

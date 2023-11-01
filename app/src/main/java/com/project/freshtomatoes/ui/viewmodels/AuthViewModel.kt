@@ -6,7 +6,6 @@ import com.project.freshtomatoes.ui.firebase.AuthRepository
 import com.project.freshtomatoes.ui.firebase.User
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
-import kotlin.math.sign
 
 class AuthViewModel(private val authRepository: AuthRepository) : ViewModel() {
     // Return a StateFlow so that the composable can always update
@@ -21,13 +20,12 @@ class AuthViewModel(private val authRepository: AuthRepository) : ViewModel() {
         }
     }
 
-    fun signIn(email: String, password: String) : Boolean
-    {
-        var signedIn = true;
+    fun signIn(email: String, password: String): Boolean {
+        var signedIn = true
         viewModelScope.launch {
             signedIn = authRepository.signIn(email, password)
         }
-        return signedIn;
+        return signedIn
     }
 
     fun signOut() {

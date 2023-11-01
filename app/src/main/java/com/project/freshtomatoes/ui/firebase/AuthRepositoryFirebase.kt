@@ -22,19 +22,19 @@ class AuthRepositoryFirebase(private val auth: FirebaseAuth) : AuthRepository {
     override suspend fun signUp(email: String, password: String): Boolean {
         return try {
             auth.createUserWithEmailAndPassword(email, password).await()
-            return true;
+            return true
         } catch (e: Exception) {
-            return false;
+            return false
         }
     }
 
     override suspend fun signIn(email: String, password: String): Boolean {
         return try {
             auth.signInWithEmailAndPassword(email, password).await()
-            return true;
+            return true
         } catch (e: Exception) {
             println("********************The exception is: " + e.message)
-            return false;
+            return false
         }
     }
 
@@ -52,9 +52,12 @@ class AuthRepositoryFirebase(private val auth: FirebaseAuth) : AuthRepository {
 /** Convert from FirebaseUser to User */
 private fun FirebaseUser?.toUser(): User? {
     return this?.let {
-        if (it.email == null) null else
+        if (it.email == null) {
+            null
+        } else {
             User(
-                email = it.email!!,
+                email = it.email!!
             )
+        }
     }
 }

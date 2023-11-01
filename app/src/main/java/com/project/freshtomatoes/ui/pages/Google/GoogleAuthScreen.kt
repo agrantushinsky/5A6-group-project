@@ -18,7 +18,7 @@ import com.project.freshtomatoes.R
 import com.project.freshtomatoes.auth.rememberFirebaseAuthLauncher
 
 @Composable
-fun GoogleAuthScreen(){
+fun GoogleAuthScreen() {
     var user by remember { mutableStateOf(Firebase.auth.currentUser) }
     val launcher = rememberFirebaseAuthLauncher(
         onAuthComplete = { result ->

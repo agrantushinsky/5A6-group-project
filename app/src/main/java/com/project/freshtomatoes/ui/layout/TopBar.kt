@@ -15,22 +15,21 @@ import com.project.freshtomatoes.ui.Router
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun TopTomatoBar()
-{
+fun TopTomatoBar() {
     val navController = LocalNavController.current
 
     TopAppBar(
         title = { Text(text = "FreshTomatoes") },
         colors = TopAppBarDefaults.smallTopAppBarColors(
             containerColor = MaterialTheme.colorScheme.primaryContainer
-        ), actions = {
-            IconButton(onClick = {navController.navigate(Router.Account.route)}){
-                Icon (
+        ),
+        actions = {
+            IconButton(onClick = { navController.navigate(Router.Account.route) }) {
+                Icon(
                     imageVector = Icons.Filled.AccountCircle,
-                        contentDescription = "Account button"
+                    contentDescription = "Account button"
                 )
             }
-
         }
     )
 }
