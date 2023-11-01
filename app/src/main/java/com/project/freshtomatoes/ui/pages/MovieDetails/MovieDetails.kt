@@ -12,7 +12,9 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
 import androidx.compose.material3.Divider
 import androidx.compose.material3.Text
@@ -50,13 +52,13 @@ fun MovieDetails(id: Int) {
         }
     }
 
-    Column(modifier = Modifier.padding(8.dp)) {
+    Column(modifier = Modifier.padding(8.dp).verticalScroll(rememberScrollState())) {
         Row(
             horizontalArrangement = Arrangement.SpaceBetween,
             modifier = Modifier
                 .fillMaxWidth()
         ) {
-            Text(text = "${movie?.title}", fontSize = 7.em, modifier = Modifier.width(250.dp))
+            Text(text = "${movie?.title}", fontSize = 7.em, modifier = Modifier.width(200.dp))
             Text(text = "Average: 3/5🍅", fontSize = 5.em)
         }
         Text(text = "${movie?.tagline}")
@@ -89,14 +91,14 @@ fun MovieDetails(id: Int) {
 
 @Composable
 fun DisplayList(generes: List<Genres>) {
-    LazyRow() {
+    LazyRow(modifier = Modifier.padding(10.dp)) {
         items(generes) {
                 genre ->
             Button(
                 onClick = { /*TODO*/ },
                 border = BorderStroke(1.dp, Color(0xFFC00100)),
                 shape = RoundedCornerShape(80),
-                modifier = Modifier.height(35.dp)
+                modifier = Modifier.height(45.dp)
             ) {
                 Text(text = "${genre.name}", fontSize = 4.em)
             }
