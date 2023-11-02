@@ -12,6 +12,7 @@ import androidx.navigation.compose.rememberNavController
 import com.example.compose.AppTheme
 import com.project.freshtomatoes.ui.NavGraph
 import com.project.freshtomatoes.ui.layout.MainLayout
+import com.project.freshtomatoes.ui.pages.DeepScreen
 
 val LocalNavController = compositionLocalOf<NavHostController> { error("No Nav Controller") }
 
@@ -25,7 +26,7 @@ class MainActivity : ComponentActivity() {
                 val navController = rememberNavController()
                 CompositionLocalProvider(LocalNavController provides navController) {
                     MainLayout {
-                        NavGraph()
+                        DeepScreen("0")
                     }
                 }
             }
