@@ -26,7 +26,7 @@ class MainActivity : ComponentActivity() {
                 val navController = rememberNavController()
                 CompositionLocalProvider(LocalNavController provides navController) {
                     MainLayout {
-                        DeepScreen("0")
+                        NavGraph()
                     }
                 }
             }
