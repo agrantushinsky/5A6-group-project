@@ -1,6 +1,7 @@
 package com.project.freshtomatoes.ui.viewmodels
 
 import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -15,31 +16,24 @@ import kotlinx.coroutines.launch
 
 data class MovieDisplay(
     val label: String,
-    var movieList: List<Movie> = emptyList(),
-    val populateMovies: suspend (MovieDisplay) -> Unit,
+    var movieList: List<Movie> = emptyList()
 )
 
 class HomeViewModel : ViewModel() {
     private val _requester = TmdbRequest()
 
-    private val popularMovies = mutableStateOf(MovieDisplay("Popular Movies") {
-        val response = _requester.popularMovies()
-        it.movieList = response.results
-    })
+    private val popularMovies by mutableStateOf(MovieDisplay("Popular Movies"))
 
-    private val newMovies = mutableStateOf(MovieDisplay("New Movies") {
-        val response = _requester.nowPlayingMovies()
-        it.movieList = response.results
-    })
+    private val newMovies by mutableStateOf(MovieDisplay("New Movies"))
 
     init {
         viewModelScope.launch(Dispatchers.IO) {
-            popularMovies.value.populateMovies(popularMovies.value)
-            newMovies.value.populateMovies(newMovies.value)
+            popularMovies.movieList = _requester.popularMovies().results
+            newMovies.movieList = _requester.nowPlayingMovies().results
         }
     }
 
     fun getMovieDisplay(): List<MovieDisplay> {
-        return listOf(popularMovies.value, newMovies.value)
+        return listOf(popularMovies, newMovies)
     }
 }
