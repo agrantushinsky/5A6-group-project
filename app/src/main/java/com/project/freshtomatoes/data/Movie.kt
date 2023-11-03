@@ -13,7 +13,7 @@ data class Movie(
     val genres: List<Genres>,
     val runtime: Int,
     val release_date: String,
-    val revenue: Int,
+    val revenue: Double,
     val tagline: String
 )
 
