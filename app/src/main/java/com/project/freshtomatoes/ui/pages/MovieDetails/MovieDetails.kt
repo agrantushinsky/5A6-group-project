@@ -106,10 +106,10 @@ fun MovieDetails(id: Int) {
             }
             Column {
                 Button(onClick = { /*TODO*/ }) {
-                    if()
+                    Text("Rate Movie")
                 }
                 Button(onClick = { /*TODO*/ }) {
-                    Text(text = "See Reviews")
+                    Text("See Reviews")
                 }
             }
 
