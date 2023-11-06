@@ -38,6 +38,7 @@ import com.project.freshtomatoes.data.TmdbRequest
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.text.NumberFormat
+import java.util.Locale
 
 @Composable
 fun MovieDetails(id: Int) {
@@ -46,6 +47,7 @@ fun MovieDetails(id: Int) {
     }
     val scope = rememberCoroutineScope()
     var movie by remember { mutableStateOf<Movie?>(null) }
+    val cf = NumberFormat.getCurrencyInstance(Locale.US)
     LaunchedEffect(0) {
         scope.launch(Dispatchers.IO) {
             val requester = TmdbRequest()
@@ -53,7 +55,7 @@ fun MovieDetails(id: Int) {
             movie = response
         }
     }
-
+    if (movie == null) return
     Column(modifier = Modifier
         .padding(8.dp)
         .verticalScroll(rememberScrollState())) {
@@ -65,7 +67,7 @@ fun MovieDetails(id: Int) {
             Text(text = "${movie?.title}",
                 fontSize = 7.em,
                 modifier = Modifier.width(200.dp),
-                style = TextStyle(lineHeight = 1.em)
+                style = TextStyle(lineHeight = 1.2.em)
             )
             Text(text = "Average: 3/5🍅", fontSize = 5.em)
         }
@@ -93,22 +95,24 @@ fun MovieDetails(id: Int) {
         Text(text = "Overview:", fontSize = 5.em)
         Spacer(modifier = Modifier.padding(2.dp))
         Text(text = "${movie?.overview}")
+        Spacer(modifier = Modifier.padding(10.dp))
+        Text(text = "More Details:", fontSize = 5.em)
         Spacer(modifier = Modifier.padding(2.dp))
-        Divider()
-        Spacer(modifier = Modifier.padding(2.dp))
-        Row {
+        Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceEvenly) {
             Column {
                 Text(text = "Released On: ${movie?.release_date}")
                 Text(text = "Length: ${movie?.runtime} min")
-                Text(text = "Revenue: ${movie?.revenue}")
+                Text(text = "Revenue: ${ cf.format(movie?.revenue)}")
             }
-        }
-        Divider()
+            Column {
+                Button(onClick = { /*TODO*/ }) {
+                    if()
+                }
+                Button(onClick = { /*TODO*/ }) {
+                    Text(text = "See Reviews")
+                }
+            }
 
-
-
-        Button(onClick = { /*TODO*/ }) {
-            Text(text = "Rate Movie")
         }
     }
 }
