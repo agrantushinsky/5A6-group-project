@@ -1,5 +1,6 @@
 package com.project.freshtomatoes.ui.pages.MovieDetails
 
+import android.annotation.SuppressLint
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -15,6 +16,7 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
 import androidx.compose.material3.Divider
 import androidx.compose.material3.Text
@@ -31,20 +33,27 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.em
+import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
+import com.project.freshtomatoes.LocalNavController
 import com.project.freshtomatoes.data.Genres
 import com.project.freshtomatoes.data.Movie
 import com.project.freshtomatoes.data.TmdbRequest
+import com.project.freshtomatoes.ui.FreshTomatoes
+import com.project.freshtomatoes.ui.Router
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.text.NumberFormat
 import java.util.Locale
+
 
 @Composable
 fun MovieDetails(id: Int) {
     if (id == -1) {
         // TODO;
     }
+    var showErrorDialog by remember { mutableStateOf(false) }
+    val navController = LocalNavController.current
     val scope = rememberCoroutineScope()
     var movie by remember { mutableStateOf<Movie?>(null) }
     val cf = NumberFormat.getCurrencyInstance(Locale.US)
@@ -108,16 +117,57 @@ fun MovieDetails(id: Int) {
                 Text(text = "Revenue: ${ cf.format(movie?.revenue)}")
             }
             Column {
-                Button(onClick = { /*TODO*/ }) {
+                Button(onClick =
+                {
+                    if(FreshTomatoes.appModule.authRepository.currentUser().value != null)
+                    {
+                        navController.navigate(Router.Review.go(id))
+                    }
+                    else
+                    {
+                        showErrorDialog = true
+                    }
+                }) {
                     Text("Rate Movie")
                 }
+
                 Button(onClick = { /*TODO*/ }) {
                     Text("See Reviews")
                 }
+
+                if (showErrorDialog) {
+                    ErrorDialog(Dismiss ={ showErrorDialog = false})
+                }
+
             }
         }
     }
 }
+
+@Composable
+fun ErrorDialog(
+Dismiss : ()->Unit
+) {
+    AlertDialog(
+        onDismissRequest = { Dismiss() },
+        title = {
+            Text(text = "Must sign in", fontSize = 20.sp)
+        },
+        text = {
+            Text(text = "In order to rate the movie you must sign in.")
+        },
+        confirmButton = {
+            Button(
+                onClick = {
+                    Dismiss()
+                }
+            ) {
+                Text(text = "OK")
+            }
+        }
+    )
+}
+
 
 @Composable
 fun DisplayList(generes: List<Genres>) {

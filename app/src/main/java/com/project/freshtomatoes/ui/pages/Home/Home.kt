@@ -29,9 +29,7 @@ fun Home(viewmodel: HomeViewModel = viewModel(factory = HomeViewModelFactory()))
         Box(modifier = Modifier.fillMaxWidth(), contentAlignment = Alignment.Center) {
             SearchBar()
         }
-
         Spacer(modifier = Modifier.height(15.dp))
-
         LazyColumn {
             items(viewmodel.getAllMovies()) {
                 Text(it.label)
