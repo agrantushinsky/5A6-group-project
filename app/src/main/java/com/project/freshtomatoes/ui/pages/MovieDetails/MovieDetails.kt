@@ -56,15 +56,18 @@ fun MovieDetails(id: Int) {
         }
     }
     if (movie == null) return
-    Column(modifier = Modifier
-        .padding(8.dp)
-        .verticalScroll(rememberScrollState())) {
+    Column(
+        modifier = Modifier
+            .padding(8.dp)
+            .verticalScroll(rememberScrollState())
+    ) {
         Row(
             horizontalArrangement = Arrangement.SpaceBetween,
             modifier = Modifier
                 .fillMaxWidth()
         ) {
-            Text(text = "${movie?.title}",
+            Text(
+                text = "${movie?.title}",
                 fontSize = 7.em,
                 modifier = Modifier.width(200.dp),
                 style = TextStyle(lineHeight = 1.2.em)
@@ -112,7 +115,6 @@ fun MovieDetails(id: Int) {
                     Text("See Reviews")
                 }
             }
-
         }
     }
 }

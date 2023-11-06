@@ -29,15 +29,15 @@ class HomeViewModel : ViewModel() {
         }
     }
 
-    private fun getPopularMovies() : MovieDisplay {
+    private fun getPopularMovies(): MovieDisplay {
         return (MovieDisplay(popularLabel, popularMovies))
     }
 
-    private fun getNewMovies() : MovieDisplay {
+    private fun getNewMovies(): MovieDisplay {
         return (MovieDisplay(newLabel, newMovies))
     }
 
-    fun getAllMovies() : List<MovieDisplay> {
+    fun getAllMovies(): List<MovieDisplay> {
         return listOf(getPopularMovies(), getNewMovies())
     }
 }
