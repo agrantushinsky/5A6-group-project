@@ -29,11 +29,11 @@ class HomeViewModel : ViewModel() {
         }
     }
 
-    fun getPopularMovies() : MovieDisplay {
+    private fun getPopularMovies() : MovieDisplay {
         return (MovieDisplay(popularLabel, popularMovies))
     }
 
-    fun getNewMovies() : MovieDisplay {
+    private fun getNewMovies() : MovieDisplay {
         return (MovieDisplay(newLabel, newMovies))
     }
 
