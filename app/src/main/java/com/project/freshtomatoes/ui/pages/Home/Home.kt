@@ -41,7 +41,7 @@ fun Home(viewmodel: HomeViewModel = viewModel(factory = HomeViewModelFactory()))
         Spacer(modifier = Modifier.height(15.dp))
 
         LazyColumn {
-            items(viewmodel.getMovieDisplay()) {
+            items(viewmodel.getAllMovies()) {
                 Text(it.label)
                 LazyRow {
                     items(it.movieList) { movie ->
