@@ -54,6 +54,7 @@ fun MovieDetails(id: Int) {
     }
     var showErrorDialog by remember { mutableStateOf(false) }
     val navController = LocalNavController.current
+
     val scope = rememberCoroutineScope()
     var movie by remember { mutableStateOf<Movie?>(null) }
     val cf = NumberFormat.getCurrencyInstance(Locale.US)
