@@ -48,7 +48,10 @@ fun AuthLoginScreen(
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
             var signedInSuccess = rememberSaveable {
-                mutableStateOf(true)
+                mutableStateOf(false)
+            }
+            var attemptedSignin by rememberSaveable {
+                mutableStateOf(false)
             }
             Text("Log In", fontSize = 32.sp, fontWeight = FontWeight.Bold, modifier = Modifier.padding(20.dp))
             TextField(value = email, onValueChange = { email = it }, label = { Text("Email") }, modifier = Modifier.padding(20.dp))
@@ -62,6 +65,7 @@ fun AuthLoginScreen(
                 }
                 Button(onClick = {
                     signedInSuccess.value = authViewModel.signIn("$email", "$password")
+                    attemptedSignin = true
                     println("SignedIn: ${signedInSuccess.value}")
                     if (signedInSuccess.value)
                     {
@@ -76,7 +80,7 @@ fun AuthLoginScreen(
                 Text("                      ")
             }
 
-            if (!signedInSuccess.value) {
+            if (!signedInSuccess.value && attemptedSignin) {
                 Text("Invalid Credentials", color = Color.Red)
             }
     }
