@@ -60,10 +60,7 @@ fun Review(id: Int)
         Spacer(modifier = Modifier.height(100.dp))
         Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.End)
         {
-            /*
-            TODO FIX THIS PART
-             */
-            Text(text = "Rating: ${tomatoes.length/20 * 100}%")
+            Text(text = "Rating: ${(tomatoes.length.toDouble()/10)* 100}%")
         }
         AsyncImage(
             model = "https://image.tmdb.org/t/p/w500/${movie?.poster_path}",
@@ -96,11 +93,4 @@ fun Review(id: Int)
             }
         }
     }
-
-
-
-
-
-
-
 }
