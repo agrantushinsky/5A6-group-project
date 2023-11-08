@@ -28,10 +28,6 @@ fun Movie() {
             shape = RoundedCornerShape(8.dp)
         ) {
             Column(modifier = Modifier.padding(8.dp)) {
-                Image(
-                    painter = painterResource(id = R.drawable.example),
-                    contentDescription = "This is a sample"
-                )
                 Spacer(modifier = Modifier.height(40.dp))
                 Text(text = "Movie title: (A movie you added")
                 Text(text = "Rating: (A Rating you added")
