@@ -72,20 +72,9 @@ fun Review(id: Int)
         //region Top Part of Page
         Row()
         {
-            Text(text = "🍅  ${movie!!.title}   🍅", fontSize = 7.em)
+            Text(text = "${movie!!.title}", fontSize = 7.em)
         }
         Divider()
-        //endregion
-        //region Rating Portion
-        Spacer(modifier = Modifier.height(75.dp))
-        Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.End)
-        {
-            Column {
-                Text(text = "Your Rating: ${((tomatoes.length.toDouble()/10)* 100).toInt()}%")
-                Text(text = "Average Rating /*Todo*/")
-            }
-            
-        }
         //endregion
         //region Tomatoes + Image
         Spacer(modifier = Modifier.height(25.dp))
@@ -97,7 +86,7 @@ fun Review(id: Int)
                 .width(250.dp)
         )
         Spacer(modifier = Modifier.height(20.dp))
-        Text(text = tomatoes,fontSize = 15.em)
+        Text(text = tomatoes,fontSize = 10.em)
         Spacer(modifier = Modifier.height(20.dp))
         //endregion
         //region Buttons
