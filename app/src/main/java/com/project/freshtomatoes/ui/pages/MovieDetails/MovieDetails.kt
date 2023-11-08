@@ -38,6 +38,7 @@ import coil.compose.AsyncImage
 import com.project.freshtomatoes.LocalNavController
 import com.project.freshtomatoes.data.Genres
 import com.project.freshtomatoes.data.Movie
+import com.project.freshtomatoes.data.Review
 import com.project.freshtomatoes.data.TmdbRequest
 import com.project.freshtomatoes.ui.FreshTomatoes
 import com.project.freshtomatoes.ui.Router
