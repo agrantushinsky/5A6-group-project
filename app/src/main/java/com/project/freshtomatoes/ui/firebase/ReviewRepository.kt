@@ -1,5 +1,8 @@
 package com.project.freshtomatoes.ui.firebase
 
-interface ReviewRepository {
+import com.project.freshtomatoes.data.Review
 
+interface ReviewRepository {
+    fun saveReview(review: Review)
+    fun getReviews(): List<Review>
 }
