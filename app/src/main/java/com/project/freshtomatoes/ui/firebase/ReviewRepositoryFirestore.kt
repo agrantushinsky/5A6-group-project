@@ -14,4 +14,9 @@ class ReviewRepositoryFirestore(val db: FirebaseFirestore): ReviewRepository {
     override fun getReviews(): List<Review> {
         return emptyList()
     }
+
+    override fun getAverageRating(movieId: Int): Int {
+        //val rating = dbReviews.
+        return 0
+    }
 }
