@@ -59,6 +59,8 @@ fun MovieDetails(id: Int) {
     val scope = rememberCoroutineScope()
     var movie by remember { mutableStateOf<Movie?>(null) }
     val cf = NumberFormat.getCurrencyInstance(Locale.US)
+
+
     LaunchedEffect(0) {
         scope.launch(Dispatchers.IO) {
             val requester = TmdbRequest()
@@ -67,6 +69,10 @@ fun MovieDetails(id: Int) {
         }
     }
     if (movie == null) return
+
+    // Get the average rating for the movie
+    val averageRating = FreshTomatoes.appModule.reviewRepository.getAverageRating(movie!!.id)
+
     Column(
         modifier = Modifier
             .padding(8.dp)
