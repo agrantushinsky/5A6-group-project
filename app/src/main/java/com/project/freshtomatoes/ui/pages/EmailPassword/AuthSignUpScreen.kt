@@ -61,6 +61,7 @@ fun AuthSignUpScreen(authViewModel: AuthViewModel = viewModel(factory = AuthView
         TextField(value = password, onValueChange = { password = it }, label = { Text("Password") }, modifier = Modifier.padding(20.dp))
         TextField(value = confirmPassword, onValueChange = { confirmPassword = it }, label = { Text("Confirm Password") }, modifier = Modifier.padding(20.dp))
         Spacer(modifier = Modifier.height(10.dp))
+
         Row(horizontalArrangement = Arrangement.SpaceEvenly, modifier = Modifier.fillMaxWidth()) {
             Button(onClick = {
                 if (email == "" || password == "" || confirmPassword == "") {
@@ -71,6 +72,7 @@ fun AuthSignUpScreen(authViewModel: AuthViewModel = viewModel(factory = AuthView
                     errorMessage = "The passwords do not match."
                 } else {
                     authViewModel.signUp("$email", "$password")
+                    authViewModel.signIn("$email", "$password")
                     navController.navigate(Router.Home.route)
                 }
             }) {
@@ -82,8 +84,13 @@ fun AuthSignUpScreen(authViewModel: AuthViewModel = viewModel(factory = AuthView
                 Text("Log In")
             }
         }
+        Row(horizontalArrangement = Arrangement.SpaceEvenly, modifier = Modifier.fillMaxWidth()){
+        Text("                           ")
+        Text("Already have an account?")
+    }
         if (!isValid) {
             Text("$errorMessage", color = Color.Red)
         }
+
     }
 }

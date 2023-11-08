@@ -47,7 +47,6 @@ fun AuthLoginScreen(
             .fillMaxWidth(),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        if (userState.value == null) {
             var signedInSuccess = rememberSaveable {
                 mutableStateOf(true)
             }
@@ -63,32 +62,22 @@ fun AuthLoginScreen(
                 }
                 Button(onClick = {
                     signedInSuccess.value = authViewModel.signIn("$email", "$password")
-                    if (signedInSuccess.value) {
+                    println("SignedIn: ${signedInSuccess.value}")
+                    if (signedInSuccess.value)
+                    {
                         navController.navigate(Router.Home.route)
                     }
                 }) {
                     Text("Log In")
                 }
             }
+            Row(horizontalArrangement = Arrangement.SpaceEvenly, modifier = Modifier.fillMaxWidth()){
+                Text("Create an Account     ")
+                Text("                      ")
+            }
 
             if (!signedInSuccess.value) {
                 Text("Invalid Credentials", color = Color.Red)
             }
-        } else {
-            Text("Welcome ${userState.value!!.email}", fontSize = 24.sp, fontWeight = FontWeight.Bold, modifier = Modifier.padding(20.dp))
-
-            Row(horizontalArrangement = Arrangement.SpaceEvenly, modifier = Modifier.fillMaxWidth()) {
-                Button(onClick = {
-                    authViewModel.signOut()
-                }) {
-                    Text("Sign out")
-                }
-                Button(onClick = {
-                    authViewModel.delete()
-                }) {
-                    Text("Delete account")
-                }
-            }
-        }
     }
 }
