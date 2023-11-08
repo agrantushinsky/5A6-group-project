@@ -9,9 +9,13 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
 import androidx.compose.material3.Divider
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -31,14 +35,20 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun Review(id: Int)
 {
+    //region variables
     val scope = rememberCoroutineScope()
     var movie by remember { mutableStateOf<Movie?>(null) }
     var tomatoes by remember {
         mutableStateOf("🍅🍅🍅🍅🍅")
     }
+    var tempString by remember {
+        mutableStateOf("")
+    }
+
     LaunchedEffect(0) {
         scope.launch(Dispatchers.IO) {
             val requester = TmdbRequest()
@@ -46,22 +56,37 @@ fun Review(id: Int)
             movie = response
         }
     }
+    //endregion
+
     if (movie == null) return
 
     Column(modifier = Modifier
         .fillMaxSize()
-        .padding(10.dp), horizontalAlignment = Alignment.CenterHorizontally)
+        .verticalScroll(rememberScrollState())
+        .padding(15.dp),
+        horizontalAlignment = Alignment.CenterHorizontally)
+
     {
+        //region Top Part of Page
         Row()
         {
-            Text(text = movie!!.title, fontSize = 7.em)
+            Text(text = "🍅  ${movie!!.title}   🍅", fontSize = 7.em)
         }
         Divider()
-        Spacer(modifier = Modifier.height(100.dp))
+        //endregion
+        //region Rating Portion
+        Spacer(modifier = Modifier.height(75.dp))
         Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.End)
         {
-            Text(text = "Rating: ${(tomatoes.length.toDouble()/10)* 100}%")
+            Column {
+                Text(text = "Your Rating: ${((tomatoes.length.toDouble()/10)* 100).toInt()}%")
+                Text(text = "Average Rating /*Todo*/")
+            }
+            
         }
+        //endregion
+        //region Tomatoes + Image
+        Spacer(modifier = Modifier.height(25.dp))
         AsyncImage(
             model = "https://image.tmdb.org/t/p/w500/${movie?.poster_path}",
             contentDescription = "Translated description of what the image contains",
@@ -72,6 +97,8 @@ fun Review(id: Int)
         Spacer(modifier = Modifier.height(20.dp))
         Text(text = tomatoes,fontSize = 15.em)
         Spacer(modifier = Modifier.height(20.dp))
+        //endregion
+        //region Buttons
         Row(modifier = Modifier.fillMaxWidth()) {
             Button(onClick =
             {
@@ -82,6 +109,7 @@ fun Review(id: Int)
             }) {
                 Text(text = "Throw")
             }
+
             Spacer(modifier = Modifier.weight(1f))
             Button(onClick = {
                 if(tomatoes.length <10)
@@ -92,5 +120,12 @@ fun Review(id: Int)
                 Text(text = "Grow")
             }
         }
+        //endregion
+
+        Spacer(modifier = Modifier.height(20.dp))
+        TextField(placeholder = { Text(text = "Write a review of the Movie")},value = tempString, onValueChange = {tempString = it }, modifier = Modifier
+            .height(200.dp)
+            .width(450.dp))
+    
     }
 }
