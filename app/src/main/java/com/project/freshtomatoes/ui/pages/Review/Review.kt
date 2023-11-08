@@ -30,7 +30,9 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.em
 import coil.compose.AsyncImage
 import com.project.freshtomatoes.data.Movie
+import com.project.freshtomatoes.data.Review
 import com.project.freshtomatoes.data.TmdbRequest
+import com.project.freshtomatoes.ui.FreshTomatoes
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
@@ -126,6 +128,18 @@ fun Review(id: Int)
         TextField(placeholder = { Text(text = "Write a review of the Movie")},value = tempString, onValueChange = {tempString = it }, modifier = Modifier
             .height(200.dp)
             .width(450.dp))
-    
+
+        Button(onClick = {
+            FreshTomatoes.appModule.reviewRepository.saveReview(
+                Review(
+                    movie!!.id,
+                    tempString,
+                    tomatoes.length,
+                    FreshTomatoes.appModule.authRepository.currentUser().value!!.uid
+                )
+            )
+        }) {
+            Text("REVIEW!!!")
+        }
     }
 }

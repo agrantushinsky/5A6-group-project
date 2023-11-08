@@ -2,7 +2,10 @@ package com.project.freshtomatoes.ui.firebase
 
 import kotlinx.coroutines.flow.StateFlow
 
-data class User(var email: String)
+data class User(
+    var email: String,
+    var uid: String
+)
 
 interface AuthRepository {
     // Return a StateFlow so that the composable can always update when

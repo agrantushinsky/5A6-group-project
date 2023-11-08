@@ -56,7 +56,8 @@ private fun FirebaseUser?.toUser(): User? {
             null
         } else {
             User(
-                email = it.email!!
+                email = it.email!!,
+                uid = it.uid
             )
         }
     }
