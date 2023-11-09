@@ -17,15 +17,17 @@ class ReviewRepositoryFirestore(val db: FirebaseFirestore): ReviewRepository {
         return emptyList()
     }
 
-    override fun getAverageRating(movieId: Int): Flow<Int> = callbackFlow {
-        val query = dbReviews.whereEqualTo("movieId", movieId)
+    override fun getAverageRating(movieId: Int): Flow<Double> = callbackFlow {
+        println(movieId)
+        dbReviews.whereEqualTo("movieId", movieId)
             .get()
             .addOnSuccessListener { documents ->
                 val averageRating = documents.mapNotNull { it.getDouble("rating") }.average()
+                println(averageRating)
+                trySend(averageRating)
             }
             .addOnFailureListener {
                 // TODO
             }
-
     }
 }

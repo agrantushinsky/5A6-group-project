@@ -43,6 +43,7 @@ import com.project.freshtomatoes.data.TmdbRequest
 import com.project.freshtomatoes.ui.FreshTomatoes
 import com.project.freshtomatoes.ui.Router
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import java.text.NumberFormat
 import java.util.Locale
@@ -89,7 +90,7 @@ fun MovieDetails(id: Int) {
                 modifier = Modifier.width(200.dp),
                 style = TextStyle(lineHeight = 1.2.em)
             )
-            Text(text = "Average: 3/5🍅", fontSize = 5.em)
+            Text(text = "Average: ${averageRating}🍅", fontSize = 5.em)
         }
         Text(text = "${movie?.tagline}")
         Spacer(modifier = Modifier.padding(5.dp))
