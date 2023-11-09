@@ -10,6 +10,7 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -41,18 +42,26 @@ fun AuthLoginScreen(
     var password by rememberSaveable {
         mutableStateOf("")
     }
+    var signedInSuccess = rememberSaveable {
+        mutableStateOf(false)
+    }
+    var errorOccurred by rememberSaveable{
+        mutableStateOf(false)
+    }
+
+    var loginButtonclicked by rememberSaveable {
+        mutableStateOf(false)
+    }
+
+
+
     Column(
         modifier = Modifier
             .padding(20.dp)
             .fillMaxWidth(),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-            var signedInSuccess = rememberSaveable {
-                mutableStateOf(false)
-            }
-            var attemptedSignin by rememberSaveable {
-                mutableStateOf(false)
-            }
+
             Text("Log In", fontSize = 32.sp, fontWeight = FontWeight.Bold, modifier = Modifier.padding(20.dp))
             TextField(value = email, onValueChange = { email = it }, label = { Text("Email") }, modifier = Modifier.padding(20.dp))
             TextField(value = password, onValueChange = { password = it }, label = { Text("Password") }, modifier = Modifier.padding(20.dp))
@@ -64,13 +73,7 @@ fun AuthLoginScreen(
                     Text("Sign up")
                 }
                 Button(onClick = {
-                    signedInSuccess.value = authViewModel.signIn("$email", "$password")
-                    attemptedSignin = true
-                    println("SignedIn: ${signedInSuccess.value}")
-                    if (signedInSuccess.value)
-                    {
-                        navController.navigate(Router.Home.route)
-                    }
+                    loginButtonclicked = true;
                 }) {
                     Text("Log In")
                 }
@@ -80,8 +83,28 @@ fun AuthLoginScreen(
                 Text("                      ")
             }
 
-            if (!signedInSuccess.value && attemptedSignin) {
+            if (errorOccurred) {
                 Text("Invalid Credentials", color = Color.Red)
             }
     }
+
+    if(loginButtonclicked){
+        LaunchedEffect(signedInSuccess){
+            if(email.isNotEmpty() && password.isNotEmpty()){
+                val result = authViewModel.signIn("$email", "$password")
+                signedInSuccess.value = result
+
+                if(result) {
+                    errorOccurred = false;
+                    navController.navigate(com.project.freshtomatoes.ui.Router.Home.route)
+                }
+                else {
+                    errorOccurred = true
+                }
+            }
+        }
+    }
+
 }
+
+

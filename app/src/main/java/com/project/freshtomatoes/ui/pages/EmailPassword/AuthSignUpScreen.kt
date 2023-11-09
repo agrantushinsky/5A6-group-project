@@ -72,7 +72,7 @@ fun AuthSignUpScreen(authViewModel: AuthViewModel = viewModel(factory = AuthView
                     errorMessage = "The passwords do not match."
                 } else {
                     authViewModel.signUp("$email", "$password")
-                    authViewModel.signIn("$email", "$password")
+                    //authViewModel.signIn("$email", "$password")
                     navController.navigate(Router.Home.route)
                 }
             }) {
