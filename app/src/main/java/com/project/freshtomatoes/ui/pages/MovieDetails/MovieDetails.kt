@@ -22,6 +22,7 @@ import androidx.compose.material3.Divider
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -72,7 +73,8 @@ fun MovieDetails(id: Int) {
     if (movie == null) return
 
     // Get the average rating for the movie
-    val averageRating = FreshTomatoes.appModule.reviewRepository.getAverageRating(movie!!.id)
+    val collectAsState = FreshTomatoes.appModule.reviewRepository.getAverageRating(movie!!.id).collectAsState(0)
+    val averageRating = collectAsState.value
 
     Column(
         modifier = Modifier

@@ -1,5 +1,6 @@
 package com.project.freshtomatoes.ui.pages.Home
 
+import HomeViewModel
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -11,8 +12,6 @@ import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
@@ -20,8 +19,6 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.project.freshtomatoes.ui.components.MovieCard
 import com.project.freshtomatoes.ui.components.SearchBar
 import com.project.freshtomatoes.ui.factories.HomeViewModelFactory
-import com.project.freshtomatoes.ui.layout.items
-import com.project.freshtomatoes.ui.viewmodels.HomeViewModel
 
 @Composable
 fun Home(viewmodel: HomeViewModel = viewModel(factory = HomeViewModelFactory())) {
