@@ -3,6 +3,7 @@ package com.project.freshtomatoes.ui.firebase
 import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.FirebaseFirestore
 import com.project.freshtomatoes.data.Review
+import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.callbackFlow
 
@@ -29,5 +30,6 @@ class ReviewRepositoryFirestore(val db: FirebaseFirestore): ReviewRepository {
             .addOnFailureListener {
                 // TODO
             }
+        awaitClose {  }
     }
 }

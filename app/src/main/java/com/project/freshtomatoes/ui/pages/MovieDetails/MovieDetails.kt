@@ -35,6 +35,7 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.em
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import coil.compose.AsyncImage
 import com.project.freshtomatoes.LocalNavController
 import com.project.freshtomatoes.data.Genres
@@ -43,6 +44,9 @@ import com.project.freshtomatoes.data.Review
 import com.project.freshtomatoes.data.TmdbRequest
 import com.project.freshtomatoes.ui.FreshTomatoes
 import com.project.freshtomatoes.ui.Router
+import com.project.freshtomatoes.ui.factories.HomeViewModelFactory
+import com.project.freshtomatoes.ui.factories.MovieDetailsViewModelFactory
+import com.project.freshtomatoes.ui.viewmodels.MovieDetailsViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
@@ -51,30 +55,21 @@ import java.util.Locale
 
 
 @Composable
-fun MovieDetails(id: Int) {
+fun MovieDetails(id: Int, viewmodel: MovieDetailsViewModel = viewModel(factory = MovieDetailsViewModelFactory())) {
     if (id == -1) {
         // TODO;
     }
     var showErrorDialog by remember { mutableStateOf(false) }
     val navController = LocalNavController.current
 
-    val scope = rememberCoroutineScope()
-    var movie by remember { mutableStateOf<Movie?>(null) }
+    val movie by viewmodel.movie.collectAsState()
+    val averageRating by viewmodel.averageRating.collectAsState()
     val cf = NumberFormat.getCurrencyInstance(Locale.US)
 
-
-    LaunchedEffect(0) {
-        scope.launch(Dispatchers.IO) {
-            val requester = TmdbRequest()
-            val response = requester.details(id)
-            movie = response
-        }
+    if (movie == null) {
+        viewmodel.updateMovie(id)
+        return
     }
-    if (movie == null) return
-
-    // Get the average rating for the movie
-    val collectAsState = FreshTomatoes.appModule.reviewRepository.getAverageRating(movie!!.id).collectAsState(0)
-    val averageRating = collectAsState.value
 
     Column(
         modifier = Modifier
