@@ -5,6 +5,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Info
+import androidx.compose.material.icons.filled.List
 import androidx.compose.material3.BottomAppBar
 import androidx.compose.material3.Icon
 import androidx.compose.material3.NavigationBar
@@ -28,7 +29,7 @@ data class NavBarIcon(
 val items = listOf(
     NavBarIcon(route = Router.Home.route, icon = Icons.Filled.Home),
     NavBarIcon(route = Router.About.route, icon = Icons.Filled.Info),
-    NavBarIcon(route = Router.Movie.route, icon = Icons.Filled.Favorite)
+    NavBarIcon(route = Router.YourReviews.route, icon = Icons.Filled.List)
 )
 
 @Composable

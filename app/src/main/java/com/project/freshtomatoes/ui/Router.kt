@@ -9,13 +9,13 @@ import com.project.freshtomatoes.ui.pages.EmailPassword.AuthLoginScreen
 import com.project.freshtomatoes.ui.pages.EmailPassword.AuthSignUpScreen
 import com.project.freshtomatoes.ui.pages.Home.Home
 import com.project.freshtomatoes.ui.pages.MovieDetails.MovieDetails
-import com.project.freshtomatoes.ui.pages.Movies.Movie
 import com.project.freshtomatoes.ui.pages.Review.Review
+import com.project.freshtomatoes.ui.pages.YourReviews.YourReviews
 
 sealed class Router(val route: String) {
     object Home : Router("Home")
     object About : Router("About")
-    object Movie : Router("Movie")
+    object YourReviews : Router("Your Reviews")
     object MovieDetails : Router("MovieDetails/{index}") {
         fun go(index: Int) = "MovieDetails/$index"
     }
@@ -33,7 +33,7 @@ fun NavGraph() {
     NavHost(navController = navController, startDestination = "Home") {
         composable(Router.Home.route) { Home() }
         composable(Router.About.route) { AboutUs() }
-        composable(Router.Movie.route) { Movie() }
+        composable(Router.YourReviews.route) { YourReviews() }
         composable(Router.MovieDetails.route) { MovieDetails(id = it.arguments?.getString("index")?.toInt() ?: -1) }
         composable(Router.Account.route) { AuthLoginScreen() }
         composable(Router.SignUp.route) { AuthSignUpScreen() }
