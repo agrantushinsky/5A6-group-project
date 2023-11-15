@@ -1,5 +1,3 @@
-package com.project.freshtomatoes.ui.viewmodels
-
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
@@ -41,3 +39,4 @@ class HomeViewModel : ViewModel() {
         return listOf(getPopularMovies(), getNewMovies())
     }
 }
+
