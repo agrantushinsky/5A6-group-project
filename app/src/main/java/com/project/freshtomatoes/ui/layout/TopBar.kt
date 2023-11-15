@@ -32,9 +32,9 @@ fun TopTomatoBar(authViewModel: AuthViewModel = viewModel(factory = AuthViewMode
     TopAppBar(
         title =
         {
-            Row (horizontalArrangement = Arrangement.SpaceBetween, modifier = Modifier.fillMaxWidth()){
+            Row(horizontalArrangement = Arrangement.SpaceBetween, modifier = Modifier.fillMaxWidth()) {
                 Text(text = "FreshTomatoes")
-                if(userState.value != null){
+                if (userState.value != null) {
                     Text(text = "${userState.value?.email?.split("@")?.get(0)}", fontSize = 18.sp, fontWeight = FontWeight.Bold)
                 }
             }
@@ -43,15 +43,16 @@ fun TopTomatoBar(authViewModel: AuthViewModel = viewModel(factory = AuthViewMode
             containerColor = MaterialTheme.colorScheme.primaryContainer
         ),
         actions = {
-            IconButton(onClick =
-            {
-                if(userState.value == null){
-                    navController.navigate(Router.Account.route)
+            IconButton(
+                onClick =
+                {
+                    if (userState.value == null) {
+                        navController.navigate(Router.Account.route)
+                    } else {
+                        navController.navigate(Router.Profile.route)
+                    }
                 }
-                else {
-                    navController.navigate(Router.Profile.route)
-                }
-            }) {
+            ) {
                 Icon(
                     imageVector = Icons.Filled.AccountCircle,
                     contentDescription = "Account button"

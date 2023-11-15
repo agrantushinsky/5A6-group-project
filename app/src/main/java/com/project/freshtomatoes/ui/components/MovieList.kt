@@ -19,9 +19,8 @@ import com.project.freshtomatoes.data.Movie
 import com.project.freshtomatoes.ui.Router
 
 @Composable
-fun MovieList(expanded: MutableState<Boolean>, movieList: List<Movie>)
-{
-    val navController = LocalNavController.current;
+fun MovieList(expanded: MutableState<Boolean>, movieList: List<Movie>) {
+    val navController = LocalNavController.current
 
     DropdownMenu(
         expanded = expanded.value,
@@ -32,7 +31,7 @@ fun MovieList(expanded: MutableState<Boolean>, movieList: List<Movie>)
         movieList.forEach { movie ->
             DropdownMenuItem(
                 text = { Text(text = "${movie.title}") },
-                onClick = { navController.navigate(Router.MovieDetails.go(movie.id))},
+                onClick = { navController.navigate(Router.MovieDetails.go(movie.id)) },
                 leadingIcon = {
                     IconButton(onClick = { }) {
                         AsyncImage(

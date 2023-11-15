@@ -1,6 +1,5 @@
 package com.project.freshtomatoes.ui.pages.Review
 
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -19,7 +18,6 @@ import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
@@ -36,11 +34,9 @@ import com.project.freshtomatoes.ui.FreshTomatoes
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun Review(id: Int)
-{
+fun Review(id: Int) {
     //region variables
     val scope = rememberCoroutineScope()
     var movie by remember { mutableStateOf<Movie?>(null) }
@@ -62,16 +58,15 @@ fun Review(id: Int)
 
     if (movie == null) return
 
-    Column(modifier = Modifier
-        .fillMaxSize()
-        .verticalScroll(rememberScrollState())
-        .padding(15.dp),
-        horizontalAlignment = Alignment.CenterHorizontally)
-
-    {
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .verticalScroll(rememberScrollState())
+            .padding(15.dp),
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
         //region Top Part of Page
-        Row()
-        {
+        Row() {
             Text(text = "${movie!!.title}", fontSize = 7.em)
         }
         Divider()
@@ -86,26 +81,26 @@ fun Review(id: Int)
                 .width(250.dp)
         )
         Spacer(modifier = Modifier.height(20.dp))
-        Text(text = tomatoes,fontSize = 10.em)
+        Text(text = tomatoes, fontSize = 10.em)
         Spacer(modifier = Modifier.height(20.dp))
         //endregion
         //region Buttons
         Row(modifier = Modifier.fillMaxWidth()) {
-            Button(onClick =
-            {
-                if(tomatoes.isNotEmpty())
+            Button(
+                onClick =
                 {
-                    tomatoes = tomatoes.substring(0, tomatoes.length - 2)
+                    if (tomatoes.isNotEmpty()) {
+                        tomatoes = tomatoes.substring(0, tomatoes.length - 2)
+                    }
                 }
-            }) {
+            ) {
                 Text(text = "Throw")
             }
 
             Spacer(modifier = Modifier.weight(1f))
             Button(onClick = {
-                if(tomatoes.length <10)
-                {
-                    tomatoes+= "🍅"
+                if (tomatoes.length < 10) {
+                    tomatoes += "🍅"
                 }
             }) {
                 Text(text = "Grow")
@@ -114,9 +109,14 @@ fun Review(id: Int)
         //endregion
 
         Spacer(modifier = Modifier.height(20.dp))
-        TextField(placeholder = { Text(text = "Write a review of the Movie")},value = tempString, onValueChange = {tempString = it }, modifier = Modifier
-            .height(200.dp)
-            .width(450.dp))
+        TextField(
+            placeholder = { Text(text = "Write a review of the Movie") },
+            value = tempString,
+            onValueChange = { tempString = it },
+            modifier = Modifier
+                .height(200.dp)
+                .width(450.dp)
+        )
 
         Button(onClick = {
             FreshTomatoes.appModule.reviewRepository.saveReview(

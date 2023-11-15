@@ -20,27 +20,24 @@ import com.project.freshtomatoes.ui.factories.AuthViewModelFactory
 import com.project.freshtomatoes.ui.viewmodels.AuthViewModel
 
 @Composable
-fun ProfileScreen(authViewModel: AuthViewModel = viewModel(factory = AuthViewModelFactory()))
-{
+fun ProfileScreen(authViewModel: AuthViewModel = viewModel(factory = AuthViewModelFactory())) {
     val userState = authViewModel.currentUser().collectAsState()
-    val navController = LocalNavController.current;
-    Column{
+    val navController = LocalNavController.current
+    Column {
         Text("Welcome ${userState.value?.email?.split("@")?.get(0)}!", fontSize = 24.sp, fontWeight = FontWeight.Bold, modifier = Modifier.padding(20.dp))
 
-        Row(horizontalArrangement = Arrangement.SpaceEvenly, modifier = Modifier.fillMaxWidth()){
+        Row(horizontalArrangement = Arrangement.SpaceEvenly, modifier = Modifier.fillMaxWidth()) {
             Button(onClick = {
                 authViewModel.signOut()
                 navController.navigate(Router.Home.route)
-            }){
+            }) {
                 Text("Sign Out")
             }
             Button(onClick = {
                 authViewModel.delete()
-
-            }){
+            }) {
                 Text("Delete account")
             }
         }
     }
-
 }

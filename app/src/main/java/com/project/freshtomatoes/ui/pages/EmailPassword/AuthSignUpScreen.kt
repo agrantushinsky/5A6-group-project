@@ -72,7 +72,7 @@ fun AuthSignUpScreen(authViewModel: AuthViewModel = viewModel(factory = AuthView
                     errorMessage = "The passwords do not match."
                 } else {
                     authViewModel.signUp("$email", "$password")
-                    //authViewModel.signIn("$email", "$password")
+                    // authViewModel.signIn("$email", "$password")
                     navController.navigate(Router.Home.route)
                 }
             }) {
@@ -84,13 +84,12 @@ fun AuthSignUpScreen(authViewModel: AuthViewModel = viewModel(factory = AuthView
                 Text("Log In")
             }
         }
-        Row(horizontalArrangement = Arrangement.SpaceEvenly, modifier = Modifier.fillMaxWidth()){
-        Text("                           ")
-        Text("Already have an account?")
-    }
+        Row(horizontalArrangement = Arrangement.SpaceEvenly, modifier = Modifier.fillMaxWidth()) {
+            Text("                           ")
+            Text("Already have an account?")
+        }
         if (!isValid) {
             Text("$errorMessage", color = Color.Red)
         }
-
     }
 }

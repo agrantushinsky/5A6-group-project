@@ -39,4 +39,3 @@ class HomeViewModel : ViewModel() {
         return listOf(getPopularMovies(), getNewMovies())
     }
 }
-

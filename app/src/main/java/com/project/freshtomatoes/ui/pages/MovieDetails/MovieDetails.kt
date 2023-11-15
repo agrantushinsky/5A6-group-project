@@ -1,6 +1,5 @@
 package com.project.freshtomatoes.ui.pages.MovieDetails
 
-import android.annotation.SuppressLint
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -21,12 +20,10 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.Divider
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -39,20 +36,13 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import coil.compose.AsyncImage
 import com.project.freshtomatoes.LocalNavController
 import com.project.freshtomatoes.data.Genres
-import com.project.freshtomatoes.data.Movie
 import com.project.freshtomatoes.data.Review
-import com.project.freshtomatoes.data.TmdbRequest
 import com.project.freshtomatoes.ui.FreshTomatoes
 import com.project.freshtomatoes.ui.Router
-import com.project.freshtomatoes.ui.factories.HomeViewModelFactory
 import com.project.freshtomatoes.ui.factories.MovieDetailsViewModelFactory
 import com.project.freshtomatoes.ui.viewmodels.MovieDetailsViewModel
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.launch
 import java.text.NumberFormat
 import java.util.Locale
-
 
 @Composable
 fun MovieDetails(id: Int, viewmodel: MovieDetailsViewModel = viewModel(factory = MovieDetailsViewModelFactory())) {
@@ -87,7 +77,7 @@ fun MovieDetails(id: Int, viewmodel: MovieDetailsViewModel = viewModel(factory =
                 modifier = Modifier.width(200.dp),
                 style = TextStyle(lineHeight = 1.2.em)
             )
-            Text(text = "Average: ${averageRating}🍅", fontSize = 5.em)
+            Text(text = "Average: $averageRating🍅", fontSize = 5.em)
         }
         Text(text = "${movie?.tagline}")
         Spacer(modifier = Modifier.padding(5.dp))
@@ -123,17 +113,16 @@ fun MovieDetails(id: Int, viewmodel: MovieDetailsViewModel = viewModel(factory =
                 Text(text = "Revenue: ${ cf.format(movie?.revenue)}")
             }
             Column {
-                Button(onClick =
-                {
-                    if(FreshTomatoes.appModule.authRepository.currentUser().value != null)
+                Button(
+                    onClick =
                     {
-                        navController.navigate(Router.Review.go(id))
+                        if (FreshTomatoes.appModule.authRepository.currentUser().value != null) {
+                            navController.navigate(Router.Review.go(id))
+                        } else {
+                            showErrorDialog = true
+                        }
                     }
-                    else
-                    {
-                        showErrorDialog = true
-                    }
-                }) {
+                ) {
                     Text("Rate Movie")
                 }
 
@@ -142,9 +131,8 @@ fun MovieDetails(id: Int, viewmodel: MovieDetailsViewModel = viewModel(factory =
                 }
 
                 if (showErrorDialog) {
-                    ErrorDialog(Dismiss ={ showErrorDialog = false})
+                    ErrorDialog(Dismiss = { showErrorDialog = false })
                 }
-
             }
         }
     }
@@ -152,7 +140,7 @@ fun MovieDetails(id: Int, viewmodel: MovieDetailsViewModel = viewModel(factory =
 
 @Composable
 fun ErrorDialog(
-Dismiss : ()->Unit
+    Dismiss: () -> Unit
 ) {
     AlertDialog(
         onDismissRequest = { Dismiss() },
@@ -173,7 +161,6 @@ Dismiss : ()->Unit
         }
     )
 }
-
 
 @Composable
 fun DisplayList(generes: List<Genres>) {

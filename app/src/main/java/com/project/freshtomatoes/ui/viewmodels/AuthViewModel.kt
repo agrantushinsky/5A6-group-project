@@ -6,7 +6,6 @@ import com.project.freshtomatoes.ui.firebase.AuthRepository
 import com.project.freshtomatoes.ui.firebase.User
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.tasks.await
 
 class AuthViewModel(private val authRepository: AuthRepository) : ViewModel() {
     // Return a StateFlow so that the composable can always update
@@ -22,12 +21,10 @@ class AuthViewModel(private val authRepository: AuthRepository) : ViewModel() {
     }
 
     suspend fun signIn(email: String, password: String): Boolean {
-        try{
+        try {
             val result = authRepository.signIn(email, password)
-            return result;
-        }
-        catch (e: Exception)
-        {
+            return result
+        } catch (e: Exception) {
             println("${e.message}")
             return false
         }

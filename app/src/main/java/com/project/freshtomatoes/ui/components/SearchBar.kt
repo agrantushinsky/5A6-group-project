@@ -15,7 +15,6 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import com.project.freshtomatoes.LocalNavController
 import com.project.freshtomatoes.data.Movie
 import com.project.freshtomatoes.data.TmdbRequest
 import kotlinx.coroutines.Dispatchers

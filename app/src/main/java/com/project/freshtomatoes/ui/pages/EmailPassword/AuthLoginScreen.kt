@@ -45,7 +45,7 @@ fun AuthLoginScreen(
     var signedInSuccess = rememberSaveable {
         mutableStateOf(false)
     }
-    var errorOccurred by rememberSaveable{
+    var errorOccurred by rememberSaveable {
         mutableStateOf(false)
     }
 
@@ -53,58 +53,51 @@ fun AuthLoginScreen(
         mutableStateOf(false)
     }
 
-
-
     Column(
         modifier = Modifier
             .padding(20.dp)
             .fillMaxWidth(),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
+        Text("Log In", fontSize = 32.sp, fontWeight = FontWeight.Bold, modifier = Modifier.padding(20.dp))
+        TextField(value = email, onValueChange = { email = it }, label = { Text("Email") }, modifier = Modifier.padding(20.dp))
+        TextField(value = password, onValueChange = { password = it }, label = { Text("Password") }, modifier = Modifier.padding(20.dp))
 
-            Text("Log In", fontSize = 32.sp, fontWeight = FontWeight.Bold, modifier = Modifier.padding(20.dp))
-            TextField(value = email, onValueChange = { email = it }, label = { Text("Email") }, modifier = Modifier.padding(20.dp))
-            TextField(value = password, onValueChange = { password = it }, label = { Text("Password") }, modifier = Modifier.padding(20.dp))
+        Row(horizontalArrangement = Arrangement.SpaceEvenly, modifier = Modifier.fillMaxWidth()) {
+            Button(onClick = {
+                navController.navigate(Router.SignUp.route)
+            }) {
+                Text("Sign up")
+            }
+            Button(onClick = {
+                loginButtonclicked = true
+            }) {
+                Text("Log In")
+            }
+        }
+        Row(horizontalArrangement = Arrangement.SpaceEvenly, modifier = Modifier.fillMaxWidth()) {
+            Text("Create an Account     ")
+            Text("                      ")
+        }
 
-            Row(horizontalArrangement = Arrangement.SpaceEvenly, modifier = Modifier.fillMaxWidth()) {
-                Button(onClick = {
-                    navController.navigate(Router.SignUp.route)
-                }) {
-                    Text("Sign up")
-                }
-                Button(onClick = {
-                    loginButtonclicked = true;
-                }) {
-                    Text("Log In")
-                }
-            }
-            Row(horizontalArrangement = Arrangement.SpaceEvenly, modifier = Modifier.fillMaxWidth()){
-                Text("Create an Account     ")
-                Text("                      ")
-            }
-
-            if (errorOccurred) {
-                Text("Invalid Credentials", color = Color.Red)
-            }
+        if (errorOccurred) {
+            Text("Invalid Credentials", color = Color.Red)
+        }
     }
 
-    if(loginButtonclicked){
-        LaunchedEffect(signedInSuccess){
-            if(email.isNotEmpty() && password.isNotEmpty()){
+    if (loginButtonclicked) {
+        LaunchedEffect(signedInSuccess) {
+            if (email.isNotEmpty() && password.isNotEmpty()) {
                 val result = authViewModel.signIn("$email", "$password")
                 signedInSuccess.value = result
 
-                if(result) {
-                    errorOccurred = false;
+                if (result) {
+                    errorOccurred = false
                     navController.navigate(com.project.freshtomatoes.ui.Router.Home.route)
-                }
-                else {
+                } else {
                     errorOccurred = true
                 }
             }
         }
     }
-
 }
-
-

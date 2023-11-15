@@ -3,15 +3,17 @@ package com.project.freshtomatoes.ui
 import androidx.compose.runtime.Composable
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import androidx.navigation.navDeepLink
 import com.project.freshtomatoes.LocalNavController
 import com.project.freshtomatoes.ui.pages.About.AboutUs
+import com.project.freshtomatoes.ui.pages.DeepScreen
 import com.project.freshtomatoes.ui.pages.EmailPassword.AuthLoginScreen
 import com.project.freshtomatoes.ui.pages.EmailPassword.AuthSignUpScreen
 import com.project.freshtomatoes.ui.pages.Home.Home
 import com.project.freshtomatoes.ui.pages.MovieDetails.MovieDetails
+import com.project.freshtomatoes.ui.pages.ProfileScreen
 import com.project.freshtomatoes.ui.pages.Review.Review
 import com.project.freshtomatoes.ui.pages.YourReviews.YourReviews
-import com.project.freshtomatoes.ui.pages.ProfileScreen
 
 sealed class Router(val route: String) {
     object Home : Router("Home")
@@ -40,6 +42,13 @@ fun NavGraph() {
         composable(Router.Account.route) { AuthLoginScreen() }
         composable(Router.SignUp.route) { AuthSignUpScreen() }
         composable(Router.Review.route) { Review(id = it.arguments?.getString("index")?.toInt() ?: -1) }
-        composable(Router.Profile.route){ ProfileScreen()}
+        composable(Router.Profile.route) { ProfileScreen() }
+        composable(
+            "deeplink",
+            // Note that this navDeepLink pattern has no relation to the route itself
+            deepLinks = listOf(navDeepLink { uriPattern = "example://compose.deeplink" })
+        ) {
+            DeepScreen("0")
+        }
     }
 }

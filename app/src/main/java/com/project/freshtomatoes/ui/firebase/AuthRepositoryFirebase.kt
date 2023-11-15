@@ -33,23 +33,18 @@ class AuthRepositoryFirebase(private val auth: FirebaseAuth) : AuthRepository {
     override suspend fun signIn(email: String, password: String): Boolean {
         return try {
             var result = auth.signInWithEmailAndPassword(email, password).await()
-            var user = result.user;
+            var user = result.user
             println("The user is: ${user?.email}")
-            return user != null;
-        }
-        catch (e: FirebaseAuthInvalidUserException)
-        {
+            return user != null
+        } catch (e: FirebaseAuthInvalidUserException) {
             println("The user doesn't exist: ${e.message}")
-            return false;
+            return false
         }
-        //If the email is badly formatted it counts as this type of exception
-        catch (e: FirebaseAuthInvalidCredentialsException)
-        {
+        // If the email is badly formatted it counts as this type of exception
+        catch (e: FirebaseAuthInvalidCredentialsException) {
             println("Invalid credentials: ${e.message}")
-            return false;
-        }
-        catch (e: Exception)
-        {
+            return false
+        } catch (e: Exception) {
             println("********************The exception is: " + e.message)
             return false
         }
