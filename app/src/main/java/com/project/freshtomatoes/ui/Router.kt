@@ -43,12 +43,10 @@ fun NavGraph() {
         composable(Router.SignUp.route) { AuthSignUpScreen() }
         composable(Router.Review.route) { Review(id = it.arguments?.getString("index")?.toInt() ?: -1) }
         composable(Router.Profile.route) { ProfileScreen() }
-        composable(
-            "deeplink",
-            // Note that this navDeepLink pattern has no relation to the route itself
-            deepLinks = listOf(navDeepLink { uriPattern = "example://compose.deeplink" })
-        ) {
-            DeepScreen("0")
-        }
+        composable("deeplink2?id={id}",
+        // Note that this navDeepLink pattern has no relation to the route itself
+        deepLinks = listOf(navDeepLink { uriPattern = "example://compose.deeplink2/?id={id}" })
+        ) { backStackEntry ->
+        DeepScreen(backStackEntry.arguments?.getString("id")) }
     }
 }

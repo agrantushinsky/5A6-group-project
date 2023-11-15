@@ -38,18 +38,9 @@
                 <!--on below line we are specifying the host name and scheme type from which we will be calling our app.  Here, accepts URIs that begin with "example://compose.deeplink"-->
                 <data
                     android:scheme="example"
-                    android:host="compose.deeplink" />
-
-            </intent-filter>
-            <intent-filter android:autoVerify="true">
-                <action android:name="android.intent.action.VIEW" />
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
-                <data
-                    android:scheme="example"
                     android:host="compose.deeplink2" />
-            </intent-filter>
 
+            </intent-filter>
         </activity>
     </application>
 
