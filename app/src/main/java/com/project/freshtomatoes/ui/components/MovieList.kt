@@ -14,10 +14,15 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.PopupProperties
 import coil.compose.AsyncImage
+import com.project.freshtomatoes.LocalNavController
 import com.project.freshtomatoes.data.Movie
+import com.project.freshtomatoes.ui.Router
 
 @Composable
-fun MovieList(expanded: MutableState<Boolean>, movieList: List<Movie>) {
+fun MovieList(expanded: MutableState<Boolean>, movieList: List<Movie>)
+{
+    val navController = LocalNavController.current;
+
     DropdownMenu(
         expanded = expanded.value,
         onDismissRequest = { expanded.value = false },
@@ -27,7 +32,7 @@ fun MovieList(expanded: MutableState<Boolean>, movieList: List<Movie>) {
         movieList.forEach { movie ->
             DropdownMenuItem(
                 text = { Text(text = "${movie.title}") },
-                onClick = { },
+                onClick = { navController.navigate(Router.MovieDetails.go(movie.id))},
                 leadingIcon = {
                     IconButton(onClick = { }) {
                         AsyncImage(

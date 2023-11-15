@@ -11,6 +11,7 @@ import com.project.freshtomatoes.ui.pages.Home.Home
 import com.project.freshtomatoes.ui.pages.MovieDetails.MovieDetails
 import com.project.freshtomatoes.ui.pages.Review.Review
 import com.project.freshtomatoes.ui.pages.YourReviews.YourReviews
+import com.project.freshtomatoes.ui.pages.ProfileScreen
 
 sealed class Router(val route: String) {
     object Home : Router("Home")
@@ -25,6 +26,7 @@ sealed class Router(val route: String) {
 
     object Account : Router("Account")
     object SignUp : Router("SignUp")
+    object Profile : Router("Profile")
 }
 
 @Composable
@@ -38,5 +40,6 @@ fun NavGraph() {
         composable(Router.Account.route) { AuthLoginScreen() }
         composable(Router.SignUp.route) { AuthSignUpScreen() }
         composable(Router.Review.route) { Review(id = it.arguments?.getString("index")?.toInt() ?: -1) }
+        composable(Router.Profile.route){ ProfileScreen()}
     }
 }

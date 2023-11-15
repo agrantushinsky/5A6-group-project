@@ -10,6 +10,7 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -41,16 +42,26 @@ fun AuthLoginScreen(
     var password by rememberSaveable {
         mutableStateOf("")
     }
+    var signedInSuccess = rememberSaveable {
+        mutableStateOf(false)
+    }
+    var errorOccurred by rememberSaveable{
+        mutableStateOf(false)
+    }
+
+    var loginButtonclicked by rememberSaveable {
+        mutableStateOf(false)
+    }
+
+
+
     Column(
         modifier = Modifier
             .padding(20.dp)
             .fillMaxWidth(),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        if (userState.value == null) {
-            var signedInSuccess = rememberSaveable {
-                mutableStateOf(true)
-            }
+
             Text("Log In", fontSize = 32.sp, fontWeight = FontWeight.Bold, modifier = Modifier.padding(20.dp))
             TextField(value = email, onValueChange = { email = it }, label = { Text("Email") }, modifier = Modifier.padding(20.dp))
             TextField(value = password, onValueChange = { password = it }, label = { Text("Password") }, modifier = Modifier.padding(20.dp))
@@ -62,33 +73,38 @@ fun AuthLoginScreen(
                     Text("Sign up")
                 }
                 Button(onClick = {
-                    signedInSuccess.value = authViewModel.signIn("$email", "$password")
-                    if (signedInSuccess.value) {
-                        navController.navigate(Router.Home.route)
-                    }
+                    loginButtonclicked = true;
                 }) {
                     Text("Log In")
                 }
             }
+            Row(horizontalArrangement = Arrangement.SpaceEvenly, modifier = Modifier.fillMaxWidth()){
+                Text("Create an Account     ")
+                Text("                      ")
+            }
 
-            if (!signedInSuccess.value) {
+            if (errorOccurred) {
                 Text("Invalid Credentials", color = Color.Red)
             }
-        } else {
-            Text("Welcome ${userState.value!!.email}", fontSize = 24.sp, fontWeight = FontWeight.Bold, modifier = Modifier.padding(20.dp))
+    }
 
-            Row(horizontalArrangement = Arrangement.SpaceEvenly, modifier = Modifier.fillMaxWidth()) {
-                Button(onClick = {
-                    authViewModel.signOut()
-                }) {
-                    Text("Sign out")
+    if(loginButtonclicked){
+        LaunchedEffect(signedInSuccess){
+            if(email.isNotEmpty() && password.isNotEmpty()){
+                val result = authViewModel.signIn("$email", "$password")
+                signedInSuccess.value = result
+
+                if(result) {
+                    errorOccurred = false;
+                    navController.navigate(com.project.freshtomatoes.ui.Router.Home.route)
                 }
-                Button(onClick = {
-                    authViewModel.delete()
-                }) {
-                    Text("Delete account")
+                else {
+                    errorOccurred = true
                 }
             }
         }
     }
+
 }
+
+
