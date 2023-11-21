@@ -17,7 +17,7 @@ class ReviewRepositoryFirestore(val db: FirebaseFirestore) : ReviewRepository {
         dbReviews.add(review)
     }
 
-    override fun getReviews(uid : String): Flow<List<Review>> = callbackFlow {
+    override fun getReviewsByUID(uid : String): Flow<List<Review>> = callbackFlow {
         val subscription = dbReviews
             .whereEqualTo("ownerUID", uid)
             .addSnapshotListener { snapshot, error ->
@@ -35,6 +35,27 @@ class ReviewRepositoryFirestore(val db: FirebaseFirestore) : ReviewRepository {
                 trySend(emptyList())
             }
         }
+        awaitClose { subscription.remove() }
+    }
+
+    override fun getReviewsByMovieID(movieId: Int): Flow<List<Review>> = callbackFlow {
+        val subscription = dbReviews
+            .whereEqualTo("movieId", movieId)
+            .addSnapshotListener { snapshot, error ->
+                if(error != null) {
+                    println("Listen failed $error")
+                    return@addSnapshotListener
+                }
+                if(snapshot != null) {
+                    val reviews = snapshot.toObjects(Review::class.java)
+                    if(reviews != null) {
+                        trySend(reviews)
+                    }
+                } else {
+                    println("Reviews collection does not exist")
+                    trySend(emptyList())
+                }
+            }
         awaitClose { subscription.remove() }
     }
 

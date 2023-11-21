@@ -11,6 +11,7 @@ import com.project.freshtomatoes.ui.pages.EmailPassword.AuthLoginScreen
 import com.project.freshtomatoes.ui.pages.EmailPassword.AuthSignUpScreen
 import com.project.freshtomatoes.ui.pages.Home.Home
 import com.project.freshtomatoes.ui.pages.MovieDetails.MovieDetails
+import com.project.freshtomatoes.ui.pages.MovieReviews.MovieReviews
 import com.project.freshtomatoes.ui.pages.ProfileScreen
 import com.project.freshtomatoes.ui.pages.Review.Review
 import com.project.freshtomatoes.ui.pages.YourReviews.YourReviews
@@ -19,6 +20,9 @@ sealed class Router(val route: String) {
     object Home : Router("Home")
     object About : Router("About")
     object YourReviews : Router("Your Reviews")
+    object MovieReviews : Router("MovieReviews/{id}") {
+        fun go(id: Int) = "MovieReviews/$id"
+    }
     object MovieDetails : Router("MovieDetails/{index}") {
         fun go(index: Int) = "MovieDetails/$index"
     }
@@ -38,6 +42,7 @@ fun NavGraph() {
         composable(Router.Home.route) { Home() }
         composable(Router.About.route) { AboutUs() }
         composable(Router.YourReviews.route) { YourReviews() }
+        composable(Router.MovieReviews.route) { MovieReviews(movieId = it.arguments?.getString("id")?.toInt() ?: -1) }
         composable(Router.MovieDetails.route) { MovieDetails(id = it.arguments?.getString("index")?.toInt() ?: -1) }
         composable(Router.Account.route) { AuthLoginScreen() }
         composable(Router.SignUp.route) { AuthSignUpScreen() }
