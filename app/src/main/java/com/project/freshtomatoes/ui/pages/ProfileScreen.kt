@@ -17,7 +17,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.project.freshtomatoes.LocalNavController
 import com.project.freshtomatoes.ui.Router
 import com.project.freshtomatoes.ui.factories.AuthViewModelFactory
-import com.project.freshtomatoes.ui.viewmodels.AuthViewModel
+import com.project.freshtomatoes.ui.pages.EmailPassword.AuthViewModel
 
 @Composable
 fun ProfileScreen(authViewModel: AuthViewModel = viewModel(factory = AuthViewModelFactory())) {

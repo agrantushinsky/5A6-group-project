@@ -26,7 +26,6 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.project.freshtomatoes.LocalNavController
 import com.project.freshtomatoes.ui.Router
 import com.project.freshtomatoes.ui.factories.AuthViewModelFactory
-import com.project.freshtomatoes.ui.viewmodels.AuthViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable

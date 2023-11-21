@@ -36,11 +36,9 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import coil.compose.AsyncImage
 import com.project.freshtomatoes.LocalNavController
 import com.project.freshtomatoes.data.Genres
-import com.project.freshtomatoes.data.Review
 import com.project.freshtomatoes.ui.FreshTomatoes
 import com.project.freshtomatoes.ui.Router
 import com.project.freshtomatoes.ui.factories.MovieDetailsViewModelFactory
-import com.project.freshtomatoes.ui.viewmodels.MovieDetailsViewModel
 import java.text.NumberFormat
 import java.util.Locale
 

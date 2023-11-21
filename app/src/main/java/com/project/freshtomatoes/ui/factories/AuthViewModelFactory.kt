@@ -3,7 +3,7 @@ package com.project.freshtomatoes.ui.factories
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.project.freshtomatoes.ui.FreshTomatoes
-import com.project.freshtomatoes.ui.viewmodels.AuthViewModel
+import com.project.freshtomatoes.ui.pages.EmailPassword.AuthViewModel
 
 /* ViewModel Factory that will create our view model by injecting the
       authRepository from the module.
