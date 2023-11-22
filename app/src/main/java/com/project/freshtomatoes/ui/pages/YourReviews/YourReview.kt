@@ -13,6 +13,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.em
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.project.freshtomatoes.data.MovieReview
 import com.project.freshtomatoes.data.Review
 import com.project.freshtomatoes.ui.FreshTomatoes
 import com.project.freshtomatoes.ui.components.MovieReviewCard
@@ -22,9 +23,9 @@ import com.project.freshtomatoes.ui.factories.YourReviewsViewModelFactory
 @Composable
 fun YourReviews(viewmodel: YourReviewsViewModel = viewModel(factory = YourReviewsViewModelFactory())) {
     var reviews = viewmodel.yourReviews.collectAsState()
-    val currentUser = FreshTomatoes.appModule.authRepository.currentUser().value;
+    val currentUser = FreshTomatoes.appModule.authRepository.currentUser().value
     if (currentUser != null) {
-        viewmodel.updateYourReviews(currentUser!!.uid)
+        viewmodel.updateYourReviews(currentUser.uid)
         ShowReviews(reviews.value)
     } else {
         ShowUserNotLoggedIn()
@@ -32,7 +33,7 @@ fun YourReviews(viewmodel: YourReviewsViewModel = viewModel(factory = YourReview
 }
 @SuppressLint("StateFlowValueCalledInComposition")
 @Composable
-fun ShowReviews(reviews: List<Review>) {
+fun ShowReviews(reviews: List<MovieReview>) {
     LazyColumn {
         items(reviews){
             MovieReviewCard(it)
