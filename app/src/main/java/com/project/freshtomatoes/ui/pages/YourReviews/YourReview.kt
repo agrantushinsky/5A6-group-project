@@ -16,34 +16,19 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.project.freshtomatoes.data.MovieReview
 import com.project.freshtomatoes.ui.FreshTomatoes
 import com.project.freshtomatoes.ui.components.MovieReviewCard
+import com.project.freshtomatoes.ui.components.ShowReviews
+import com.project.freshtomatoes.ui.components.ShowUserNotLoggedIn
 import com.project.freshtomatoes.ui.factories.YourReviewsViewModelFactory
 
 @SuppressLint("StateFlowValueCalledInComposition")
 @Composable
 fun YourReviews(viewmodel: YourReviewsViewModel = viewModel(factory = YourReviewsViewModelFactory())) {
-    var reviews = viewmodel.yourReviews.collectAsState()
+    val reviews = viewmodel.yourReviews.collectAsState()
     val currentUser = FreshTomatoes.appModule.authRepository.currentUser().value
     if (currentUser != null) {
         viewmodel.updateYourReviews(currentUser.uid)
         ShowReviews(reviews.value)
     } else {
         ShowUserNotLoggedIn()
-    }
-}
-
-@SuppressLint("StateFlowValueCalledInComposition")
-@Composable
-fun ShowReviews(reviews: List<MovieReview>) {
-    LazyColumn {
-        items(reviews) {
-            MovieReviewCard(it)
-        }
-    }
-}
-
-@Composable
-fun ShowUserNotLoggedIn() {
-    Column(modifier = Modifier.fillMaxSize(), verticalArrangement = Arrangement.Center, horizontalAlignment = Alignment.CenterHorizontally) {
-        Text(text = "Must login to see your reviews ", fontSize = 4.em)
     }
 }
