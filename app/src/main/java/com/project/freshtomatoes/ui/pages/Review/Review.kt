@@ -31,8 +31,13 @@ import com.project.freshtomatoes.data.Movie
 import com.project.freshtomatoes.data.Review
 import com.project.freshtomatoes.data.TmdbRequest
 import com.project.freshtomatoes.ui.FreshTomatoes
+import io.ktor.util.date.toDate
+import io.ktor.util.date.toJvmDate
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import java.time.LocalDate
+import java.util.Calendar
+import java.util.Date
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -123,14 +128,15 @@ fun Review(id: Int) {
                 Review(
                     movie!!.id,
                     tempString,
-                    tomatoes.length,
-                    FreshTomatoes.appModule.authRepository.currentUser().value!!.uid
+                    tomatoes.length / 2, // Emojis are two characters.
+                    FreshTomatoes.appModule.authRepository.currentUser().value!!.uid,
+                    Calendar.getInstance().toDate(Calendar.getInstance().timeInMillis + 18000000).toJvmDate().toString()
                 )
             )
             tomatoes = "🍅🍅🍅🍅🍅"
             tempString = ""
         }) {
-            Text("REVIEW!!!")
+            Text("Post Review")
         }
     }
 }
