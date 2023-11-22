@@ -7,6 +7,7 @@ import com.google.firebase.auth.FirebaseUser
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.tasks.await
+import java.util.Date
 
 class AuthRepositoryFirebase(private val auth: FirebaseAuth) : AuthRepository {
     private val currentUserStateFlow = MutableStateFlow(auth.currentUser?.toUser())
@@ -69,7 +70,8 @@ private fun FirebaseUser?.toUser(): User? {
         } else {
             User(
                 email = it.email!!,
-                uid = it.uid
+                uid = it.uid,
+                dateJoined =  Date(it.metadata!!.creationTimestamp)
             )
         }
     }

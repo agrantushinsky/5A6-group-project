@@ -1,10 +1,12 @@
 package com.project.freshtomatoes.ui.firebase
 
 import kotlinx.coroutines.flow.StateFlow
+import java.util.Date
 
 data class User(
     var email: String,
-    var uid: String
+    var uid: String,
+    var dateJoined: Date
 )
 
 interface AuthRepository {
