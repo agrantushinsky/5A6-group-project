@@ -16,7 +16,7 @@ class YourReviewsViewModel : ViewModel() {
 
     fun updateYourReviews(uid: String) {
         viewModelScope.launch(Dispatchers.IO) {
-            FreshTomatoes.appModule.reviewRepository.getReviews(uid).collect {
+            FreshTomatoes.appModule.reviewRepository.getReviewsByUID(uid).collect {
                 yourReviews.value = it
             }
         }

@@ -124,7 +124,9 @@ fun MovieDetails(id: Int, viewmodel: MovieDetailsViewModel = viewModel(factory =
                     Text("Rate Movie")
                 }
 
-                Button(onClick = { /*TODO*/ }) {
+                Button(onClick = {
+                    navController.navigate(Router.MovieReviews.go(id))
+                }) {
                     Text("See Reviews")
                 }
 
