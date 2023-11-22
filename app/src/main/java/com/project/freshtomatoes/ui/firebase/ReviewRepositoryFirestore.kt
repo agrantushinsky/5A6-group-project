@@ -1,13 +1,11 @@
 package com.project.freshtomatoes.ui.firebase
 
-import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.toObjects
 import com.project.freshtomatoes.data.Review
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.callbackFlow
 
 class ReviewRepositoryFirestore(val db: FirebaseFirestore) : ReviewRepository {
@@ -17,24 +15,24 @@ class ReviewRepositoryFirestore(val db: FirebaseFirestore) : ReviewRepository {
         dbReviews.add(review)
     }
 
-    override fun getReviewsByUID(uid : String): Flow<List<Review>> = callbackFlow {
+    override fun getReviewsByUID(uid: String): Flow<List<Review>> = callbackFlow {
         val subscription = dbReviews
             .whereEqualTo("ownerUID", uid)
             .addSnapshotListener { snapshot, error ->
-            if(error != null) {
-                println("Listen failed $error")
-                return@addSnapshotListener
-            }
-            if(snapshot != null) {
-                val reviews = snapshot.toObjects(Review::class.java)
-                if(reviews != null) {
-                    trySend(reviews)
+                if (error != null) {
+                    println("Listen failed $error")
+                    return@addSnapshotListener
                 }
-            } else {
-                println("Reviews collection does not exist")
-                trySend(emptyList())
+                if (snapshot != null) {
+                    val reviews = snapshot.toObjects(Review::class.java)
+                    if (reviews != null) {
+                        trySend(reviews)
+                    }
+                } else {
+                    println("Reviews collection does not exist")
+                    trySend(emptyList())
+                }
             }
-        }
         awaitClose { subscription.remove() }
     }
 
@@ -42,13 +40,13 @@ class ReviewRepositoryFirestore(val db: FirebaseFirestore) : ReviewRepository {
         val subscription = dbReviews
             .whereEqualTo("movieId", movieId)
             .addSnapshotListener { snapshot, error ->
-                if(error != null) {
+                if (error != null) {
                     println("Listen failed $error")
                     return@addSnapshotListener
                 }
-                if(snapshot != null) {
+                if (snapshot != null) {
                     val reviews = snapshot.toObjects(Review::class.java)
-                    if(reviews != null) {
+                    if (reviews != null) {
                         trySend(reviews)
                     }
                 } else {

@@ -14,7 +14,7 @@ fun MovieReviews(movieId: Int, viewmodel: MovieReviewsViewModel = viewModel(fact
     viewmodel.updateMovieReviews(movieId)
 
     LazyColumn {
-        items(reviews.value){
+        items(reviews.value) {
             Text("${it.movieId}: ${it.rating} - ${it.review}")
         }
     }

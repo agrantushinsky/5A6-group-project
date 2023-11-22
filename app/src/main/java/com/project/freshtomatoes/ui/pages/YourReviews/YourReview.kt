@@ -14,7 +14,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.em
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.project.freshtomatoes.data.MovieReview
-import com.project.freshtomatoes.data.Review
 import com.project.freshtomatoes.ui.FreshTomatoes
 import com.project.freshtomatoes.ui.components.MovieReviewCard
 import com.project.freshtomatoes.ui.factories.YourReviewsViewModelFactory
@@ -31,11 +30,12 @@ fun YourReviews(viewmodel: YourReviewsViewModel = viewModel(factory = YourReview
         ShowUserNotLoggedIn()
     }
 }
+
 @SuppressLint("StateFlowValueCalledInComposition")
 @Composable
 fun ShowReviews(reviews: List<MovieReview>) {
     LazyColumn {
-        items(reviews){
+        items(reviews) {
             MovieReviewCard(it)
         }
     }

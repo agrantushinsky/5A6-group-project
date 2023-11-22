@@ -41,13 +41,13 @@ class TmdbRequest {
     }
 
     private fun cacheMovie(movie: Movie) {
-        if(!FreshTomatoes.moviesById.containsKey(movie.id)) {
+        if (!FreshTomatoes.moviesById.containsKey(movie.id)) {
             FreshTomatoes.moviesById[movie.id] = movie
         }
     }
 
     private fun cacheMovieResponse(movieResponse: MovieResponse) {
-        for(movie in movieResponse.results) {
+        for (movie in movieResponse.results) {
             cacheMovie(movie)
         }
     }
@@ -80,7 +80,7 @@ class TmdbRequest {
     }
 
     suspend fun details(id: Int): Movie {
-        if(FreshTomatoes.moviesById.containsKey(id)) {
+        if (FreshTomatoes.moviesById.containsKey(id)) {
             return FreshTomatoes.moviesById[id]!!
         }
 

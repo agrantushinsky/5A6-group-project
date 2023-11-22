@@ -71,7 +71,7 @@ private fun FirebaseUser?.toUser(): User? {
             User(
                 email = it.email!!,
                 uid = it.uid,
-                dateJoined =  Date(it.metadata!!.creationTimestamp)
+                dateJoined = Date(it.metadata!!.creationTimestamp)
             )
         }
     }

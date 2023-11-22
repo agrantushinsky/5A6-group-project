@@ -1,7 +1,6 @@
 package com.project.freshtomatoes.ui.pages
 
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -11,9 +10,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.material3.Button
 import androidx.compose.material3.Card
-import androidx.compose.material3.CardElevation
 import androidx.compose.material3.Divider
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
@@ -29,25 +26,28 @@ import com.project.freshtomatoes.ui.Router
 import com.project.freshtomatoes.ui.factories.AuthViewModelFactory
 import com.project.freshtomatoes.ui.pages.EmailPassword.AuthViewModel
 import java.text.SimpleDateFormat
-import java.time.format.DateTimeFormatter
 
 @Composable
 fun ProfileScreen(authViewModel: AuthViewModel = viewModel(factory = AuthViewModelFactory())) {
     val userState = authViewModel.currentUser().collectAsState()
     val navController = LocalNavController.current
     Column {
-            Column(modifier = Modifier
+        Column(
+            modifier = Modifier
                 .height(100.dp)
-                .fillMaxWidth(), horizontalAlignment = Alignment.CenterHorizontally) {
-                Text("Welcome ${userState.value?.email?.split("@")?.get(0)}!", fontSize = 24.sp, fontWeight = FontWeight.Bold, modifier = Modifier.padding(20.dp))
-                Divider(thickness = 5.dp)
-            }
-
+                .fillMaxWidth(),
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            Text("Welcome ${userState.value?.email?.split("@")?.get(0)}!", fontSize = 24.sp, fontWeight = FontWeight.Bold, modifier = Modifier.padding(20.dp))
+            Divider(thickness = 5.dp)
+        }
 
         Text(text = "User Information", fontSize = 5.em, modifier = Modifier.padding(5.dp))
-        Card(modifier = Modifier
-            .height(300.dp)
-            .width(200.dp)) {
+        Card(
+            modifier = Modifier
+                .height(300.dp)
+                .width(200.dp)
+        ) {
             Card(modifier = Modifier.padding(8.dp)) {
                 Text(text = "Email", fontWeight = FontWeight.Bold)
                 Text(text = "${userState.value?.email}")
@@ -55,11 +55,10 @@ fun ProfileScreen(authViewModel: AuthViewModel = viewModel(factory = AuthViewMod
 
             Spacer(modifier = Modifier.height(20.dp))
             Card(modifier = Modifier.padding(8.dp)) {
-                Text(text = "Date Joined ",fontWeight = FontWeight.Bold)
+                Text(text = "Date Joined ", fontWeight = FontWeight.Bold)
                 val formatter = SimpleDateFormat("MMMM d, yyyy")
                 Text(text = "${formatter.format(userState.value?.dateJoined)}")
             }
-
         }
         Row(horizontalArrangement = Arrangement.SpaceEvenly, modifier = Modifier.fillMaxWidth()) {
             Button(onClick = {

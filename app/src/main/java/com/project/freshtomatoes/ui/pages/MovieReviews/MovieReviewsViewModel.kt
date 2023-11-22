@@ -2,7 +2,6 @@ package com.project.freshtomatoes.ui.pages.MovieReviews
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.project.freshtomatoes.data.Movie
 import com.project.freshtomatoes.data.Review
 import com.project.freshtomatoes.data.TmdbRequest
 import com.project.freshtomatoes.ui.FreshTomatoes

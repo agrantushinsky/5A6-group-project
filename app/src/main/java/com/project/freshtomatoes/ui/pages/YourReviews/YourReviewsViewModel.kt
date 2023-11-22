@@ -4,7 +4,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.project.freshtomatoes.data.MovieReview
 import com.project.freshtomatoes.data.MovieReviewMatcher
-import com.project.freshtomatoes.data.Review
 import com.project.freshtomatoes.data.TmdbRequest
 import com.project.freshtomatoes.ui.FreshTomatoes
 import kotlinx.coroutines.Dispatchers
