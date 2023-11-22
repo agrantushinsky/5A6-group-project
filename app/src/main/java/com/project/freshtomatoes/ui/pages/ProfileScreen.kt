@@ -31,6 +31,10 @@ import java.text.SimpleDateFormat
 fun ProfileScreen(authViewModel: AuthViewModel = viewModel(factory = AuthViewModelFactory())) {
     val userState = authViewModel.currentUser().collectAsState()
     val navController = LocalNavController.current
+    if(userState.value == null) {
+        return
+    }
+
     Column {
         Column(
             modifier = Modifier
