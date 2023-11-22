@@ -15,15 +15,16 @@ import androidx.compose.ui.unit.em
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.project.freshtomatoes.data.Review
 import com.project.freshtomatoes.ui.FreshTomatoes
+import com.project.freshtomatoes.ui.components.MovieReviewCard
 import com.project.freshtomatoes.ui.factories.YourReviewsViewModelFactory
 
 @SuppressLint("StateFlowValueCalledInComposition")
 @Composable
 fun YourReviews(viewmodel: YourReviewsViewModel = viewModel(factory = YourReviewsViewModelFactory())) {
     var reviews = viewmodel.yourReviews.collectAsState()
-    val currentUser = FreshTomatoes.appModule.authRepository.currentUser().value
-    viewmodel.updateYourReviews(currentUser!!.uid)
+    val currentUser = FreshTomatoes.appModule.authRepository.currentUser().value;
     if (currentUser != null) {
+        viewmodel.updateYourReviews(currentUser!!.uid)
         ShowReviews(reviews.value)
     } else {
         ShowUserNotLoggedIn()
@@ -34,7 +35,7 @@ fun YourReviews(viewmodel: YourReviewsViewModel = viewModel(factory = YourReview
 fun ShowReviews(reviews: List<Review>) {
     LazyColumn {
         items(reviews){
-            Text("${it.rating} - ${it.review}")
+            MovieReviewCard(it)
         }
     }
 }
