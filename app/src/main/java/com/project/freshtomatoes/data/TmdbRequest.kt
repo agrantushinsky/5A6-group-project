@@ -1,5 +1,6 @@
 package com.project.freshtomatoes.data
 
+import com.project.freshtomatoes.ui.FreshTomatoes
 import io.ktor.client.HttpClient
 import io.ktor.client.call.body
 import io.ktor.client.engine.cio.CIO
@@ -19,7 +20,7 @@ class TmdbRequest {
         }
     }
 
-    suspend fun getTmdb(path: List<String>, builder: HttpRequestBuilder.() -> Unit = { }): HttpResponse {
+    private suspend fun getTmdb(path: List<String>, builder: HttpRequestBuilder.() -> Unit = { }): HttpResponse {
         return client.get {
             url {
                 protocol = URLProtocol.HTTPS
@@ -36,6 +37,18 @@ class TmdbRequest {
             url {
                 parameters.append("language", "en-US")
             }
+        }
+    }
+
+    private fun cacheMovie(movie: Movie) {
+        if(!FreshTomatoes.moviesById.containsKey(movie.id)) {
+            FreshTomatoes.moviesById[movie.id] = movie
+        }
+    }
+
+    private fun cacheMovieResponse(movieResponse: MovieResponse) {
+        for(movie in movieResponse.results) {
+            cacheMovie(movie)
         }
     }
 
@@ -67,7 +80,14 @@ class TmdbRequest {
     }
 
     suspend fun details(id: Int): Movie {
+        if(FreshTomatoes.moviesById.containsKey(id)) {
+            return FreshTomatoes.moviesById[id]!!
+        }
+
         val response = getTmdb(listOf("movie", id.toString()))
-        return response.body()
+        val body: Movie = response.body()
+
+        cacheMovie(body)
+        return body
     }
 }
