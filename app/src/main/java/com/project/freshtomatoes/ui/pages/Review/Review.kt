@@ -127,6 +127,8 @@ fun Review(id: Int) {
                     FreshTomatoes.appModule.authRepository.currentUser().value!!.uid
                 )
             )
+            tomatoes = "🍅🍅🍅🍅🍅"
+            tempString = ""
         }) {
             Text("REVIEW!!!")
         }
