@@ -23,14 +23,16 @@ Since the app is still a working progress we have not deployed it yet on the app
 - Home Page /landing page
 
 
-![Screenshot_2023-11-23_210321](https://github.com/agrantushinsky/5A6-group-project/assets/98350822/4a4ddb30-9f04-45ae-bdce-74bd4fd938d7)
+![Screenshot_2023-11-23_210321](https://github.com/agrantushinsky/5A6-group-project/assets/98350822/ab113d71-f0c4-4d2f-a635-0dfe3ab2b056)
+
 
 
 
 - About Us Page Page
 
 
-![Screenshot_2023-11-23_210648](https://github.com/agrantushinsky/5A6-group-project/assets/98350822/de09c257-fbe8-43d9-b27a-70595e43f2e3)
+![Screenshot_2023-11-23_210648](https://github.com/agrantushinsky/5A6-group-project/assets/98350822/ce007d37-5ecc-4af3-8314-cc103a3ed846)
+
 
 
 
@@ -38,19 +40,22 @@ Since the app is still a working progress we have not deployed it yet on the app
 - Movie Details
 
 
-![Screenshot_2023-11-23_210353](https://github.com/agrantushinsky/5A6-group-project/assets/98350822/1f6aab3f-1c61-4c6c-86d3-aabeaf24d19d)
+![Screenshot_2023-11-23_210353](https://github.com/agrantushinsky/5A6-group-project/assets/98350822/9e27671a-ccf4-4469-8879-78431fc3d3d9)
+
 
 
 - Movie Rater
 
   
-![Screenshot_2023-11-23_210717](https://github.com/agrantushinsky/5A6-group-project/assets/98350822/51738032-2308-4e53-ba30-1bc08fd45739)
+![Screenshot_2023-11-23_210717](https://github.com/agrantushinsky/5A6-group-project/assets/98350822/00e09bad-6158-443e-b7ca-1a44fceb8229)
+
 
 
 - All Movie Review
 
   
-![3](https://github.com/agrantushinsky/5A6-group-project/assets/98350822/d42a31e2-8cc4-4980-9b50-2334e2d96836)
+![3](https://github.com/agrantushinsky/5A6-group-project/assets/98350822/21eb0b54-aa85-470c-bb3f-a0d7852ad625)
+
 
 ## Team members
 List each person's name and email address.
