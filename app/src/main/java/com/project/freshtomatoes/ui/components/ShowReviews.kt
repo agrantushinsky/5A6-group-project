@@ -8,7 +8,7 @@ import com.project.freshtomatoes.data.MovieReview
 
 @Composable
 fun ShowReviews(reviews: List<MovieReview>) {
-    if(reviews.isEmpty()) {
+    if (reviews.isEmpty()) {
         Text("No reviews.")
         return
     }
