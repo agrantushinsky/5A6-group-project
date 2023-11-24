@@ -15,7 +15,7 @@ Our goal is to provide users a dynamic appilcation to rank movies they have watc
 
 
 
-![home](https://github.com/agrantushinsky/5A6-group-project/assets/98350822/50171864-bd01-4dc6-922a-bc58f4eccb49)
+![home](https://github.com/agrantushinsky/5A6-group-project/assets/98350822/b5fb811f-7675-4938-ab1d-66013676a3dc)
 
 
 
@@ -26,11 +26,11 @@ Our goal is to provide users a dynamic appilcation to rank movies they have watc
 ![image](https://github.com/agrantushinsky/5A6-group-project/assets/98350822/42d08f94-0dd0-44fb-bc9a-cc03e6e0c52c)
 
 
-- Movie Page
+- Movie Details
 
 
 
-![Movies](https://github.com/agrantushinsky/5A6-group-project/assets/98350822/6aa98465-ca69-4b35-84fc-0fdb9114ca57)
+![Movies](https://github.com/agrantushinsky/5A6-group-project/assets/98350822/5718e32c-58b9-428f-aa0e-6a5074320fd0)
 
 
 
