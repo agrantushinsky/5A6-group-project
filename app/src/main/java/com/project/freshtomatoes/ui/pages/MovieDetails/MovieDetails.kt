@@ -75,7 +75,11 @@ fun MovieDetails(id: Int, viewmodel: MovieDetailsViewModel = viewModel(factory =
                 modifier = Modifier.width(200.dp),
                 style = TextStyle(lineHeight = 1.2.em)
             )
-            Text(text = "Average: ${String.format("%.1f", averageRating)}🍅", fontSize = 5.em)
+            if(averageRating == null || averageRating!!.isNaN()) {
+                Text(text = "Not yet reviewed", fontSize = 5.em)
+            } else {
+                Text(text = "Average: ${String.format("%.1f", averageRating)}🍅", fontSize = 5.em)
+            }
         }
         Text(text = "${movie?.tagline}")
         Spacer(modifier = Modifier.padding(5.dp))
