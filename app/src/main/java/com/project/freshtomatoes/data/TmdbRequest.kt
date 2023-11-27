@@ -79,6 +79,15 @@ class TmdbRequest {
         return response.body()
     }
 
+    suspend fun topRatedMovies(page: Int = 1): MovieResponse {
+        val response = getTmdb(listOf("movie", "top_rated")) {
+            url {
+                parameters.append("page", page.toString())
+            }
+        }
+        return response.body()
+    }
+
     suspend fun details(id: Int): Movie {
         if (FreshTomatoes.moviesById.containsKey(id)) {
             return FreshTomatoes.moviesById[id]!!

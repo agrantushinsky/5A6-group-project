@@ -17,25 +17,33 @@ class HomeViewModel : ViewModel() {
     private val _requester = TmdbRequest()
     val popularLabel = "Popular Movies"
     val newLabel = "New Movies"
+    val topRatedLabel = "Top Rated Movies"
     var popularMovies by mutableStateOf(emptyList<Movie>())
     var newMovies by mutableStateOf(emptyList<Movie>())
+    var topRatedMovies by mutableStateOf(emptyList<Movie>())
 
     init {
         viewModelScope.launch(Dispatchers.IO) {
             popularMovies = _requester.popularMovies().results
             newMovies = _requester.nowPlayingMovies().results
+            topRatedMovies = _requester.topRatedMovies().results
         }
     }
 
     private fun getPopularMovies(): MovieDisplay {
-        return (MovieDisplay(popularLabel, popularMovies))
+        return MovieDisplay(popularLabel, popularMovies)
     }
 
     private fun getNewMovies(): MovieDisplay {
-        return (MovieDisplay(newLabel, newMovies))
+        return MovieDisplay(newLabel, newMovies)
     }
 
+    private fun getTopRatedMovies(): MovieDisplay {
+        return MovieDisplay(topRatedLabel, topRatedMovies)
+    }
+
+
     fun getAllMovies(): List<MovieDisplay> {
-        return listOf(getPopularMovies(), getNewMovies())
+        return listOf(getPopularMovies(), getNewMovies(), getTopRatedMovies())
     }
 }
