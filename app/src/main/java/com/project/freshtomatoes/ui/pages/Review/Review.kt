@@ -64,15 +64,14 @@ fun Review(id: Int,viewmodel: ReviewViewModel = viewModel(factory = ReviewViewMo
             val requester = TmdbRequest()
             val response = requester.details(id)
             movie = response
+            viewmodel.getIfReviewed(FreshTomatoes.appModule.authRepository.currentUser().value!!.uid,movie!!.id)
         }
     }
     //endregion
 
     if (movie == null) return
-    viewmodel.getIfReviewed(FreshTomatoes.appModule.authRepository.currentUser().value!!.uid,movie!!.id)
-    val IsReview = viewmodel.reviewed.value
 
-    if(IsReview){
+    if(!viewmodel.reviewed.value){
         Column(
             modifier = Modifier
                 .fillMaxSize()
