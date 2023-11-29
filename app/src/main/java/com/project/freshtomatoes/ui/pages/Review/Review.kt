@@ -30,6 +30,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.em
 import androidx.lifecycle.viewmodel.compose.viewModel
 import coil.compose.AsyncImage
+import com.project.freshtomatoes.LocalNavController
 import com.project.freshtomatoes.data.Movie
 import com.project.freshtomatoes.data.Review
 import com.project.freshtomatoes.data.TmdbRequest
@@ -49,6 +50,7 @@ import java.util.Calendar
 @Composable
 fun Review(id: Int,viewmodel: ReviewViewModel = viewModel(factory = ReviewViewModelFactory())) {
     //region variables
+    val navController = LocalNavController.current
     val scope = rememberCoroutineScope()
     var movie by remember { mutableStateOf<Movie?>(null) }
     var tomatoes by remember {
@@ -116,6 +118,7 @@ fun Review(id: Int,viewmodel: ReviewViewModel = viewModel(factory = ReviewViewMo
                     if (tomatoes.length < 10) {
                         tomatoes += "🍅"
                     }
+
                 }) {
                     Text(text = "Grow")
                 }
@@ -134,8 +137,16 @@ fun Review(id: Int,viewmodel: ReviewViewModel = viewModel(factory = ReviewViewMo
 
             Button(onClick = {
 
+                viewmodel.postReview(Review(
+                    movie!!.id,
+                    tempString,
+                    tomatoes.length / 2, // Emojis are two characters.
+                    FreshTomatoes.appModule.authRepository.currentUser().value!!.uid,
+                    Calendar.getInstance().toDate(Calendar.getInstance().timeInMillis + 18000000).toJvmDate().toString()
+                ))
                 tomatoes = "🍅🍅🍅🍅🍅"
                 tempString = ""
+                navController.popBackStack()
             }) {
                 Text("Post Review")
             }
@@ -144,7 +155,7 @@ fun Review(id: Int,viewmodel: ReviewViewModel = viewModel(factory = ReviewViewMo
     else
     {
         Column {
-            Text(text = "AAA")
+            Text(text = "You have already rated ${movie!!.title}")
         }
     }
 
