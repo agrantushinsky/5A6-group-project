@@ -1,5 +1,6 @@
 package com.project.freshtomatoes.ui.pages.MovieDetails
 
+import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.project.freshtomatoes.data.Movie
@@ -15,6 +16,23 @@ class MovieDetailsViewModel : ViewModel() {
 
     val movie = MutableStateFlow<Movie?>(null)
     val averageRating = MutableStateFlow<Double?>(null)
+
+    val reviewed = mutableStateOf(false)
+
+    fun getIfReviewed(uid: String, movieId: Int) {
+        reviewed.value = false
+        viewModelScope.launch(Dispatchers.IO) {
+            FreshTomatoes.appModule.reviewRepository.getReviewsByUID(uid).collect {
+                for(review in it) {
+                    if(review.movieId == movieId) {
+                        reviewed.value = true
+                        break
+                    }
+                }
+            }
+        }
+    }
+
 
     fun updateMovie(id: Int) {
         movie.value = null
