@@ -9,6 +9,7 @@ import androidx.compose.material3.Card
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.project.freshtomatoes.data.MovieReview
@@ -27,12 +28,9 @@ fun MovieReviewCard(movieReview: MovieReview) {
                 }
             }
             Column(modifier = Modifier.padding(8.dp)) {
-                Row {
-                    Text("Rating: ${movieReview.review.rating}/5")
-                }
-                Row {
-                    Text("Comments: ${movieReview.review.review}")
-                }
+                Text("${movieReview.movie.title}", fontWeight = FontWeight.Bold)
+                Text("Rating: ${movieReview.review.rating}/5")
+                Text("Comments: ${movieReview.review.review}")
             }
         }
     }
