@@ -63,8 +63,11 @@ fun MovieDetails(id: Int, viewmodel: MovieDetailsViewModel = viewModel(factory =
         viewmodel.updateMovie(id)
         return
     }
+    if(FreshTomatoes.appModule.authRepository.currentUser().value != null)
+    {
+        viewmodel.getIfReviewed(FreshTomatoes.appModule.authRepository.currentUser().value!!.uid,movie!!.id)
+    }
 
-    viewmodel.getIfReviewed(FreshTomatoes.appModule.authRepository.currentUser().value!!.uid,movie!!.id)
     Column(
         modifier = Modifier
             .padding(8.dp)
