@@ -66,14 +66,12 @@ fun Review(id: Int,viewmodel: ReviewViewModel = viewModel(factory = ReviewViewMo
             val requester = TmdbRequest()
             val response = requester.details(id)
             movie = response
-            viewmodel.getIfReviewed(FreshTomatoes.appModule.authRepository.currentUser().value!!.uid,movie!!.id)
         }
     }
     //endregion
 
     if (movie == null) return
 
-    if(!viewmodel.reviewed.value){
         Column(
             modifier = Modifier
                 .fillMaxSize()
@@ -151,13 +149,7 @@ fun Review(id: Int,viewmodel: ReviewViewModel = viewModel(factory = ReviewViewMo
                 Text("Post Review")
             }
         }    
-    }
-    else
-    {
-        Column {
-            Text(text = "You have already rated ${movie!!.title}")
-        }
-    }
+
 
     
 }

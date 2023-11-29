@@ -16,23 +16,6 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
 
     class ReviewViewModel : ViewModel() {
-        private val _requester = TmdbRequest()
-
-      val reviewed = mutableStateOf(false)
-
-        fun getIfReviewed(uid: String, movieId: Int) {
-            reviewed.value = false
-            viewModelScope.launch(Dispatchers.IO) {
-                FreshTomatoes.appModule.reviewRepository.getReviewsByUID(uid).collect {
-                    for(review in it) {
-                        if(review.movieId == movieId) {
-                            reviewed.value = true
-                            break
-                        }
-                    }
-                }
-            }
-        }
 
         fun postReview(review: Review) {
             viewModelScope.launch(Dispatchers.IO) {

@@ -1,5 +1,6 @@
 package com.project.freshtomatoes.ui.pages.MovieDetails
 
+import android.annotation.SuppressLint
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -42,12 +43,16 @@ import com.project.freshtomatoes.ui.factories.MovieDetailsViewModelFactory
 import java.text.NumberFormat
 import java.util.Locale
 
+@SuppressLint("StateFlowValueCalledInComposition")
 @Composable
 fun MovieDetails(id: Int, viewmodel: MovieDetailsViewModel = viewModel(factory = MovieDetailsViewModelFactory())) {
     if (id == -1) {
         // TODO;
     }
     var showErrorDialog by remember { mutableStateOf(false) }
+    var showReviewd by remember {
+        mutableStateOf(false)
+    }
     val navController = LocalNavController.current
 
     val movie by viewmodel.movie.collectAsState()
@@ -59,6 +64,7 @@ fun MovieDetails(id: Int, viewmodel: MovieDetailsViewModel = viewModel(factory =
         return
     }
 
+    viewmodel.getIfReviewed(FreshTomatoes.appModule.authRepository.currentUser().value!!.uid,movie!!.id)
     Column(
         modifier = Modifier
             .padding(8.dp)
@@ -115,7 +121,14 @@ fun MovieDetails(id: Int, viewmodel: MovieDetailsViewModel = viewModel(factory =
                     onClick =
                     {
                         if (FreshTomatoes.appModule.authRepository.currentUser().value != null) {
-                            navController.navigate(Router.Review.go(id))
+
+                            if(!viewmodel.reviewed.value) {
+                                navController.navigate(Router.Review.go(id))
+                            }
+                            else
+                            {
+                                showReviewd = true
+                            }
                         } else {
                             showErrorDialog = true
                         }
@@ -131,7 +144,10 @@ fun MovieDetails(id: Int, viewmodel: MovieDetailsViewModel = viewModel(factory =
                 }
 
                 if (showErrorDialog) {
-                    ErrorDialog(Dismiss = { showErrorDialog = false })
+                    ErrorDialog("Must sign in","In order to rate the movie you must sign in.",{showErrorDialog = false })
+                }
+                if (showReviewd) {
+                    ErrorDialog("Already Reviewed","You have already rated ${movie!!.title}",{showReviewd = false })
                 }
             }
         }
@@ -140,15 +156,17 @@ fun MovieDetails(id: Int, viewmodel: MovieDetailsViewModel = viewModel(factory =
 
 @Composable
 fun ErrorDialog(
+    header: String,
+    text: String,
     Dismiss: () -> Unit
 ) {
     AlertDialog(
         onDismissRequest = { Dismiss() },
         title = {
-            Text(text = "Must sign in", fontSize = 20.sp)
+            Text(text = header , fontSize = 20.sp)
         },
         text = {
-            Text(text = "In order to rate the movie you must sign in.")
+            Text(text = text)
         },
         confirmButton = {
             Button(
