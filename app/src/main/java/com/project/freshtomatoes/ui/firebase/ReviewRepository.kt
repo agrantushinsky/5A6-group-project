@@ -5,6 +5,8 @@ import kotlinx.coroutines.flow.Flow
 
 interface ReviewRepository {
     fun saveReview(review: Review)
+    fun editReview(oldReview: Review, newReview: Review)
+    fun deleteReview(review: Review)
     fun getReviewsByUID(uid: String): Flow<List<Review>>
     fun getReviewsByMovieID(movieId: Int): Flow<List<Review>>
     fun getAverageRating(movieId: Int): Flow<Double>

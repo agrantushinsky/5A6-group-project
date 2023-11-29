@@ -15,6 +15,30 @@ class ReviewRepositoryFirestore(val db: FirebaseFirestore) : ReviewRepository {
         dbReviews.add(review)
     }
 
+    override fun editReview(oldReview: Review, newReview: Review) {
+        dbReviews
+            .whereEqualTo("ownerUID", oldReview.ownerUID)
+            .whereEqualTo("movieId", oldReview.movieId)
+            .get()
+            .addOnSuccessListener { documents ->
+                documents.forEach {
+                    dbReviews.document(it.id).set(newReview)
+                }
+            }
+    }
+
+    override fun deleteReview(review: Review) {
+        dbReviews
+            .whereEqualTo("ownerUID", review.ownerUID)
+            .whereEqualTo("movieId", review.movieId)
+            .get()
+            .addOnSuccessListener { documents ->
+                documents.forEach {
+                    dbReviews.document(it.id).delete()
+                }
+            }
+    }
+
     override fun getReviewsByUID(uid: String): Flow<List<Review>> = callbackFlow {
         val subscription = dbReviews
             .whereEqualTo("ownerUID", uid)
