@@ -22,6 +22,6 @@ class AppModule(
     }
 
     val reviewRepository: ReviewRepository by lazy {
-        ReviewRepositoryFirestore(firestore)
+        ReviewRepositoryFirestore(authRepository, firestore)
     }
 }

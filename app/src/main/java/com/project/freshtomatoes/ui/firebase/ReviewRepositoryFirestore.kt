@@ -8,14 +8,22 @@ import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.callbackFlow
 
-class ReviewRepositoryFirestore(val db: FirebaseFirestore) : ReviewRepository {
+class ReviewRepositoryFirestore(val auth: AuthRepository, val db: FirebaseFirestore) : ReviewRepository {
     val dbReviews: CollectionReference = db.collection("reviews")
 
     override fun saveReview(review: Review) {
+        if(!auth.hasCurrentUserDirect()) {
+            return
+        }
+
         dbReviews.add(review)
     }
 
     override fun editReview(oldReview: Review, newReview: Review) {
+        if(!auth.hasCurrentUserDirect()) {
+            return
+        }
+
         dbReviews
             .whereEqualTo("ownerUID", oldReview.ownerUID)
             .whereEqualTo("movieId", oldReview.movieId)
@@ -28,6 +36,10 @@ class ReviewRepositoryFirestore(val db: FirebaseFirestore) : ReviewRepository {
     }
 
     override fun deleteReview(review: Review) {
+        if(!auth.hasCurrentUserDirect()) {
+            return
+        }
+
         dbReviews
             .whereEqualTo("ownerUID", review.ownerUID)
             .whereEqualTo("movieId", review.movieId)
