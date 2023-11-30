@@ -37,10 +37,13 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import coil.compose.AsyncImage
 import com.project.freshtomatoes.data.MovieReview
 import com.project.freshtomatoes.data.Review
 import com.project.freshtomatoes.ui.FreshTomatoes
+import com.project.freshtomatoes.ui.factories.AuthViewModelFactory
+import com.project.freshtomatoes.ui.pages.EmailPassword.AuthViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -57,7 +60,6 @@ fun MovieReviewCard(movieReview: MovieReview)
     }
 
     Card(modifier = Modifier
-        //.height(100.dp)
         .padding(10.dp)
         .fillMaxWidth()) {
         Column (modifier = Modifier.fillMaxHeight()){
@@ -96,18 +98,10 @@ fun MovieReviewCard(movieReview: MovieReview)
                             }
                         }
                     }
-
-
+                    else{
+                        //Text(text = "${currentUser.value?.email?.split("@")?.get(0)}");
+                    }
                 }
-//            Row(modifier = Modifier.weight(1f)) {
-//                Button(onClick = { /*TODO*/ }) {
-//
-//                    Icon(imageVector = Icons.Filled.Create, contentDescription =  "edit")
-//                }
-//                Button(onClick = { /*TODO*/ }) {
-//                    Icon(imageVector = Icons.Filled.Delete,contentDescription =  "edit" )
-//                }
-//            }
             }
             if (dropdown) {
                 var expanded by remember { mutableStateOf(false)}
