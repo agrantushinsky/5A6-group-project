@@ -71,7 +71,7 @@ fun MovieReviewCard(movieReview: MovieReview)
                         )
                     }
                 }
-                Column(modifier = Modifier.padding(8.dp)) {
+                Column(modifier = Modifier.padding(8.dp).width(250.dp)) {
                     Text("${movieReview.movie.title}", fontWeight = FontWeight.Bold)
                     Text("Rating: ${movieReview.review.rating}/5")
                     Text("Comments: ${movieReview.review.review}")
@@ -116,7 +116,9 @@ fun MovieReviewCard(movieReview: MovieReview)
                 }
                 Row (modifier = Modifier.padding(10.dp))
                 {
-                    OutlinedTextField(modifier = Modifier.width(250.dp).padding(5.dp),value = edit, label = {Text(text = "Review Edit")}, onValueChange = {edit= it})
+                    OutlinedTextField(modifier = Modifier
+                        .width(250.dp)
+                        .padding(5.dp),value = edit, label = {Text(text = "Review Edit")}, onValueChange = {edit= it})
                     Box{
                         ExposedDropdownMenuBox(expanded = expanded, onExpandedChange = {expanded = !expanded})
                         {
