@@ -34,10 +34,7 @@ fun MovieList(expanded: MutableState<Boolean>, movieList: List<Movie>) {
                 onClick = { navController.navigate(Router.MovieDetails.go(movie.id)) },
                 leadingIcon = {
                     IconButton(onClick = { }) {
-                        AsyncImage(
-                            model = "https://image.tmdb.org/t/p/w500/${movie.poster_path}",
-                            contentDescription = "Translated description of what the image contains"
-                        )
+                        MovieImage(movie)
                     }
                 }
             )

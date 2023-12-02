@@ -18,11 +18,10 @@ fun MovieCard(movie: Movie) {
     val navController = LocalNavController.current
     Card(
         onClick = { navController.navigate(Router.MovieDetails.go(movie.id)) },
-        modifier = Modifier.padding(10.dp).height(200.dp)
+        modifier = Modifier
+            .padding(10.dp)
+            .height(200.dp)
     ) {
-        AsyncImage(
-            model = "https://image.tmdb.org/t/p/w500/${movie.poster_path}",
-            contentDescription = "Translated description of what the image contains"
-        )
+        MovieImage(movie)
     }
 }

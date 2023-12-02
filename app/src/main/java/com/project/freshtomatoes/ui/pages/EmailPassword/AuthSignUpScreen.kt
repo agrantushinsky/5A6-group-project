@@ -33,6 +33,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.project.freshtomatoes.LocalNavController
 import com.project.freshtomatoes.R
 import com.project.freshtomatoes.ui.Router
+import com.project.freshtomatoes.ui.components.PasswordField
 import com.project.freshtomatoes.ui.factories.AuthViewModelFactory
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -40,34 +41,11 @@ import com.project.freshtomatoes.ui.factories.AuthViewModelFactory
 fun AuthSignUpScreen(authViewModel: AuthViewModel = viewModel(factory = AuthViewModelFactory())) {
     val navController = LocalNavController.current
 
-    var email by rememberSaveable {
-        mutableStateOf("")
-    }
-    var password by rememberSaveable {
-        mutableStateOf("")
-    }
-    var confirmPassword by rememberSaveable {
-        mutableStateOf("")
-    }
+    var email by rememberSaveable { mutableStateOf("") }
 
-    var passwordVisibility by rememberSaveable {
-        mutableStateOf(false)
-    }
-
-    val iconP = if(passwordVisibility)
-        painterResource(id = R.drawable.design_ic_visibility)
-    else
-        painterResource(id = R.drawable.design_ic_visibility_off)
-
-
-    var confirmPasswordVisibility by rememberSaveable {
-        mutableStateOf(false)
-    }
-
-    val iconCP = if(confirmPasswordVisibility)
-        painterResource(id = R.drawable.design_ic_visibility)
-    else
-        painterResource(id = R.drawable.design_ic_visibility_off)
+    var password = rememberSaveable { mutableStateOf("") }
+    var confirmPassword = rememberSaveable { mutableStateOf("") }
+    var passwordVisibility = rememberSaveable { mutableStateOf(false) }
 
     Column(
         modifier = Modifier
@@ -84,52 +62,22 @@ fun AuthSignUpScreen(authViewModel: AuthViewModel = viewModel(factory = AuthView
 
         Text("Sign Up", fontSize = 32.sp, fontWeight = FontWeight.Bold, modifier = Modifier.padding(20.dp))
         TextField(value = email, onValueChange = { email = it }, label = { Text("Email") }, modifier = Modifier.padding(20.dp))
-        TextField(
-            value = password,
-            onValueChange = { password = it },
-            label = { Text("Password") },
-            trailingIcon = {
-                IconButton(onClick = { passwordVisibility = !passwordVisibility }) {
-                    Icon(
-                        painter = iconP,
-                        contentDescription = "Visibility Icon"
-                    )
-                }
-            },
-            keyboardOptions = KeyboardOptions(
-                keyboardType = KeyboardType.Password
-            ),
-            visualTransformation = if(passwordVisibility) VisualTransformation.None
-            else PasswordVisualTransformation(),
-            modifier = Modifier.padding(20.dp))
-        TextField(
-            value = confirmPassword,
-            onValueChange = { confirmPassword = it },
-            label = { Text("Confirm Password") },
-            trailingIcon = {
-                IconButton(onClick = { confirmPasswordVisibility = !confirmPasswordVisibility }) {
-                    Icon(
-                        painter = iconCP,
-                        contentDescription = "Visibility Icon"
-                    )
-                }
-            },
-            visualTransformation = if(confirmPasswordVisibility) VisualTransformation.None
-            else PasswordVisualTransformation(),
-            modifier = Modifier.padding(20.dp))
+        PasswordField("Password", password, passwordVisibility)
+        PasswordField("Confirm Password", confirmPassword, passwordVisibility)
+        
         Spacer(modifier = Modifier.height(10.dp))
 
         Row(horizontalArrangement = Arrangement.SpaceEvenly, modifier = Modifier.fillMaxWidth()) {
             Button(onClick = {
-                if (email == "" || password == "" || confirmPassword == "") {
+                if (email == "" || password.value == "" || confirmPassword.value == "") {
                     isValid = false
                     errorMessage = "One or more fields are empty."
-                } else if (password != confirmPassword) {
+                } else if (password.value != confirmPassword.value) {
                     isValid = false
                     errorMessage = "The passwords do not match."
                 } else {
-                    authViewModel.signUp("$email", "$password")
-                    // authViewModel.signIn("$email", "$password")
+                    authViewModel.signUp(email, password.value)
+
                     navController.navigate(Router.Home.route)
                 }
             }) {
@@ -146,7 +94,7 @@ fun AuthSignUpScreen(authViewModel: AuthViewModel = viewModel(factory = AuthView
             Text("Already have an account?")
         }
         if (!isValid) {
-            Text("$errorMessage", color = Color.Red)
+            Text(errorMessage, color = Color.Red)
         }
     }
 }
