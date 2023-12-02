@@ -26,6 +26,12 @@ import androidx.compose.ui.unit.dp
 import com.project.freshtomatoes.data.MovieReview
 import com.project.freshtomatoes.ui.FreshTomatoes
 
+/**
+ * MovieReviewCard to represent a user's movie review. Card will show the relevant review, rating, and a
+ * dropdown to display a MovieEditor.
+ *
+ * @param movieReview Movie review to display.
+ */
 @Composable
 fun MovieReviewCard(movieReview: MovieReview)
 {

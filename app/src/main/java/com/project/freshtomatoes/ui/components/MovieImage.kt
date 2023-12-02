@@ -4,6 +4,12 @@ import androidx.compose.runtime.Composable
 import coil.compose.AsyncImage
 import com.project.freshtomatoes.data.Movie
 
+/**
+ * MovieImage displays the movie poster from the relevant movie.
+ * Image is fetched from https://image.tmdb.org/t/p/w500/.
+ *
+ * @param movie Movie to display poster for.
+ */
 @Composable
 fun MovieImage(movie: Movie) {
     AsyncImage(

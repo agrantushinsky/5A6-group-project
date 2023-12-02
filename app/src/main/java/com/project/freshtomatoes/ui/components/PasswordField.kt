@@ -19,6 +19,14 @@ import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
 import com.project.freshtomatoes.R
 
+/**
+ * PasswordField represents a text field for users to enter their password. Includes the ability for
+ * users to toggle the visibility of their password, by default, passwords are invisible to protect privacy.
+ *
+ * @param label Label for TextField.
+ * @param password Current state of the password field.
+ * @param passwordVisible Current state of the password visibility. Defaults to a rememberSaveable of a mutable boolean.
+ */
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun PasswordField(

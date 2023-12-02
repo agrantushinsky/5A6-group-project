@@ -12,6 +12,12 @@ import com.project.freshtomatoes.LocalNavController
 import com.project.freshtomatoes.data.Movie
 import com.project.freshtomatoes.ui.Router
 
+/**
+ * Clickable MovieCard, which upon being clicked navigates to the MovieDetails page.
+ * The movie's poster is displayed within the card.
+ *
+ * @param movie Movie to display & navigate.
+ */
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MovieCard(movie: Movie) {

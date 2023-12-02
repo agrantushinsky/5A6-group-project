@@ -18,6 +18,13 @@ import com.project.freshtomatoes.LocalNavController
 import com.project.freshtomatoes.data.Movie
 import com.project.freshtomatoes.ui.Router
 
+/**
+ * MovieList displays a clickable list of movies, which upon being clicked navigates to its
+ * movie details page.
+ *
+ * @param expanded Mutable state for the list's expanded state.
+ * @param movieList List of movies to display within the dropdown.
+ */
 @Composable
 fun MovieList(expanded: MutableState<Boolean>, movieList: List<Movie>) {
     val navController = LocalNavController.current
@@ -30,7 +37,7 @@ fun MovieList(expanded: MutableState<Boolean>, movieList: List<Movie>) {
     ) {
         movieList.forEach { movie ->
             DropdownMenuItem(
-                text = { Text(text = "${movie.title}") },
+                text = { Text(movie.title) },
                 onClick = { navController.navigate(Router.MovieDetails.go(movie.id)) },
                 leadingIcon = {
                     IconButton(onClick = { }) {

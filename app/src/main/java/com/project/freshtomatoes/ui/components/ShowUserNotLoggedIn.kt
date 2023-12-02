@@ -9,6 +9,9 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.em
 
+/**
+ * ShowUserNotLoggedIn shows the relevant message for when a user is not logged in. Text is centered.
+ */
 @Composable
 fun ShowUserNotLoggedIn() {
     Column(modifier = Modifier.fillMaxSize(), verticalArrangement = Arrangement.Center, horizontalAlignment = Alignment.CenterHorizontally) {
