@@ -20,8 +20,8 @@ sealed class Router(val route: String) {
     object Home : Router("Home")
     object About : Router("About")
     object YourReviews : Router("Your Reviews")
-    object MovieReviews : Router("MovieReviews/{id}") {
-        fun go(id: Int) = "MovieReviews/$id"
+    object MovieReviews : Router("MovieReviews/{id}/{name}") {
+        fun go(id: Int,name: String) = "MovieReviews/$id/$name"
     }
     object MovieDetails : Router("MovieDetails/{index}") {
         fun go(index: Int) = "MovieDetails/$index"
@@ -42,7 +42,7 @@ fun NavGraph() {
         composable(Router.Home.route) { Home() }
         composable(Router.About.route) { AboutUs() }
         composable(Router.YourReviews.route) { YourReviews() }
-        composable(Router.MovieReviews.route) { MovieReviews(movieId = it.arguments?.getString("id")?.toInt() ?: -1) }
+        composable(Router.MovieReviews.route) { MovieReviews(movieId = it.arguments?.getString("id")?.toInt() ?: -1, name = it.arguments?.getString("name")) }
         composable(Router.MovieDetails.route) { MovieDetails(id = it.arguments?.getString("index")?.toInt() ?: -1) }
         composable(Router.Account.route) { AuthLoginScreen() }
         composable(Router.SignUp.route) { AuthSignUpScreen() }
