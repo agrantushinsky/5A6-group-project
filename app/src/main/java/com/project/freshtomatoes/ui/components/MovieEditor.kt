@@ -91,13 +91,15 @@ fun MovieEditor(
             FreshTomatoes.appModule.reviewRepository.editReview(oldReview, Review(oldReview.movieId, reviewText, selectedRating, oldReview.ownerUID, oldReview.reviewDate ))
             editCallback()
         }) {
-            Icon(imageVector = Icons.Filled.Create, contentDescription =  "edit")
+            Text("Save Changes")
+            //Icon(imageVector = Icons.Filled.Create, contentDescription =  "edit")
         }
         Button(onClick = {
             FreshTomatoes.appModule.reviewRepository.deleteReview(oldReview)
             deleteCallback()
         }) {
-            Icon(imageVector = Icons.Filled.Delete,contentDescription =  "delete" )
+            Text("Delete")
+            //Icon(imageVector = Icons.Filled.Delete,contentDescription =  "delete" )
         }
     }
 }
