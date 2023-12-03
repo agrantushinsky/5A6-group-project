@@ -20,6 +20,10 @@ import com.project.freshtomatoes.data.TmdbRequest
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
+/**
+ * SearchBar for users to search for movies. Search updates per character and displays a
+ * list of matching movies.
+ */
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun SearchBar() {

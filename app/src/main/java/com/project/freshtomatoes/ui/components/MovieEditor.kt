@@ -29,9 +29,21 @@ import com.project.freshtomatoes.data.MovieReview
 import com.project.freshtomatoes.data.Review
 import com.project.freshtomatoes.ui.FreshTomatoes
 
+/**
+ * MovieEditor implements the functionality to edit a user's MovieReview. The review and rating
+ * fields are editable. User has the option to save their changes or delete the review entirely.
+ *
+ * @param movieReview Target review to edit.
+ * @param editCallback Callback function when the user edits the review. Defaults to an empty function.
+ * @param deleteCallback Callback function when the user deletes the review. Defaults to an empty function.
+ */
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun MovieEditor(movieReview: MovieReview, editCallback: () -> Unit = { }, deleteCallback: () -> Unit = { }) {
+fun MovieEditor(
+    movieReview: MovieReview,
+    editCallback: () -> Unit = { },
+    deleteCallback: () -> Unit = { }
+) {
     var expanded by remember { mutableStateOf(false) }
     var selectedRating by remember {
         mutableStateOf(movieReview.review.rating)

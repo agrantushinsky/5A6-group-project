@@ -36,9 +36,11 @@ import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import coil.compose.AsyncImage
 import com.project.freshtomatoes.LocalNavController
-import com.project.freshtomatoes.data.Genres
+import com.project.freshtomatoes.data.Genre
 import com.project.freshtomatoes.ui.FreshTomatoes
 import com.project.freshtomatoes.ui.Router
+import com.project.freshtomatoes.ui.components.ErrorDialog
+import com.project.freshtomatoes.ui.components.GenreList
 import com.project.freshtomatoes.ui.factories.MovieDetailsViewModelFactory
 import java.text.NumberFormat
 import java.util.Locale
@@ -47,7 +49,8 @@ import java.util.Locale
 @Composable
 fun MovieDetails(id: Int, viewmodel: MovieDetailsViewModel = viewModel(factory = MovieDetailsViewModelFactory())) {
     if (id == -1) {
-        // TODO;
+        Text("A fatal error has occurred.")
+        return
     }
     var showErrorDialog by remember { mutableStateOf(false) }
     var showReviewd by remember {
@@ -92,7 +95,7 @@ fun MovieDetails(id: Int, viewmodel: MovieDetailsViewModel = viewModel(factory =
         }
         Text(text = "${movie?.tagline}")
         Spacer(modifier = Modifier.padding(5.dp))
-        movie?.let { DisplayList(it.genres) }
+        movie?.let { GenreList(it.genres) }
         Spacer(modifier = Modifier.padding(5.dp))
         Divider(thickness = 3.dp)
         Box(
@@ -151,55 +154,18 @@ fun MovieDetails(id: Int, viewmodel: MovieDetailsViewModel = viewModel(factory =
                 }
 
                 if (showErrorDialog) {
-                    ErrorDialog("Must sign in","In order to rate the movie you must sign in.",{showErrorDialog = false })
+                    ErrorDialog("Must sign in","In order to rate the movie you must sign in.") {
+                        showErrorDialog = false
+                    }
                 }
                 if (showReviewd) {
-                    ErrorDialog("Already Reviewed","You have already rated ${movie!!.title}",{showReviewd = false })
+                    ErrorDialog("Already Reviewed","You have already rated ${movie!!.title}") {
+                        showReviewd = false
+                    }
                 }
             }
         }
     }
 }
 
-@Composable
-fun ErrorDialog(
-    header: String,
-    text: String,
-    Dismiss: () -> Unit
-) {
-    AlertDialog(
-        onDismissRequest = { Dismiss() },
-        title = {
-            Text(text = header , fontSize = 20.sp)
-        },
-        text = {
-            Text(text = text)
-        },
-        confirmButton = {
-            Button(
-                onClick = {
-                    Dismiss()
-                }
-            ) {
-                Text(text = "OK")
-            }
-        }
-    )
-}
 
-@Composable
-fun DisplayList(generes: List<Genres>) {
-    LazyRow(modifier = Modifier.padding(10.dp)) {
-        items(generes) {
-                genre ->
-            Button(
-                onClick = { /*TODO*/ },
-                border = BorderStroke(1.dp, Color(0xFFC00100)),
-                shape = RoundedCornerShape(80),
-                modifier = Modifier.height(45.dp)
-            ) {
-                Text(text = "${genre.name}", fontSize = 4.em)
-            }
-        }
-    }
-}

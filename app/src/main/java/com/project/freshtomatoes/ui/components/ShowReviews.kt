@@ -13,6 +13,11 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.em
 import com.project.freshtomatoes.data.MovieReview
 
+/**
+ * ShowReviews displays a list of movie reviews using MovieReviewCard.
+ *
+ * @param reviews The list of the movie reviews to display.
+ */
 @Composable
 fun ShowReviews(reviews: List<MovieReview>,message : String) {
     if (reviews.isEmpty()) {
