@@ -37,7 +37,13 @@ import io.ktor.util.date.toDate
 import io.ktor.util.date.toJvmDate
 import java.util.Calendar
 
-@SuppressLint("StateFlowValueCalledInComposition")
+/**
+ * Review page to facilitate posting reviews. Allows the user to create their tomato rating, and
+ * write their review text.
+ *
+ * @param id Movie id to post reviews for.
+ * @param viewmodel Viewmodel for the review creation page.
+ */
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun Review(id: Int, viewmodel: ReviewViewModel = viewModel(factory = ReviewViewModelFactory())) {

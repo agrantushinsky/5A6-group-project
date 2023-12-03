@@ -10,13 +10,18 @@ import com.project.freshtomatoes.ui.components.ShowReviews
 import com.project.freshtomatoes.ui.components.ShowUserNotLoggedIn
 import com.project.freshtomatoes.ui.factories.YourReviewsViewModelFactory
 
+
+/**
+ * YourReviews displays all the review for the currently logged in user, using ShowReviews.
+ *
+ * @param viewmodel Viewmodel for the YourReviews page.
+ */
 @SuppressLint("StateFlowValueCalledInComposition")
 @Composable
 fun YourReviews(viewmodel: YourReviewsViewModel = viewModel(factory = YourReviewsViewModelFactory())) {
     val reviews = viewmodel.yourReviews.collectAsState()
-    val currentUser = FreshTomatoes.appModule.authRepository.currentUser().value
-    if (currentUser != null) {
-        viewmodel.updateYourReviews(currentUser.uid)
+    viewmodel.updateYourReviews()
+    if (viewmodel.shouldShowReviews()) {
         Column {
             ShowReviews(reviews.value, "Here are all the movies you reviewed ")
         }
