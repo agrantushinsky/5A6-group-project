@@ -56,27 +56,27 @@ fun MovieEditor(
     Row (modifier = Modifier.padding(10.dp))
     {
         OutlinedTextField(modifier = Modifier
-            .width(250.dp)
-            .padding(5.dp),value = reviewText, label = { Text(text = "Review") }, onValueChange = {reviewText= it})
-        Box{
-            ExposedDropdownMenuBox(expanded = expanded, onExpandedChange = {expanded = !expanded})
+            .width(250.dp),
+            value = reviewText, label = { Text("Review") }, onValueChange = {reviewText= it})
+
+        ExposedDropdownMenuBox(expanded = expanded, onExpandedChange = {expanded = !expanded})
+        {
+            OutlinedTextField(
+                value = "$selectedRating",
+                label = { Text("Rating") },
+                onValueChange = {},
+                readOnly = true,
+                trailingIcon = { ExposedDropdownMenuDefaults.TrailingIcon(expanded = expanded) },
+                modifier = Modifier.menuAnchor().padding(start = 8.dp)
+            )
+            ExposedDropdownMenu(expanded = expanded, onDismissRequest = {expanded = false})
             {
-                TextField(
-                    value = "$selectedRating",
-                    onValueChange = {},
-                    readOnly = true,
-                    trailingIcon = { ExposedDropdownMenuDefaults.TrailingIcon(expanded = expanded) },
-                    modifier = Modifier.menuAnchor()
-                )
-                ExposedDropdownMenu(expanded = expanded, onDismissRequest = {expanded = false})
+                for(i in 1 .. 5)
                 {
-                    for(i in 1 .. 5)
-                    {
-                        DropdownMenuItem(text={ Text("$i") }, onClick = {
-                            selectedRating = i
-                            expanded = false
-                        })
-                    }
+                    DropdownMenuItem(text={ Text("$i") }, onClick = {
+                        selectedRating = i
+                        expanded = false
+                    })
                 }
             }
         }
@@ -92,14 +92,12 @@ fun MovieEditor(
             editCallback()
         }) {
             Text("Save Changes")
-            //Icon(imageVector = Icons.Filled.Create, contentDescription =  "edit")
         }
         Button(onClick = {
             FreshTomatoes.appModule.reviewRepository.deleteReview(oldReview)
             deleteCallback()
         }) {
             Text("Delete")
-            //Icon(imageVector = Icons.Filled.Delete,contentDescription =  "delete" )
         }
     }
 }
