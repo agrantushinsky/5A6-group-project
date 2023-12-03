@@ -20,9 +20,9 @@ import com.project.freshtomatoes.ui.factories.MovieReviewsViewModelFactory
 fun MovieReviews(movieId: Int, name : String? ,viewmodel: MovieReviewsViewModel = viewModel(factory = MovieReviewsViewModelFactory())) {
     val reviews = viewmodel.movieReviews.collectAsState()
     viewmodel.updateMovieReviews(movieId)
-    Column(modifier = Modifier.fillMaxWidth(), horizontalAlignment = Alignment.CenterHorizontally) {
-        Text(text = "All reviews for the movie $name", fontSize = 7.em, textAlign = TextAlign.Center, modifier = Modifier.padding(15.dp,8.dp), fontWeight = FontWeight.Bold)
-        ShowReviews(reviews.value)
-    }
+
+
+        ShowReviews(reviews.value,"All reviews for the movie $name")
+
 
 }
