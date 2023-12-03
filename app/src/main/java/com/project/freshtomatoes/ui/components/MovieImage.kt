@@ -10,6 +10,7 @@ import com.project.freshtomatoes.data.Movie
  * Image is fetched from https://image.tmdb.org/t/p/w500/.
  *
  * @param movie Movie to display poster for.
+ * @param modifier Modifier parameter. Defaulted to Modifier.
  */
 @Composable
 fun MovieImage(movie: Movie, modifier: Modifier = Modifier) {

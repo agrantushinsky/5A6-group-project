@@ -16,6 +16,9 @@ import com.project.freshtomatoes.ui.pages.Profile.ProfileScreen
 import com.project.freshtomatoes.ui.pages.Review.Review
 import com.project.freshtomatoes.ui.pages.YourReviews.YourReviews
 
+/**
+ * Router is a sealed class to "statically" represent our routes.
+ */
 sealed class Router(val route: String) {
     object Home : Router("Home")
     object About : Router("About")
@@ -35,6 +38,10 @@ sealed class Router(val route: String) {
     object Profile : Router("Profile")
 }
 
+/**
+ * Navigation graph for the FreshTomatoes application. Contains all routes defined
+ * in Router class.
+ */
 @Composable
 fun NavGraph() {
     val navController = LocalNavController.current

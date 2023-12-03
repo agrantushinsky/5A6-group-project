@@ -23,9 +23,16 @@ import com.project.freshtomatoes.ui.Router
 import com.project.freshtomatoes.ui.factories.AuthViewModelFactory
 import com.project.freshtomatoes.ui.pages.EmailPassword.AuthViewModel
 
+/**
+ * TopBar to be displayed at the top of the screen. Shows FreshTomatoes header and login status.
+ * When logged out, a sign in button that navigates to the login page is shown, otherwise your username
+ * will be shown with a navigation link to your user profile.
+ *
+ * @param authViewModel The authentication viewmodel, defaulted to viewModel using AuthViewModelFactory.
+ */
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun TopTomatoBar(authViewModel: AuthViewModel = viewModel(factory = AuthViewModelFactory())) {
+fun TopBar(authViewModel: AuthViewModel = viewModel(factory = AuthViewModelFactory())) {
     val navController = LocalNavController.current
     val userState = authViewModel.currentUser().collectAsState()
 

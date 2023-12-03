@@ -20,17 +20,28 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import com.project.freshtomatoes.LocalNavController
 import com.project.freshtomatoes.ui.Router
 
+// Represents a NavBarIcon on the bottom bar.
+// Contains:
+// - route: String => The route the button will use.
+// - incon: ImageVector => The ImageVector for the icon displayed.
 data class NavBarIcon(
     val route: String,
     val icon: ImageVector
 )
 
+// Immutable list of routes to be shown on the bottom bar.
 val items = listOf(
     NavBarIcon(route = Router.Home.route, icon = Icons.Filled.Home),
     NavBarIcon(route = Router.About.route, icon = Icons.Filled.Info),
     NavBarIcon(route = Router.YourReviews.route, icon = Icons.Filled.List)
 )
 
+/**
+ * BottomBar to be shown at the bottom of the app using Scaffold. Contains
+ * all navigation buttons defined in items.
+ *
+ * @param modifier Modifier parameter. Defaulted to Modifier.
+ */
 @Composable
 fun BottomBar(modifier: Modifier = Modifier) {
     val navController = LocalNavController.current
