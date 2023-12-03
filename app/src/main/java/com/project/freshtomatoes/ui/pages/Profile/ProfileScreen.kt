@@ -1,4 +1,4 @@
-package com.project.freshtomatoes.ui.pages
+package com.project.freshtomatoes.ui.pages.Profile
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column

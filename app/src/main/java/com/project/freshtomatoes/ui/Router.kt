@@ -12,7 +12,7 @@ import com.project.freshtomatoes.ui.pages.EmailPassword.AuthSignUpScreen
 import com.project.freshtomatoes.ui.pages.Home.Home
 import com.project.freshtomatoes.ui.pages.MovieDetails.MovieDetails
 import com.project.freshtomatoes.ui.pages.MovieReviews.MovieReviews
-import com.project.freshtomatoes.ui.pages.ProfileScreen
+import com.project.freshtomatoes.ui.pages.Profile.ProfileScreen
 import com.project.freshtomatoes.ui.pages.Review.Review
 import com.project.freshtomatoes.ui.pages.YourReviews.YourReviews
 
