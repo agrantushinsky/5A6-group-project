@@ -1,6 +1,7 @@
 package com.project.freshtomatoes.ui.components
 
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
 import coil.compose.AsyncImage
 import com.project.freshtomatoes.data.Movie
 
@@ -11,9 +12,10 @@ import com.project.freshtomatoes.data.Movie
  * @param movie Movie to display poster for.
  */
 @Composable
-fun MovieImage(movie: Movie) {
+fun MovieImage(movie: Movie, modifier: Modifier = Modifier) {
     AsyncImage(
         model = "https://image.tmdb.org/t/p/w500/${movie.poster_path}",
-        contentDescription = "${movie.title}'s movie poster image"
+        contentDescription = "${movie.title}'s movie poster image",
+        modifier = modifier
     )
 }

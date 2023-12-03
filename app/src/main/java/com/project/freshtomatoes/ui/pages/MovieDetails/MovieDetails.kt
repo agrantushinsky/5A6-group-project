@@ -45,6 +45,14 @@ import com.project.freshtomatoes.ui.factories.MovieDetailsViewModelFactory
 import java.text.NumberFormat
 import java.util.Locale
 
+/**
+ * Movie details page to show details for a given movie. Information such as title, average rating,
+ * description, genres, poster, overview, release date, length, and revenue. You may also
+ * navigate to the review page if signed in, or the reviews for the movie.
+ *
+ * @param id The id of the movie to show details for.
+ * @param viewmodel Viewmodel for page, defaulted to viewModel using MovieDetailsViewModelFactory.
+ */
 @SuppressLint("StateFlowValueCalledInComposition")
 @Composable
 fun MovieDetails(id: Int, viewmodel: MovieDetailsViewModel = viewModel(factory = MovieDetailsViewModelFactory())) {

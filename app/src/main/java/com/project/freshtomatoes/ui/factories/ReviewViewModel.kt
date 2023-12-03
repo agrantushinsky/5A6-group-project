@@ -6,6 +6,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.project.freshtomatoes.data.Movie
 import com.project.freshtomatoes.data.MovieReview
 import com.project.freshtomatoes.data.MovieReviewMatcher
 import com.project.freshtomatoes.data.Review
@@ -15,15 +16,22 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
 
-    class ReviewViewModel : ViewModel() {
+class ReviewViewModel : ViewModel() {
+    private val _requester = TmdbRequest()
+    val movie = MutableStateFlow<Movie?>(null)
 
-        fun postReview(review: Review) {
-            viewModelScope.launch(Dispatchers.IO) {
-              FreshTomatoes.appModule.reviewRepository.saveReview(
-               review
-            )
-            }
+    fun postReview(review: Review) {
+        viewModelScope.launch(Dispatchers.IO) {
+          FreshTomatoes.appModule.reviewRepository.saveReview(review)
         }
     }
+
+    fun updateMovie(id: Int) {
+        viewModelScope.launch(Dispatchers.IO) {
+            val response = _requester.details(id)
+            movie.value = response
+        }
+    }
+}
 
 

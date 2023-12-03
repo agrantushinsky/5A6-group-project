@@ -20,6 +20,11 @@ import com.project.freshtomatoes.ui.components.MovieCard
 import com.project.freshtomatoes.ui.components.SearchBar
 import com.project.freshtomatoes.ui.factories.HomeViewModelFactory
 
+/**
+ * Home page for the app.
+ *
+ * @param viewmodel Viewmodel for page, defaulted to viewModel using HomeViewModelFactory.
+ */
 @Composable
 fun Home(viewmodel: HomeViewModel = viewModel(factory = HomeViewModelFactory())) {
     Column(modifier = Modifier.padding(15.dp)) {
