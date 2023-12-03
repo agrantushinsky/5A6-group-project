@@ -78,7 +78,7 @@ fun MovieReviewCard(movieReview: MovieReview)
             if (dropdown) {
                 // Show editor when dropdown is exposed.
                 // Also set dropdown to false when a edit occurs.
-                MovieEditor(movieReview, editCallback = { dropdown = false })
+                MovieEditor(movieReview, editCallback = { dropdown = false }, deleteCallback = { dropdown = false })
             }
         }
     }
