@@ -19,18 +19,17 @@ import com.project.freshtomatoes.data.MovieReview
  * @param reviews The list of the movie reviews to display.
  */
 @Composable
-fun ShowReviews(reviews: List<MovieReview>,message : String) {
+fun ShowReviews(reviews: List<MovieReview>, message: String) {
     if (reviews.isEmpty()) {
-        Text("There are no reviews.", fontSize = 7.em, textAlign = TextAlign.Center, modifier = Modifier.padding(15.dp,8.dp), fontWeight = FontWeight.Bold)
+        Text("There are no reviews.", fontSize = 7.em, textAlign = TextAlign.Center, modifier = Modifier.padding(15.dp, 8.dp), fontWeight = FontWeight.Bold)
         return
     }
     Column {
-        Text(text = message, fontSize = 7.em, textAlign = TextAlign.Center, modifier = Modifier.padding(15.dp,8.dp), fontWeight = FontWeight.Bold)
+        Text(text = message, fontSize = 7.em, textAlign = TextAlign.Center, modifier = Modifier.padding(15.dp, 8.dp), fontWeight = FontWeight.Bold)
         LazyColumn {
             items(reviews) {
                 MovieReviewCard(it)
             }
         }
     }
-
 }

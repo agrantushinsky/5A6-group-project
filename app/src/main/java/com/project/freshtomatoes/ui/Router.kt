@@ -21,7 +21,7 @@ sealed class Router(val route: String) {
     object About : Router("About")
     object YourReviews : Router("Your Reviews")
     object MovieReviews : Router("MovieReviews/{id}/{name}") {
-        fun go(id: Int,name: String) = "MovieReviews/$id/$name"
+        fun go(id: Int, name: String) = "MovieReviews/$id/$name"
     }
     object MovieDetails : Router("MovieDetails/{index}") {
         fun go(index: Int) = "MovieDetails/$index"

@@ -36,7 +36,7 @@ fun PasswordField(
 ) {
     // Set the show icon according to the current state of the password visibility.
     val icon = painterResource(
-        if(passwordVisible.value) R.drawable.design_ic_visibility else R.drawable.design_ic_visibility_off
+        if (passwordVisible.value) R.drawable.design_ic_visibility else R.drawable.design_ic_visibility_off
     )
 
     // Main text field for password entry.
@@ -46,7 +46,7 @@ fun PasswordField(
         label = { Text(label) },
         trailingIcon = {
             // Toggleable icon button for password visibility.
-            IconButton(onClick = { passwordVisible.value = !passwordVisible.value}) {
+            IconButton(onClick = { passwordVisible.value = !passwordVisible.value }) {
                 Icon(
                     painter = icon,
                     contentDescription = "Visibility Icon"
@@ -57,7 +57,7 @@ fun PasswordField(
             keyboardType = KeyboardType.Password
         ),
         // Set password visibility accordingly.
-        visualTransformation = if(passwordVisible.value) VisualTransformation.None else PasswordVisualTransformation(),
+        visualTransformation = if (passwordVisible.value) VisualTransformation.None else PasswordVisualTransformation(),
         modifier = Modifier.padding(20.dp)
     )
 }

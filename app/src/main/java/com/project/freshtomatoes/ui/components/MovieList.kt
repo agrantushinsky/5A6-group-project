@@ -13,7 +13,6 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.PopupProperties
-import coil.compose.AsyncImage
 import com.project.freshtomatoes.LocalNavController
 import com.project.freshtomatoes.data.Movie
 import com.project.freshtomatoes.ui.Router

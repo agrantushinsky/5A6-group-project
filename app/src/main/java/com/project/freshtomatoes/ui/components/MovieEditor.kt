@@ -1,23 +1,17 @@
 package com.project.freshtomatoes.ui.components
 
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Create
-import androidx.compose.material.icons.filled.Delete
 import androidx.compose.material3.Button
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.ExposedDropdownMenuBox
 import androidx.compose.material3.ExposedDropdownMenuDefaults
-import androidx.compose.material3.Icon
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -53,14 +47,16 @@ fun MovieEditor(
         mutableStateOf(movieReview.review.review)
     }
 
-    Row (modifier = Modifier.padding(10.dp))
-    {
-        OutlinedTextField(modifier = Modifier
-            .width(250.dp),
-            value = reviewText, label = { Text("Review") }, onValueChange = {reviewText= it})
+    Row(modifier = Modifier.padding(10.dp)) {
+        OutlinedTextField(
+            modifier = Modifier
+                .width(250.dp),
+            value = reviewText,
+            label = { Text("Review") },
+            onValueChange = { reviewText = it }
+        )
 
-        ExposedDropdownMenuBox(expanded = expanded, onExpandedChange = {expanded = !expanded})
-        {
+        ExposedDropdownMenuBox(expanded = expanded, onExpandedChange = { expanded = !expanded }) {
             OutlinedTextField(
                 value = "$selectedRating",
                 label = { Text("Rating") },
@@ -69,26 +65,25 @@ fun MovieEditor(
                 trailingIcon = { ExposedDropdownMenuDefaults.TrailingIcon(expanded = expanded) },
                 modifier = Modifier.menuAnchor().padding(start = 8.dp)
             )
-            ExposedDropdownMenu(expanded = expanded, onDismissRequest = {expanded = false})
-            {
-                for(i in 1 .. 5)
-                {
-                    DropdownMenuItem(text={ Text("$i") }, onClick = {
+            ExposedDropdownMenu(expanded = expanded, onDismissRequest = { expanded = false }) {
+                for (i in 1..5) {
+                    DropdownMenuItem(text = { Text("$i") }, onClick = {
                         selectedRating = i
                         expanded = false
                     })
                 }
             }
         }
-
     }
-    Row(modifier = Modifier
-        .padding(10.dp)
-        .fillMaxWidth(), horizontalArrangement = Arrangement.SpaceEvenly)
-    {
+    Row(
+        modifier = Modifier
+            .padding(10.dp)
+            .fillMaxWidth(),
+        horizontalArrangement = Arrangement.SpaceEvenly
+    ) {
         val oldReview = movieReview.review
         Button(onClick = {
-            FreshTomatoes.appModule.reviewRepository.editReview(oldReview, Review(oldReview.movieId, reviewText, selectedRating, oldReview.ownerUID, oldReview.reviewDate ))
+            FreshTomatoes.appModule.reviewRepository.editReview(oldReview, Review(oldReview.movieId, reviewText, selectedRating, oldReview.ownerUID, oldReview.reviewDate))
             editCallback()
         }) {
             Text("Save Changes")

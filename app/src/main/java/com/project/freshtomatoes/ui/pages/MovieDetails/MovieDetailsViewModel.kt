@@ -23,8 +23,8 @@ class MovieDetailsViewModel : ViewModel() {
         reviewed.value = false
         viewModelScope.launch(Dispatchers.IO) {
             FreshTomatoes.appModule.reviewRepository.getReviewsByUID(uid).collect {
-                for(review in it) {
-                    if(review.movieId == movieId) {
+                for (review in it) {
+                    if (review.movieId == movieId) {
                         reviewed.value = true
                         break
                     }
@@ -32,7 +32,6 @@ class MovieDetailsViewModel : ViewModel() {
             }
         }
     }
-
 
     fun updateMovie(id: Int) {
         movie.value = null

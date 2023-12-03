@@ -14,9 +14,9 @@ import com.project.freshtomatoes.ui.factories.MovieReviewsViewModelFactory
  * @param viewmodel Viewmodel for MovieReviews page.
  */
 @Composable
-fun MovieReviews(movieId: Int, name : String? ,viewmodel: MovieReviewsViewModel = viewModel(factory = MovieReviewsViewModelFactory())) {
+fun MovieReviews(movieId: Int, name: String?, viewmodel: MovieReviewsViewModel = viewModel(factory = MovieReviewsViewModelFactory())) {
     val reviews = viewmodel.movieReviews.collectAsState()
     viewmodel.updateMovieReviews(movieId)
 
-    ShowReviews(reviews.value,"All reviews for the movie $name")
+    ShowReviews(reviews.value, "All reviews for the movie $name")
 }

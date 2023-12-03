@@ -65,9 +65,12 @@ fun Review(id: Int, viewmodel: ReviewViewModel = viewModel(factory = ReviewViewM
         //endregion
         //region Tomatoes + Image
         Spacer(modifier = Modifier.height(25.dp))
-        MovieImage(movie!!, modifier = Modifier
-            .height(300.dp)
-            .width(250.dp))
+        MovieImage(
+            movie!!,
+            modifier = Modifier
+                .height(300.dp)
+                .width(250.dp)
+        )
         Spacer(modifier = Modifier.height(20.dp))
         Text(text = tomatoRating, fontSize = 10.em)
         Spacer(modifier = Modifier.height(20.dp))
@@ -90,7 +93,6 @@ fun Review(id: Int, viewmodel: ReviewViewModel = viewModel(factory = ReviewViewM
                 if (tomatoRating.length < 10) {
                     tomatoRating += "🍅"
                 }
-
             }) {
                 Text(text = "Grow")
             }
@@ -108,14 +110,15 @@ fun Review(id: Int, viewmodel: ReviewViewModel = viewModel(factory = ReviewViewM
         )
 
         Button(onClick = {
-
-            viewmodel.postReview(Review(
-                movie!!.id,
-                reviewText,
-                tomatoRating.length / 2, // Emojis are two characters.
-                FreshTomatoes.appModule.authRepository.currentUser().value!!.uid,
-                Calendar.getInstance().toDate(Calendar.getInstance().timeInMillis + 18000000).toJvmDate().toString()
-            ))
+            viewmodel.postReview(
+                Review(
+                    movie!!.id,
+                    reviewText,
+                    tomatoRating.length / 2, // Emojis are two characters.
+                    FreshTomatoes.appModule.authRepository.currentUser().value!!.uid,
+                    Calendar.getInstance().toDate(Calendar.getInstance().timeInMillis + 18000000).toJvmDate().toString()
+                )
+            )
             tomatoRating = "🍅🍅🍅🍅🍅"
             reviewText = ""
             navController.popBackStack()

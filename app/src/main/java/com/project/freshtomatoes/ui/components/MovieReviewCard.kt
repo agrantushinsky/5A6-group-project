@@ -33,34 +33,35 @@ import com.project.freshtomatoes.ui.FreshTomatoes
  * @param movieReview Movie review to display.
  */
 @Composable
-fun MovieReviewCard(movieReview: MovieReview)
-{
+fun MovieReviewCard(movieReview: MovieReview) {
     val currentUser = FreshTomatoes.appModule.authRepository.currentUser().collectAsState()
 
     var dropdown by remember {
         mutableStateOf(false)
     }
 
-    Card(modifier = Modifier
-        .padding(10.dp)
-        .fillMaxWidth()) {
-        Column (modifier = Modifier.fillMaxHeight()){
+    Card(
+        modifier = Modifier
+            .padding(10.dp)
+            .fillMaxWidth()
+    ) {
+        Column(modifier = Modifier.fillMaxHeight()) {
             Row {
                 Column {
-                    Card (modifier = Modifier.height(100.dp)){
+                    Card(modifier = Modifier.height(100.dp)) {
                         MovieImage(movieReview.movie)
                     }
                 }
-                Column(modifier = Modifier
-                    .padding(8.dp)
-                    .width(250.dp)) {
+                Column(
+                    modifier = Modifier
+                        .padding(8.dp)
+                        .width(250.dp)
+                ) {
                     Text(movieReview.movie.title, fontWeight = FontWeight.Bold)
                     Text("Rating: ${movieReview.review.rating}/5")
                     Text("Comments: ${movieReview.review.review}")
-
                 }
-                Column()
-                {
+                Column() {
                     // Only display the arrow to expand the editor
                     // if we are logged in and the logged in user is the owner of review.
                     if (currentUser.value != null &&
@@ -68,8 +69,8 @@ fun MovieReviewCard(movieReview: MovieReview)
                     ) {
                         IconButton(onClick = { dropdown = !dropdown }) {
                             Icon(
-                                imageVector = if(dropdown) Icons.Filled.KeyboardArrowDown else Icons.Filled.KeyboardArrowUp,
-                                contentDescription = if(dropdown) "ArrowDown" else "ArrowUp"
+                                imageVector = if (dropdown) Icons.Filled.KeyboardArrowDown else Icons.Filled.KeyboardArrowUp,
+                                contentDescription = if (dropdown) "ArrowDown" else "ArrowUp"
                             )
                         }
                     }
