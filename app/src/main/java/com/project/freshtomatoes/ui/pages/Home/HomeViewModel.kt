@@ -18,15 +18,20 @@ class HomeViewModel : ViewModel() {
     val popularLabel = "Popular Movies"
     val newLabel = "New Movies"
     val topRatedLabel = "Top Rated Movies"
+    val actionMovieLabel = "Action"
     var popularMovies by mutableStateOf(emptyList<Movie>())
     var newMovies by mutableStateOf(emptyList<Movie>())
     var topRatedMovies by mutableStateOf(emptyList<Movie>())
+    var actionMovies by mutableStateOf(emptyList<Movie>())
+
 
     init {
         viewModelScope.launch(Dispatchers.IO) {
             popularMovies = _requester.popularMovies().results
             newMovies = _requester.nowPlayingMovies().results
             topRatedMovies = _requester.topRatedMovies().results
+            actionMovies = _requester.getActionMovies().results
+
         }
     }
 
@@ -42,7 +47,12 @@ class HomeViewModel : ViewModel() {
         return MovieDisplay(topRatedLabel, topRatedMovies)
     }
 
+    private fun getActionMovies() : MovieDisplay {
+        return MovieDisplay(actionMovieLabel, actionMovies)
+    }
+
     fun getAllMovies(): List<MovieDisplay> {
-        return listOf(getPopularMovies(), getNewMovies(), getTopRatedMovies())
+        return listOf(getPopularMovies(), getNewMovies(), getTopRatedMovies(), getActionMovies())
+
     }
 }
