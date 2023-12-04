@@ -12,7 +12,7 @@ import com.project.freshtomatoes.ui.pages.EmailPassword.AuthSignUpScreen
 import com.project.freshtomatoes.ui.pages.Home.Home
 import com.project.freshtomatoes.ui.pages.MovieDetails.MovieDetails
 import com.project.freshtomatoes.ui.pages.MovieReviews.MovieReviews
-import com.project.freshtomatoes.ui.pages.Profile.ProfileScreen
+import com.project.freshtomatoes.ui.pages.Profile.Profile
 import com.project.freshtomatoes.ui.pages.Review.Review
 import com.project.freshtomatoes.ui.pages.YourReviews.YourReviews
 
@@ -54,7 +54,7 @@ fun NavGraph() {
         composable(Router.Account.route) { AuthLoginScreen() }
         composable(Router.SignUp.route) { AuthSignUpScreen() }
         composable(Router.Review.route) { Review(id = it.arguments?.getString("index")?.toInt() ?: -1) }
-        composable(Router.Profile.route) { ProfileScreen() }
+        composable(Router.Profile.route) { Profile() }
         composable(
             "deeplink2?id={id}",
             // Note that this navDeepLink pattern has no relation to the route itself
