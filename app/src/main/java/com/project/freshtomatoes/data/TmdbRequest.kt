@@ -160,4 +160,8 @@ class TmdbRequest {
     suspend fun getActionMovies() : MovieResponse{
         return getMoviesByGenre(28)
     }
+
+    suspend fun getAdventureMovies() : MovieResponse{
+        return getMoviesByGenre(12)
+    }
 }
