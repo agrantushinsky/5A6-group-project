@@ -12,16 +12,19 @@ import com.project.freshtomatoes.ui.pages.EmailPassword.AuthSignUpScreen
 import com.project.freshtomatoes.ui.pages.Home.Home
 import com.project.freshtomatoes.ui.pages.MovieDetails.MovieDetails
 import com.project.freshtomatoes.ui.pages.MovieReviews.MovieReviews
-import com.project.freshtomatoes.ui.pages.ProfileScreen
+import com.project.freshtomatoes.ui.pages.Profile.ProfileScreen
 import com.project.freshtomatoes.ui.pages.Review.Review
 import com.project.freshtomatoes.ui.pages.YourReviews.YourReviews
 
+/**
+ * Router is a sealed class to "statically" represent our routes.
+ */
 sealed class Router(val route: String) {
     object Home : Router("Home")
     object About : Router("About")
     object YourReviews : Router("Your Reviews")
-    object MovieReviews : Router("MovieReviews/{id}") {
-        fun go(id: Int) = "MovieReviews/$id"
+    object MovieReviews : Router("MovieReviews/{id}/{name}") {
+        fun go(id: Int, name: String) = "MovieReviews/$id/$name"
     }
     object MovieDetails : Router("MovieDetails/{index}") {
         fun go(index: Int) = "MovieDetails/$index"
@@ -35,6 +38,10 @@ sealed class Router(val route: String) {
     object Profile : Router("Profile")
 }
 
+/**
+ * Navigation graph for the FreshTomatoes application. Contains all routes defined
+ * in Router class.
+ */
 @Composable
 fun NavGraph() {
     val navController = LocalNavController.current
@@ -42,7 +49,7 @@ fun NavGraph() {
         composable(Router.Home.route) { Home() }
         composable(Router.About.route) { AboutUs() }
         composable(Router.YourReviews.route) { YourReviews() }
-        composable(Router.MovieReviews.route) { MovieReviews(movieId = it.arguments?.getString("id")?.toInt() ?: -1) }
+        composable(Router.MovieReviews.route) { MovieReviews(movieId = it.arguments?.getString("id")?.toInt() ?: -1, name = it.arguments?.getString("name")) }
         composable(Router.MovieDetails.route) { MovieDetails(id = it.arguments?.getString("index")?.toInt() ?: -1) }
         composable(Router.Account.route) { AuthLoginScreen() }
         composable(Router.SignUp.route) { AuthSignUpScreen() }

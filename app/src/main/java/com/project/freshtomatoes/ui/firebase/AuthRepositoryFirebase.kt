@@ -9,6 +9,10 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.tasks.await
 import java.util.Date
 
+/**
+ * AuthRepository class. Implements the AuthRepository interface.
+ * Constructor takes in a FirebaseAuth instance.
+ */
 class AuthRepositoryFirebase(private val auth: FirebaseAuth) : AuthRepository {
     private val currentUserStateFlow = MutableStateFlow(auth.currentUser?.toUser())
 
@@ -18,6 +22,11 @@ class AuthRepositoryFirebase(private val auth: FirebaseAuth) : AuthRepository {
         }
     }
 
+    /**
+     * Returns the currentUser as a StateFlow<User?>
+     *
+     * @return Returns the current user StateFlow.
+     */
     override fun currentUser(): StateFlow<User?> {
         return currentUserStateFlow
     }
@@ -26,6 +35,14 @@ class AuthRepositoryFirebase(private val auth: FirebaseAuth) : AuthRepository {
         return auth.currentUser != null
     }
 
+    /**
+     * Creates an account using the arguments passed.
+     *
+     * @param email Email to create account with.
+     * @param password Password to create account with.
+     *
+     * @return Returns true when successful, otherwise false.
+     */
     override suspend fun signUp(email: String, password: String): Boolean {
         return try {
             auth.createUserWithEmailAndPassword(email, password).await()
@@ -35,6 +52,12 @@ class AuthRepositoryFirebase(private val auth: FirebaseAuth) : AuthRepository {
         }
     }
 
+    /**
+     * Attempts to sign in using the email, and password arguments.
+     *
+     * @param email Email to sign in with.
+     * @param password Password to sign in with.
+     */
     override suspend fun signIn(email: String, password: String): Boolean {
         return try {
             var result = auth.signInWithEmailAndPassword(email, password).await()
@@ -55,10 +78,16 @@ class AuthRepositoryFirebase(private val auth: FirebaseAuth) : AuthRepository {
         }
     }
 
+    /**
+     * Signs out the currently logged in user.
+     */
     override fun signOut() {
         return auth.signOut()
     }
 
+    /**
+     * Deletes the account of the currently signed in user. If not signed in, nothing happens.
+     */
     override suspend fun delete() {
         if (auth.currentUser != null) {
             auth.currentUser!!.delete()

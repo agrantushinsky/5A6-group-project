@@ -42,7 +42,6 @@ class HomeViewModel : ViewModel() {
         return MovieDisplay(topRatedLabel, topRatedMovies)
     }
 
-
     fun getAllMovies(): List<MovieDisplay> {
         return listOf(getPopularMovies(), getNewMovies(), getTopRatedMovies())
     }
