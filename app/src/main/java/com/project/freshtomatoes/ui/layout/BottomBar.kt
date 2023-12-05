@@ -2,6 +2,7 @@ package com.project.freshtomatoes.ui.layout
 
 import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Face
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Info
 import androidx.compose.material.icons.filled.List
@@ -32,8 +33,9 @@ data class NavBarIcon(
 // Immutable list of routes to be shown on the bottom bar.
 val items = listOf(
     NavBarIcon(route = Router.Home.route, icon = Icons.Filled.Home),
-    NavBarIcon(route = Router.About.route, icon = Icons.Filled.Info),
-    NavBarIcon(route = Router.YourReviews.route, icon = Icons.Filled.List)
+    NavBarIcon(route = Router.YourReviews.route, icon = Icons.Filled.List),
+    NavBarIcon(route = Router.About.route, icon = Icons.Filled.Face),
+    NavBarIcon(route = Router.Info.route,Icons.Filled.Info)
 )
 
 /**

@@ -10,6 +10,7 @@ import com.project.freshtomatoes.ui.pages.DeepScreen
 import com.project.freshtomatoes.ui.pages.EmailPassword.AuthLoginScreen
 import com.project.freshtomatoes.ui.pages.EmailPassword.AuthSignUpScreen
 import com.project.freshtomatoes.ui.pages.Home.Home
+import com.project.freshtomatoes.ui.pages.Info.Information
 import com.project.freshtomatoes.ui.pages.MovieDetails.MovieDetails
 import com.project.freshtomatoes.ui.pages.MovieReviews.MovieReviews
 import com.project.freshtomatoes.ui.pages.Profile.Profile
@@ -36,6 +37,7 @@ sealed class Router(val route: String) {
     object Account : Router("Account")
     object SignUp : Router("SignUp")
     object Profile : Router("Profile")
+    object Info : Router("Info")
 }
 
 /**
@@ -54,6 +56,7 @@ fun NavGraph() {
         composable(Router.Account.route) { AuthLoginScreen() }
         composable(Router.SignUp.route) { AuthSignUpScreen() }
         composable(Router.Review.route) { Review(id = it.arguments?.getString("index")?.toInt() ?: -1) }
+        composable(Router.Info.route){Information()}
         composable(Router.Profile.route) { Profile() }
         composable(
             "deeplink2?id={id}",
