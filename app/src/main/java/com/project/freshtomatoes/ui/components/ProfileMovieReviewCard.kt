@@ -18,7 +18,16 @@ import com.project.freshtomatoes.ui.Router
 import java.text.SimpleDateFormat
 import java.util.Date
 
-
+/**
+ * ProfileMovieCard is a card that is used to display a basic summary
+ * of a movie review on a user's profile.
+ * Contains:
+ * - Movie poster
+ * - Rating
+ * - Review date
+ *
+ * @param movie Movie review to display in the card.
+ */
 @SuppressLint("SimpleDateFormat")
 @Composable
 fun ProfileMovieCard(movie: MovieReview) {
