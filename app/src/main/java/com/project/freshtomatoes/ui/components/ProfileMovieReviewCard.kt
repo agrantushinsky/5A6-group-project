@@ -34,7 +34,7 @@ fun ProfileMovieCard(movie: MovieReview) {
     Column(modifier = Modifier.padding(15.dp)) {
         MovieImage(movie.movie, Modifier.height(200.dp))
         Text("${movie.review.rating}/5 🍅")
-        val formatter = SimpleDateFormat("MM/d/yyyy")
+        val formatter = SimpleDateFormat("d/MM/yyyy")
         Text(text = "${formatter.format(Date(movie.review.reviewDate))}")
 
     }

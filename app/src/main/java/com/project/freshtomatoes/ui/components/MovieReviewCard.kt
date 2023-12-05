@@ -25,6 +25,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.project.freshtomatoes.data.MovieReview
 import com.project.freshtomatoes.ui.FreshTomatoes
+import java.text.SimpleDateFormat
+import java.util.Date
 
 /**
  * MovieReviewCard to represent a user's movie review. Card will show the relevant review, rating, and a
@@ -60,6 +62,8 @@ fun MovieReviewCard(movieReview: MovieReview) {
                     Text(movieReview.movie.title, fontWeight = FontWeight.Bold)
                     Text("Rating: ${movieReview.review.rating}/5")
                     Text("Comments: ${movieReview.review.review}")
+                    val formatter = SimpleDateFormat("d/MM/yyyy")
+                    Text(text = "${formatter.format(Date(movieReview.review.reviewDate))}")
                 }
                 Column() {
                     // Only display the arrow to expand the editor
