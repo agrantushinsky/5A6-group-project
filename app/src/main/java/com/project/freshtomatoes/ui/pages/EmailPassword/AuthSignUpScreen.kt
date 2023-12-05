@@ -26,11 +26,11 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.project.freshtomatoes.LocalNavController
 import com.project.freshtomatoes.ui.Router
 import com.project.freshtomatoes.ui.components.PasswordField
-import com.project.freshtomatoes.ui.factories.AuthViewModelFactory
+import com.project.freshtomatoes.ui.factories.AuthSignUpModelFactory
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun AuthSignUpScreen(authViewModel: AuthViewModel = viewModel(factory = AuthViewModelFactory())) {
+fun AuthSignUpScreen(viewmodel: AuthSignUpViewModel = viewModel(factory = (AuthSignUpModelFactory()))) {
     val navController = LocalNavController.current
 
     var email by rememberSaveable { mutableStateOf("") }
@@ -68,7 +68,7 @@ fun AuthSignUpScreen(authViewModel: AuthViewModel = viewModel(factory = AuthView
                     isValid = false
                     errorMessage = "The passwords do not match."
                 } else {
-                    authViewModel.signUp(email, password.value)
+                    viewmodel.signUp(email, password.value)
 
                     navController.navigate(Router.Home.route)
                 }

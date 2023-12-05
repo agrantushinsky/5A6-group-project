@@ -13,30 +13,4 @@ class AuthViewModel(private val authRepository: AuthRepository) : ViewModel() {
     fun currentUser(): StateFlow<User?> {
         return authRepository.currentUser()
     }
-
-    fun signUp(email: String, password: String) {
-        viewModelScope.launch {
-            authRepository.signUp(email, password)
-        }
-    }
-
-    suspend fun signIn(email: String, password: String): Boolean {
-        try {
-            val result = authRepository.signIn(email, password)
-            return result
-        } catch (e: Exception) {
-            println("${e.message}")
-            return false
-        }
-    }
-
-    fun signOut() {
-        authRepository.signOut()
-    }
-
-    fun delete() {
-        viewModelScope.launch {
-            authRepository.delete()
-        }
-    }
 }

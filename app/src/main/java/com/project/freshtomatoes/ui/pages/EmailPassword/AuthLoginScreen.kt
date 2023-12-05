@@ -26,15 +26,11 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.project.freshtomatoes.LocalNavController
 import com.project.freshtomatoes.ui.Router
 import com.project.freshtomatoes.ui.components.PasswordField
-import com.project.freshtomatoes.ui.factories.AuthViewModelFactory
+import com.project.freshtomatoes.ui.factories.AuthLoginViewModelFactory
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun AuthLoginScreen(
-    authViewModel: AuthViewModel =
-        viewModel(factory = AuthViewModelFactory())
-) {
-    val userState = authViewModel.currentUser().collectAsState()
+fun AuthLoginScreen(viewmodel: AuthLoginViewModel = viewModel(factory = AuthLoginViewModelFactory())) {
     val navController = LocalNavController.current
     var email by rememberSaveable {
         mutableStateOf("")
@@ -89,7 +85,7 @@ fun AuthLoginScreen(
     if (loginButtonclicked) {
         LaunchedEffect(signedInSuccess) {
             if (email.isNotEmpty() && password.value.isNotEmpty()) {
-                val result = authViewModel.signIn(email, password.value)
+                val result = viewmodel.signIn(email, password.value)
                 signedInSuccess.value = result
 
                 if (result) {
