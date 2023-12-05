@@ -9,6 +9,12 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import java.util.Date
 
+/**
+ * ShowReviewsViewModel is the viewmodel for the ShowReviews component.
+ * Getters & Setters for: sortState, movieReviews.
+ * updateList to update when new reviews are being passed
+ * updateSorting updates the sorting of the reviews list based on the sort state
+ */
 class ShowReviewsViewModel : ViewModel() {
     private val dateComparator = Comparator {
         mr1: MovieReview, mr2: MovieReview -> if(Date(mr1.review.reviewDate).time < Date(mr2.review.reviewDate).time) 1 else -1
@@ -29,6 +35,7 @@ class ShowReviewsViewModel : ViewModel() {
         }
 
         _movieReviews.update { newList }
+        updateSorting()
     }
 
     fun setSortState(newState: SortState) {

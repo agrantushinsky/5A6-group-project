@@ -29,6 +29,7 @@ import androidx.compose.ui.graphics.vector.ImageVector
  *
  * @param label: String (Label for the combobox)
  * @param currentState: T (state of the combobox)
+ * @param setState: Sets the state of the enum
  * @param enumValues: Array<T> (array of enum values. T.values(), for some reason the generic cant do it)
  */
 @OptIn(ExperimentalMaterial3Api::class)

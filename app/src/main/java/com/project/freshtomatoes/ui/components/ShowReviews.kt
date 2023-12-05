@@ -38,7 +38,9 @@ import java.util.Date
 /**
  * ShowReviews displays a list of movie reviews using MovieReviewCard.
  *
- * @param reviews The list of the movie reviews to display.
+ * @param sourceReviews Source reviews being passed to the composable
+ * @param message Message to displayed at the top of the composable
+ * @param viewmodel Viewmodel to manage movie reviews, defauled to viewModel using ShowReviewsViewModelFactory.
  */
 @Composable
 fun ShowReviews(
