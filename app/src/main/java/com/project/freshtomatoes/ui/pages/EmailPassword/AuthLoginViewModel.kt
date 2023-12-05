@@ -2,8 +2,6 @@ package com.project.freshtomatoes.ui.pages.EmailPassword
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import androidx.lifecycle.viewmodel.compose.viewModel
-import com.project.freshtomatoes.LocalNavController
 import com.project.freshtomatoes.ui.firebase.AuthRepository
 import com.project.freshtomatoes.ui.firebase.User
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -11,16 +9,6 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
-
-/**
- * Enum for the states of the user login system.
- */
-enum class AuthLoginStates {
-    None,
-    Processing,
-    Success,
-    Failure
-}
 
 /**
  * AuthLoginViewModel is the viewmodel for the AuthLogin page.
@@ -42,7 +30,7 @@ class AuthLoginViewModel(private val authRepository: AuthRepository) : ViewModel
     private val _email = MutableStateFlow("")
     private val _password = MutableStateFlow("")
     private val _errorMessage = MutableStateFlow("")
-    private val _loginState = MutableStateFlow(AuthLoginStates.None)
+    private val _loginState = MutableStateFlow(AuthState.None)
 
     // public getters for the state (StateFlow)
     val email = _email.asStateFlow()
@@ -60,17 +48,17 @@ class AuthLoginViewModel(private val authRepository: AuthRepository) : ViewModel
     fun signIn() {
         // Set the login state to processing while Firebase attempts
         // to authenticate the user.
-        _loginState.update { AuthLoginStates.Processing }
+        _loginState.update { AuthState.Processing }
 
         viewModelScope.launch {
             try {
                 val result = authRepository.signIn(email.value, password.value)
                 if(!result) {
                     _errorMessage.update { "Invalid Credentials" }
-                    _loginState.update { AuthLoginStates.Failure }
+                    _loginState.update { AuthState.Failure }
                 } else {
                     _errorMessage.update { "" }
-                    _loginState.update { AuthLoginStates.Success }
+                    _loginState.update { AuthState.Success }
                 }
             } catch (e: Exception) {
                 println("${e.message}")
