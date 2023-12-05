@@ -10,6 +10,17 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
+/**
+ * AuthSignUpViewModel is the viewmodel for the AuthSignUp page.
+ * Getters & Setters for: email, password, confirmPassword.
+ * Getters for: errorMessage, signupState.
+ * Signup function to facilitate login process.
+ * signupState:
+ *  - None -> Nothing has happened yet.
+ *  - Processing -> Firestore is processing the request.
+ *  - Success -> Signup request was successful.
+ *  - Failure -> Signup request was unsuccessful.
+ */
 class AuthSignUpViewModel(private val authRepository: AuthRepository) : ViewModel() {
     fun currentUser(): StateFlow<User?> {
         return authRepository.currentUser()
