@@ -21,6 +21,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.em
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.project.freshtomatoes.LocalNavController
@@ -32,23 +33,11 @@ import com.project.freshtomatoes.ui.factories.AuthLoginViewModelFactory
 @Composable
 fun AuthLoginScreen(viewmodel: AuthLoginViewModel = viewModel(factory = AuthLoginViewModelFactory())) {
     val navController = LocalNavController.current
-    var email by rememberSaveable {
-        mutableStateOf("")
-    }
-    var password = rememberSaveable {
-        mutableStateOf("")
-    }
 
-    var signedInSuccess = rememberSaveable {
-        mutableStateOf(false)
-    }
-    var errorOccurred by rememberSaveable {
-        mutableStateOf(false)
-    }
-
-    var loginButtonclicked by rememberSaveable {
-        mutableStateOf(false)
-    }
+    val email = viewmodel.email.collectAsState()
+    val password = viewmodel.password.collectAsState()
+    val errorMessage = viewmodel.errorMessage.collectAsState()
+    val loginState = viewmodel.loginState.collectAsState()
 
     Column(
         modifier = Modifier
@@ -57,44 +46,32 @@ fun AuthLoginScreen(viewmodel: AuthLoginViewModel = viewModel(factory = AuthLogi
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Text("Log In", fontSize = 32.sp, fontWeight = FontWeight.Bold, modifier = Modifier.padding(20.dp))
-        TextField(value = email, onValueChange = { email = it }, label = { Text("Email") }, modifier = Modifier.padding(20.dp))
-        PasswordField("Password", password)
+
+        TextField(
+            value = email.value,
+            onValueChange = { viewmodel.setEmail(it) },
+            label = { Text("Email") },
+            modifier = Modifier.padding(20.dp)
+        )
+        PasswordField("Password", password, { viewmodel.setPassword(it) })
 
         Row(horizontalArrangement = Arrangement.SpaceEvenly, modifier = Modifier.fillMaxWidth()) {
-            Button(onClick = {
-                navController.navigate(Router.SignUp.route)
-            }) {
+            Button(onClick = { navController.navigate(Router.SignUp.route) }) {
                 Text("Sign up")
             }
-            Button(onClick = {
-                loginButtonclicked = true
-            }) {
+            Button(onClick = { viewmodel.signIn() }) {
                 Text("Log In")
             }
         }
-        Row(horizontalArrangement = Arrangement.SpaceEvenly, modifier = Modifier.fillMaxWidth()) {
-            Text("Create an Account     ")
-            Text("                      ")
-        }
 
-        if (errorOccurred) {
-            Text("Invalid Credentials", color = Color.Red)
+        if (loginState.value == AuthLoginStates.Failure) {
+            Text(errorMessage.value, color = Color.Red)
+        } else if(loginState.value == AuthLoginStates.Processing) {
+            Text("Processing login...")
         }
     }
 
-    if (loginButtonclicked) {
-        LaunchedEffect(signedInSuccess) {
-            if (email.isNotEmpty() && password.value.isNotEmpty()) {
-                val result = viewmodel.signIn(email, password.value)
-                signedInSuccess.value = result
-
-                if (result) {
-                    errorOccurred = false
-                    navController.navigate(Router.Home.route)
-                } else {
-                    errorOccurred = true
-                }
-            }
-        }
+    if(loginState.value == AuthLoginStates.Success) {
+        navController.navigate(Router.Home.route)
     }
 }
