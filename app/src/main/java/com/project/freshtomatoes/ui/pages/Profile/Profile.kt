@@ -27,6 +27,8 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.project.freshtomatoes.LocalNavController
 import com.project.freshtomatoes.ui.FreshTomatoes
 import com.project.freshtomatoes.ui.Router
+import com.project.freshtomatoes.ui.components.MovieCard
+import com.project.freshtomatoes.ui.components.ProfileMovieCard
 import com.project.freshtomatoes.ui.factories.AuthViewModelFactory
 import com.project.freshtomatoes.ui.factories.ProfileViewModelFactory
 import com.project.freshtomatoes.ui.pages.EmailPassword.AuthViewModel
@@ -56,25 +58,47 @@ fun Profile(
             Text("Welcome ${userState.value?.email?.split("@")?.get(0)}!", fontSize = 24.sp, fontWeight = FontWeight.Bold, modifier = Modifier.padding(20.dp))
             Divider(thickness = 5.dp)
         }
+        Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceEvenly) {
+            Column {
+                Text(text = "User Information", fontSize = 5.em, modifier = Modifier.padding(5.dp))
+                Card(
+                    modifier = Modifier
+                        .height(300.dp)
+                        .width(200.dp)
+                ) {
+                    Card(modifier = Modifier.padding(8.dp)) {
+                        Text(text = "Email", fontWeight = FontWeight.Bold)
+                        Text(text = "${userState.value?.email}")
+                    }
 
-        Text(text = "User Information", fontSize = 5.em, modifier = Modifier.padding(5.dp))
-        Card(
-            modifier = Modifier
-                .height(300.dp)
-                .width(200.dp)
-        ) {
-            Card(modifier = Modifier.padding(8.dp)) {
-                Text(text = "Email", fontWeight = FontWeight.Bold)
-                Text(text = "${userState.value?.email}")
+                    Spacer(modifier = Modifier.height(20.dp))
+                    Card(modifier = Modifier.padding(8.dp)) {
+                        Text(text = "Date Joined ", fontWeight = FontWeight.Bold)
+                        val formatter = SimpleDateFormat("MMMM d, yyyy")
+                        Text(text = "${formatter.format(userState.value?.dateJoined)}")
+                    }
+
+                    Spacer(modifier = Modifier.height(20.dp))
+                    Card(modifier = Modifier.padding(8.dp)) {
+                        Text(text = "Total Movies Reviewed ", fontWeight = FontWeight.Bold)
+                        Text(text = "${sortedMovies.value.count()}")
+                    }
+
+
+                }
             }
 
-            Spacer(modifier = Modifier.height(20.dp))
-            Card(modifier = Modifier.padding(8.dp)) {
-                Text(text = "Date Joined ", fontWeight = FontWeight.Bold)
-                val formatter = SimpleDateFormat("MMMM d, yyyy")
-                Text(text = "${formatter.format(userState.value?.dateJoined)}")
+            Column {
+                Text(text = "Recent Review", fontSize = 5.em, modifier = Modifier.padding(5.dp))
+                LazyRow(modifier = Modifier.padding(5.dp)){
+                    items(sortedMovies.value){movie->
+                        ProfileMovieCard(movie = movie)
+
+                    }
+                }
             }
         }
+
         Row(horizontalArrangement = Arrangement.SpaceEvenly, modifier = Modifier.fillMaxWidth()) {
             Button(onClick = {
                 authViewModel.signOut()
