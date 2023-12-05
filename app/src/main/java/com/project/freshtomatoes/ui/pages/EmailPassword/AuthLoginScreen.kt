@@ -12,12 +12,7 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.saveable.rememberSaveable
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -27,34 +22,19 @@ import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.project.freshtomatoes.LocalNavController
 import com.project.freshtomatoes.ui.Router
+import com.project.freshtomatoes.ui.components.AuthStatus
 import com.project.freshtomatoes.ui.components.PasswordField
-import com.project.freshtomatoes.ui.factories.AuthViewModelFactory
+import com.project.freshtomatoes.ui.factories.AuthLoginViewModelFactory
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun AuthLoginScreen(
-    authViewModel: AuthViewModel =
-        viewModel(factory = AuthViewModelFactory())
-) {
-    val userState = authViewModel.currentUser().collectAsState()
+fun AuthLoginScreen(viewmodel: AuthLoginViewModel = viewModel(factory = AuthLoginViewModelFactory())) {
     val navController = LocalNavController.current
-    var email by rememberSaveable {
-        mutableStateOf("")
-    }
-    var password = rememberSaveable {
-        mutableStateOf("")
-    }
 
-    var signedInSuccess = rememberSaveable {
-        mutableStateOf(false)
-    }
-    var errorOccurred by rememberSaveable {
-        mutableStateOf(false)
-    }
-
-    var loginButtonclicked by rememberSaveable {
-        mutableStateOf(false)
-    }
+    val email = viewmodel.email.collectAsState()
+    val password = viewmodel.password.collectAsState()
+    val errorMessage = viewmodel.errorMessage.collectAsState()
+    val loginState = viewmodel.loginState.collectAsState()
 
     Column(
         modifier = Modifier
@@ -64,18 +44,20 @@ fun AuthLoginScreen(
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Text("Log In", fontSize = 32.sp, fontWeight = FontWeight.Bold, modifier = Modifier.padding(20.dp))
-        TextField(value = email, onValueChange = { email = it }, label = { Text("Email") }, modifier = Modifier.padding(20.dp))
-        PasswordField("Password", password)
+
+        TextField(
+            value = email.value,
+            onValueChange = { viewmodel.setEmail(it) },
+            label = { Text("Email") },
+            modifier = Modifier.padding(20.dp)
+        )
+        PasswordField("Password", password, { viewmodel.setPassword(it) })
 
         Row(horizontalArrangement = Arrangement.SpaceEvenly, modifier = Modifier.fillMaxWidth()) {
-            Button(onClick = {
-                navController.navigate(Router.SignUp.route)
-            }) {
+            Button(onClick = { navController.navigate(Router.SignUp.route) }) {
                 Text("Sign up")
             }
-            Button(onClick = {
-                loginButtonclicked = true
-            }) {
+            Button(onClick = { viewmodel.signIn() }) {
                 Text("Log In")
             }
         }
@@ -84,24 +66,10 @@ fun AuthLoginScreen(
             Text("                      ")
         }
 
-        if (errorOccurred) {
-            Text("Invalid Credentials", color = Color.Red)
-        }
+        AuthStatus(loginState, errorMessage, "Processing login...")
     }
 
-    if (loginButtonclicked) {
-        LaunchedEffect(signedInSuccess) {
-            if (email.isNotEmpty() && password.value.isNotEmpty()) {
-                val result = authViewModel.signIn(email, password.value)
-                signedInSuccess.value = result
-
-                if (result) {
-                    errorOccurred = false
-                    navController.navigate(Router.Home.route)
-                } else {
-                    errorOccurred = true
-                }
-            }
-        }
+    if(loginState.value == AuthState.Success) {
+        navController.navigate(Router.Home.route)
     }
 }

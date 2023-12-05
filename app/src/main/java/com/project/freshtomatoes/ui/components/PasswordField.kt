@@ -9,6 +9,7 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
@@ -43,6 +44,42 @@ fun PasswordField(
     TextField(
         value = password.value,
         onValueChange = { password.value = it },
+        label = { Text(label) },
+        trailingIcon = {
+            // Toggleable icon button for password visibility.
+            IconButton(onClick = { passwordVisible.value = !passwordVisible.value }) {
+                Icon(
+                    painter = icon,
+                    contentDescription = "Visibility Icon"
+                )
+            }
+        },
+        keyboardOptions = KeyboardOptions(
+            keyboardType = KeyboardType.Password
+        ),
+        // Set password visibility accordingly.
+        visualTransformation = if (passwordVisible.value) VisualTransformation.None else PasswordVisualTransformation(),
+        modifier = Modifier.padding(20.dp)
+    )
+}
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun PasswordField(
+    label: String,
+    password: State<String>,
+    onPasswordChange: (String) -> Unit,
+    passwordVisible: MutableState<Boolean> = rememberSaveable { mutableStateOf(false) }
+) {
+    // Set the show icon according to the current state of the password visibility.
+    val icon = painterResource(
+        if (passwordVisible.value) R.drawable.design_ic_visibility else R.drawable.design_ic_visibility_off
+    )
+
+    // Main text field for password entry.
+    TextField(
+        value = password.value,
+        onValueChange = { onPasswordChange(it) },
         label = { Text(label) },
         trailingIcon = {
             // Toggleable icon button for password visibility.
