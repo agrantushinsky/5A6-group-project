@@ -4,7 +4,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.State
 import androidx.compose.ui.graphics.Color
-import com.project.freshtomatoes.ui.pages.EmailPassword.AuthState
+import com.project.freshtomatoes.data.AuthState
 
 /**
  * AuthStatus displays an auth status message. Shows error and processing messages.

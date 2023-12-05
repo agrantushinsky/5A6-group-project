@@ -24,6 +24,7 @@ fun ShowReviews(reviews: List<MovieReview>, message: String) {
         Text("There are no reviews.", fontSize = 7.em, textAlign = TextAlign.Center, modifier = Modifier.padding(15.dp, 8.dp), fontWeight = FontWeight.Bold)
         return
     }
+
     Column {
         Text(text = message, fontSize = 7.em, textAlign = TextAlign.Center, modifier = Modifier.padding(15.dp, 8.dp), fontWeight = FontWeight.Bold)
         LazyColumn {

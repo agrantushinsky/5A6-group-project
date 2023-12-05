@@ -1,4 +1,4 @@
-package com.project.freshtomatoes.ui.pages.EmailPassword
+package com.project.freshtomatoes.data
 
 /**
  * Enum for the states of the user login system.

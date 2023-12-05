@@ -21,7 +21,6 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.project.freshtomatoes.LocalNavController
 import com.project.freshtomatoes.ui.Router
 import com.project.freshtomatoes.ui.factories.AuthViewModelFactory
-import com.project.freshtomatoes.ui.pages.EmailPassword.AuthViewModel
 
 /**
  * TopBar to be displayed at the top of the screen. Shows FreshTomatoes header and login status.

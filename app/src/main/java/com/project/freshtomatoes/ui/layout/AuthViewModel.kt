@@ -1,4 +1,4 @@
-package com.project.freshtomatoes.ui.pages.EmailPassword
+package com.project.freshtomatoes.ui.layout
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope

@@ -7,8 +7,8 @@ import androidx.navigation.navDeepLink
 import com.project.freshtomatoes.LocalNavController
 import com.project.freshtomatoes.ui.pages.About.AboutUs
 import com.project.freshtomatoes.ui.pages.DeepScreen
-import com.project.freshtomatoes.ui.pages.EmailPassword.AuthLoginScreen
-import com.project.freshtomatoes.ui.pages.EmailPassword.AuthSignUpScreen
+import com.project.freshtomatoes.ui.pages.AuthLogin.AuthLoginScreen
+import com.project.freshtomatoes.ui.pages.AuthSignUp.AuthSignUpScreen
 import com.project.freshtomatoes.ui.pages.Home.Home
 import com.project.freshtomatoes.ui.pages.Info.Information
 import com.project.freshtomatoes.ui.pages.MovieDetails.MovieDetails

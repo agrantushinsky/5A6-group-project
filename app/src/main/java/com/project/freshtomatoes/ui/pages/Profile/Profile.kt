@@ -6,7 +6,6 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.rememberScrollState
@@ -26,11 +25,8 @@ import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.project.freshtomatoes.LocalNavController
 import com.project.freshtomatoes.ui.Router
-import com.project.freshtomatoes.ui.components.MovieCard
 import com.project.freshtomatoes.ui.components.ProfileMovieCard
-import com.project.freshtomatoes.ui.factories.AuthViewModelFactory
 import com.project.freshtomatoes.ui.factories.ProfileViewModelFactory
-import com.project.freshtomatoes.ui.pages.EmailPassword.AuthViewModel
 import java.text.SimpleDateFormat
 
 /**

@@ -1,7 +1,8 @@
-package com.project.freshtomatoes.ui.pages.EmailPassword
+package com.project.freshtomatoes.ui.pages.AuthLogin
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.project.freshtomatoes.data.AuthState
 import com.project.freshtomatoes.ui.firebase.AuthRepository
 import com.project.freshtomatoes.ui.firebase.User
 import kotlinx.coroutines.flow.MutableStateFlow
