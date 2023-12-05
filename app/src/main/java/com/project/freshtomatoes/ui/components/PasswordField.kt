@@ -26,43 +26,9 @@ import com.project.freshtomatoes.R
  *
  * @param label Label for TextField.
  * @param password Current state of the password field.
+ * @param onPasswordChange Callback on password field modification. Passes new password as String.
  * @param passwordVisible Current state of the password visibility. Defaults to a rememberSaveable of a mutable boolean.
  */
-@OptIn(ExperimentalMaterial3Api::class)
-@Composable
-fun PasswordField(
-    label: String,
-    password: MutableState<String>,
-    passwordVisible: MutableState<Boolean> = rememberSaveable { mutableStateOf(false) }
-) {
-    // Set the show icon according to the current state of the password visibility.
-    val icon = painterResource(
-        if (passwordVisible.value) R.drawable.design_ic_visibility else R.drawable.design_ic_visibility_off
-    )
-
-    // Main text field for password entry.
-    TextField(
-        value = password.value,
-        onValueChange = { password.value = it },
-        label = { Text(label) },
-        trailingIcon = {
-            // Toggleable icon button for password visibility.
-            IconButton(onClick = { passwordVisible.value = !passwordVisible.value }) {
-                Icon(
-                    painter = icon,
-                    contentDescription = "Visibility Icon"
-                )
-            }
-        },
-        keyboardOptions = KeyboardOptions(
-            keyboardType = KeyboardType.Password
-        ),
-        // Set password visibility accordingly.
-        visualTransformation = if (passwordVisible.value) VisualTransformation.None else PasswordVisualTransformation(),
-        modifier = Modifier.padding(20.dp)
-    )
-}
-
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun PasswordField(
