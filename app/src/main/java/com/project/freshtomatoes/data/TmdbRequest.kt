@@ -143,4 +143,25 @@ class TmdbRequest {
         // Return the movie.
         return body
     }
+
+    private suspend fun getMoviesByGenre(genreId : Int, page : Int = 1 ): MovieResponse
+    {
+        val response = getTmdb(listOf("discover", "movie")) {
+            url {
+                parameters.apply {
+                    append("page", page.toString())
+                    append("with_genres", genreId.toString())
+                }
+            }
+        }
+        return response.body()
+    }
+
+    suspend fun getActionMovies() : MovieResponse{
+        return getMoviesByGenre(28)
+    }
+
+    suspend fun getAdventureMovies() : MovieResponse{
+        return getMoviesByGenre(12)
+    }
 }
