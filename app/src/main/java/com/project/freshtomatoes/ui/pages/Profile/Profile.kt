@@ -33,6 +33,14 @@ import com.project.freshtomatoes.ui.factories.ProfileViewModelFactory
 import com.project.freshtomatoes.ui.pages.EmailPassword.AuthViewModel
 import java.text.SimpleDateFormat
 
+/**
+ * Profile screen. Contains user information such as:
+ * - Email, Date Joined, and Total Movies Reviewed
+ * SignOut and delete account functionality.
+ * Top 5 recent review scroller.
+ *
+ * @param viewmodel ProfileViewModel for facilitating model interactions, defaulted to viewModel using ProfileVileModelFactory.
+ */
 @Composable
 fun Profile(viewmodel: ProfileViewModel = viewModel(factory = ProfileViewModelFactory())) {
     val userState = viewmodel.currentUser().collectAsState()
