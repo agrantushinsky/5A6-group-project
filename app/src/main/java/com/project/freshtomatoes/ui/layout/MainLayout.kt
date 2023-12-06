@@ -8,6 +8,12 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 
+/**
+ * MainLayout for the application using Scaffold. Uses TopBar and BottomBar.
+ *
+ * @param modifier Modifier parameter. Defaulted to Modifier.
+ * @param content The composable function to be displayed as content within the Scaffold.
+ */
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MainLayout(
@@ -16,7 +22,7 @@ fun MainLayout(
 ) {
     Scaffold(
         modifier = modifier,
-        topBar = { TopTomatoBar() },
+        topBar = { TopBar() },
         bottomBar = { BottomBar() }
     ) {
         Column(modifier = Modifier.padding(it).fillMaxHeight()) {

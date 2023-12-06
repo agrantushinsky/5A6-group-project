@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AccountCircle
+import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -14,25 +15,56 @@ import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.compose.currentBackStackEntryAsState
 import com.project.freshtomatoes.LocalNavController
 import com.project.freshtomatoes.ui.Router
 import com.project.freshtomatoes.ui.factories.AuthViewModelFactory
-import com.project.freshtomatoes.ui.pages.EmailPassword.AuthViewModel
 
+// Show back buttons on page that aren't "1 click" navigable.
+private fun shouldShowBackButton(route: String?): Boolean {
+    if (route == null) {
+        return false
+    }
+
+    return !(
+        route == Router.Home.route ||
+            route == Router.YourReviews.route ||
+            route == Router.About.route ||
+            route == Router.Info.route ||
+            route == Router.Profile.route
+        )
+}
+
+/**
+ * TopBar to be displayed at the top of the screen. Shows FreshTomatoes header and login status.
+ * When logged out, a sign in button that navigates to the login page is shown, otherwise your username
+ * will be shown with a navigation link to your user profile.
+ *
+ * @param authViewModel The authentication viewmodel, defaulted to viewModel using AuthViewModelFactory.
+ */
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun TopTomatoBar(authViewModel: AuthViewModel = viewModel(factory = AuthViewModelFactory())) {
+fun TopBar(authViewModel: AuthViewModel = viewModel(factory = AuthViewModelFactory())) {
     val navController = LocalNavController.current
     val userState = authViewModel.currentUser().collectAsState()
+    val backStack = navController.currentBackStackEntryAsState()
 
     TopAppBar(
         title =
         {
-            Row(horizontalArrangement = Arrangement.SpaceBetween, modifier = Modifier.fillMaxWidth()) {
+            Row(horizontalArrangement = Arrangement.SpaceBetween, modifier = Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
+                if (shouldShowBackButton(backStack.value?.destination?.route)) {
+                    IconButton(onClick = {
+                        navController.popBackStack()
+                    }) {
+                        Icon(imageVector = Icons.Filled.ArrowBack, contentDescription = "Back button")
+                    }
+                }
                 Text(text = "FreshTomatoes")
                 if (userState.value != null) {
                     Text(text = "${userState.value?.email?.split("@")?.get(0)}", fontSize = 18.sp, fontWeight = FontWeight.Bold)

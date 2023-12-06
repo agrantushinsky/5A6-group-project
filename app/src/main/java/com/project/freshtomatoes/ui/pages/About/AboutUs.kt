@@ -9,6 +9,8 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -22,7 +24,7 @@ import com.project.freshtomatoes.R
 
 @Composable
 fun AboutUs(modifier: Modifier = Modifier) {
-    Column {
+    Column(modifier = Modifier.verticalScroll(rememberScrollState())) {
         Text(text = "About Us", fontSize = 48.sp, textAlign = TextAlign.Center, modifier = Modifier.fillMaxWidth())
         Text(
             text = "Our goal is to provide users a dynamic application to rank movies they have watched.",

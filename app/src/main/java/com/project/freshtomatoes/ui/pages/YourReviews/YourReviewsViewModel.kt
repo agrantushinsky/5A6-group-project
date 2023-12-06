@@ -15,11 +15,21 @@ class YourReviewsViewModel : ViewModel() {
 
     var yourReviews = MutableStateFlow<List<MovieReview>>(emptyList())
 
-    fun updateYourReviews(uid: String) {
+    fun updateYourReviews() {
+        if (!shouldShowReviews()) {
+            return
+        }
+
+        val uid = FreshTomatoes.appModule.authRepository.currentUser().value!!.uid
         viewModelScope.launch(Dispatchers.IO) {
             FreshTomatoes.appModule.reviewRepository.getReviewsByUID(uid).collect {
                 yourReviews.value = MovieReviewMatcher(it, _requester)
             }
         }
+    }
+
+    fun shouldShowReviews(): Boolean {
+        val currentUser = FreshTomatoes.appModule.authRepository.currentUser().value
+        return currentUser != null
     }
 }
