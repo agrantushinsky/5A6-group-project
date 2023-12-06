@@ -13,7 +13,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.em
+import com.project.freshtomatoes.LocalNavController
 import com.project.freshtomatoes.data.Genre
+import com.project.freshtomatoes.ui.Router
 
 /**
  * GenreList displays a list of Genre in a row.
@@ -22,11 +24,12 @@ import com.project.freshtomatoes.data.Genre
  */
 @Composable
 fun GenreList(genres: List<Genre>) {
+    val navController = LocalNavController.current
     LazyRow(modifier = Modifier.padding(10.dp)) {
         items(genres) {
                 genre ->
             Button(
-                onClick = { /*TODO*/ },
+                onClick = { navController.navigate(Router.GenreMovieList.go(genre.id)) },
                 border = BorderStroke(1.dp, Color(0xFFC00100)),
                 shape = RoundedCornerShape(80),
                 modifier = Modifier.height(45.dp)

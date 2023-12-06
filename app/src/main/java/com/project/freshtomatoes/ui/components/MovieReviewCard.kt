@@ -65,7 +65,7 @@ fun MovieReviewCard(movieReview: MovieReview) {
                     val formatter = SimpleDateFormat("d/MM/yyyy")
                     Text(text = "${formatter.format(Date(movieReview.review.reviewDate))}")
                 }
-                Column() {
+                Column {
                     // Only display the arrow to expand the editor
                     // if we are logged in and the logged in user is the owner of review.
                     if (currentUser.value != null &&
