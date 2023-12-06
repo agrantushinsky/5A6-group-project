@@ -48,29 +48,34 @@ fun ShowReviews(
     message: String,
     viewmodel: ShowReviewsViewModel = viewModel(factory = ShowReviewsViewModelFactory())
 ) {
+    // Make viewmodel listen for changes in sourceReviews
     viewmodel.updateList(sourceReviews)
 
+    // States from viewmodel
     val reviews = viewmodel.movieReviews.collectAsState()
     val sortState = viewmodel.sortState.collectAsState()
+    val filterConfig = viewmodel.filterConfig.collectAsState()
 
-    if (reviews.value.isEmpty()) {
+    if (viewmodel.isReviewListEmpty()) {
         Text("There are no reviews.", fontSize = 7.em, textAlign = TextAlign.Center, modifier = Modifier.padding(15.dp, 8.dp), fontWeight = FontWeight.Bold)
         return
     }
 
     Column {
         Text(text = message, fontSize = 7.em, textAlign = TextAlign.Center, modifier = Modifier.padding(15.dp, 8.dp), fontWeight = FontWeight.Bold)
-        Row(horizontalArrangement = Arrangement.End) {
-            ButtonDropDown(label = "Sorting",
-                icon = Icons.Filled.Sort,
-                currentState = sortState.value,
-                { viewmodel.setSortState(it) },
-                enumValues = SortState.values(),
-                modifier = Modifier
-                    .width(236.dp)
-                    .padding(6.dp)
-            )
-        }
+        ButtonDropDown(label = "Sorting",
+            icon = Icons.Filled.Sort,
+            currentState = sortState.value,
+            { viewmodel.setSortState(it) },
+            enumValues = SortState.values(),
+            modifier = Modifier.width(236.dp).padding(6.dp)
+        )
+
+        FilterConfigurator(
+            modifier = Modifier.width(236.dp).padding(6.dp),
+            filterConfig.value,
+            setFilterConfig = { viewmodel.setFilterConfig(it) }
+        )
 
         LazyColumn {
             items(reviews.value) {
