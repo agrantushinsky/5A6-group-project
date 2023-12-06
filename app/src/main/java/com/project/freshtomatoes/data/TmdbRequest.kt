@@ -144,6 +144,12 @@ class TmdbRequest {
         return body
     }
 
+    /**
+     * Gets a list of movies by genre id.
+     *
+     * @param genreId Genre ID for query movies for.
+     * @param page Page number to query movies from.
+     */
     private suspend fun getMoviesByGenre(genreId : Int, page : Int = 1 ): MovieResponse
     {
         val response = getTmdb(listOf("discover", "movie")) {
@@ -157,10 +163,16 @@ class TmdbRequest {
         return response.body()
     }
 
+    /**
+     * List of movies by action genre.
+     */
     suspend fun getActionMovies() : MovieResponse{
         return getMoviesByGenre(28)
     }
 
+    /**
+     * List of movies by adventure genre.
+     */
     suspend fun getAdventureMovies() : MovieResponse{
         return getMoviesByGenre(12)
     }
