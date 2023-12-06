@@ -13,7 +13,7 @@ import com.project.freshtomatoes.ui.factories.GenreViewModelFactory
  * @param viewmodel ViewModel to retrieve movies. Defaulted to viewModel using GenreViewModelFactory.
  */
 @Composable
-fun Genre(genreId : Int, viewmodel: GenreViewModel = viewModel(factory = GenreViewModelFactory())) {
+fun Genre(genreId: Int, viewmodel: GenreViewModel = viewModel(factory = GenreViewModelFactory())) {
     val movies = viewmodel.movies.collectAsState()
     viewmodel.updateMovies(genreId)
 

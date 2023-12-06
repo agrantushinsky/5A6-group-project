@@ -1,22 +1,14 @@
 package com.project.freshtomatoes.ui.components
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.material3.Button
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.ExposedDropdownMenuBox
-import androidx.compose.material3.ExposedDropdownMenuDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.OutlinedButton
-import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -34,7 +26,7 @@ import androidx.compose.ui.graphics.vector.ImageVector
  */
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun <T: Enum<T>> ButtonDropDown(label: String, icon: ImageVector, currentState: T, setState: (T) -> Unit, enumValues: Array<T>, modifier: Modifier = Modifier) {
+fun <T : Enum<T>> ButtonDropDown(label: String, icon: ImageVector, currentState: T, setState: (T) -> Unit, enumValues: Array<T>, modifier: Modifier = Modifier) {
     // expanded state of dropdown
     var expanded by remember { mutableStateOf(false) }
 
@@ -52,7 +44,7 @@ fun <T: Enum<T>> ButtonDropDown(label: String, icon: ImageVector, currentState: 
             readOnly = true,
             onValueChange = {},
             modifier = modifier.menuAnchor(),
-            trailingIcon = { Icon(imageVector = icon, contentDescription = "Button dropdown icon")},
+            trailingIcon = { Icon(imageVector = icon, contentDescription = "Button dropdown icon") }
         )
 
         // Menu to display when expanded is true
@@ -66,7 +58,7 @@ fun <T: Enum<T>> ButtonDropDown(label: String, icon: ImageVector, currentState: 
                         setState(it)
                         expanded = false
                     },
-                    modifier = if(currentState == it) Modifier.background(MaterialTheme.colorScheme.primary) else Modifier
+                    modifier = if (currentState == it) Modifier.background(MaterialTheme.colorScheme.primary) else Modifier
                 )
             }
         }

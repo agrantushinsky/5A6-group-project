@@ -26,14 +26,17 @@ import com.project.freshtomatoes.ui.factories.AuthViewModelFactory
 
 // Show back buttons on page that aren't "1 click" navigable.
 private fun shouldShowBackButton(route: String?): Boolean {
-    if(route == null)
+    if (route == null) {
         return false
+    }
 
-    return !(route == Router.Home.route ||
-        route == Router.YourReviews.route ||
-        route == Router.About.route ||
-        route == Router.Info.route ||
-        route == Router.Profile.route)
+    return !(
+        route == Router.Home.route ||
+            route == Router.YourReviews.route ||
+            route == Router.About.route ||
+            route == Router.Info.route ||
+            route == Router.Profile.route
+        )
 }
 
 /**

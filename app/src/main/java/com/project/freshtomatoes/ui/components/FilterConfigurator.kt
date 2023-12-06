@@ -1,12 +1,10 @@
 package com.project.freshtomatoes.ui.components
 
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.FilterAlt
-import androidx.compose.material3.Card
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.ExposedDropdownMenuBox
 import androidx.compose.material3.Icon
@@ -25,8 +23,9 @@ import com.project.freshtomatoes.data.FilterConfig
 
 // Clamps an integer to a min/max value.
 private fun ClampInt(value: Int?, min: Int, max: Int): Int? {
-    if(value == null)
+    if (value == null) {
         return null
+    }
 
     return Math.min(max, Math.max(min, value))
 }
@@ -52,22 +51,21 @@ fun FilterConfigurator(modifier: Modifier = Modifier, filterConfig: FilterConfig
         // TextField to display the label and value of the dropdown
         // Modifier.menuAnchor() allows the dropdown to happen.
         TextField(
-            value = if(filterConfig.minRating != null || filterConfig.maxRating != null) "Rating" else "",
+            value = if (filterConfig.minRating != null || filterConfig.maxRating != null) "Rating" else "",
             label = { Text("Filter") },
             readOnly = true,
             onValueChange = {},
             modifier = modifier.menuAnchor(),
-            trailingIcon = { Icon(imageVector = Icons.Filled.FilterAlt, contentDescription = "Filter icon")},
+            trailingIcon = { Icon(imageVector = Icons.Filled.FilterAlt, contentDescription = "Filter icon") }
         )
 
         // Menu to display when expanded is true
         ExposedDropdownMenu(expanded = expanded, onDismissRequest = { expanded = false }) {
             // Add every value of the enum as a DropdownMenuItem
             Row(verticalAlignment = Alignment.CenterVertically) {
-
                 // Rating min & max fields.
                 TextField(
-                    value = if(filterConfig.minRating == null) "" else filterConfig.minRating.toString(),
+                    value = if (filterConfig.minRating == null) "" else filterConfig.minRating.toString(),
                     onValueChange = {
                         setFilterConfig(FilterConfig(ClampInt(it.toIntOrNull(), 0, 5), filterConfig.maxRating))
                     },
@@ -76,7 +74,7 @@ fun FilterConfigurator(modifier: Modifier = Modifier, filterConfig: FilterConfig
                 )
                 Text(" <= Rating <= ")
                 TextField(
-                    value = if(filterConfig.maxRating == null) "" else filterConfig.maxRating.toString(),
+                    value = if (filterConfig.maxRating == null) "" else filterConfig.maxRating.toString(),
                     onValueChange = {
                         setFilterConfig(FilterConfig(filterConfig.minRating, ClampInt(it.toIntOrNull(), 0, 5)))
                     },

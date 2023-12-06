@@ -69,7 +69,7 @@ fun AuthLoginScreen(viewmodel: AuthLoginViewModel = viewModel(factory = AuthLogi
         AuthStatus(loginState, errorMessage, "Processing login...")
     }
 
-    if(loginState.value == AuthState.Success) {
+    if (loginState.value == AuthState.Success) {
         navController.navigate(Router.Home.route)
     }
 }

@@ -54,7 +54,7 @@ class AuthLoginViewModel(private val authRepository: AuthRepository) : ViewModel
         viewModelScope.launch {
             try {
                 val result = authRepository.signIn(email.value, password.value)
-                if(!result) {
+                if (!result) {
                     _errorMessage.update { "Invalid Credentials" }
                     _loginState.update { AuthState.Failure }
                 } else {

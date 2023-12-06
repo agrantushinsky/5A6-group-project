@@ -16,7 +16,7 @@ class YourReviewsViewModel : ViewModel() {
     var yourReviews = MutableStateFlow<List<MovieReview>>(emptyList())
 
     fun updateYourReviews() {
-        if(!shouldShowReviews()) {
+        if (!shouldShowReviews()) {
             return
         }
 

@@ -33,9 +33,9 @@ fun MovieDetailsList(movies: List<Movie>) {
             // Card with image and basic details. Clickable to relevant details page.
             Card(
                 modifier = Modifier
-                .padding(10.dp)
-                .fillMaxWidth(),
-                onClick = { navController.navigate(Router.MovieDetails.go(it.id)) },
+                    .padding(10.dp)
+                    .fillMaxWidth(),
+                onClick = { navController.navigate(Router.MovieDetails.go(it.id)) }
             ) {
                 Row {
                     MovieImage(it, modifier = Modifier.height(100.dp))

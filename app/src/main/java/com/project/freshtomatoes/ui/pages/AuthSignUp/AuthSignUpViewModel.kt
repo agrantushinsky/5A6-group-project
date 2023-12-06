@@ -51,19 +51,19 @@ class AuthSignUpViewModel(private val authRepository: AuthRepository) : ViewMode
      */
     fun signUp() {
         // Empty email
-        if(_email.value.isEmpty()) {
+        if (_email.value.isEmpty()) {
             setError("Email field is empty")
             return
         }
 
         // Empty password
-        if(_password.value.isEmpty() && _confirmPassword.value.isEmpty()) {
+        if (_password.value.isEmpty() && _confirmPassword.value.isEmpty()) {
             setError("Password field is empty")
             return
         }
 
         // Password not matching:
-        if(_password.value != _confirmPassword.value) {
+        if (_password.value != _confirmPassword.value) {
             setError("Passwords do not match")
             return
         }
@@ -75,7 +75,7 @@ class AuthSignUpViewModel(private val authRepository: AuthRepository) : ViewMode
         viewModelScope.launch {
             try {
                 val result = authRepository.signUp(email.value, password.value)
-                if(!result) {
+                if (!result) {
                     setError("Invalid email")
                 } else {
                     _errorMessage.update { "" }

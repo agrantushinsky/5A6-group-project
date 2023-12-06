@@ -74,7 +74,7 @@ fun Profile(viewmodel: ProfileViewModel = viewModel(factory = ProfileViewModelFa
                 Text(text = "${sortedMovies.value.count()}")
             }
         }
-        if(sortedMovies.value.isNotEmpty()) {
+        if (sortedMovies.value.isNotEmpty()) {
             Column {
                 Text(text = "Recent Reviews", fontSize = 5.em, modifier = Modifier.padding(5.dp))
                 LazyRow(modifier = Modifier.padding(5.dp)) {

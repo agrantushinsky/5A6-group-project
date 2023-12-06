@@ -17,7 +17,7 @@ import com.project.freshtomatoes.data.AuthState
 fun AuthStatus(status: State<AuthState>, errorMessage: State<String>, processingText: String) {
     if (status.value == AuthState.Failure) {
         Text(errorMessage.value, color = Color.Red)
-    } else if(status.value == AuthState.Processing) {
+    } else if (status.value == AuthState.Processing) {
         Text(processingText)
     }
 }

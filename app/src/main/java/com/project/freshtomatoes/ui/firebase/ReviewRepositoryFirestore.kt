@@ -23,7 +23,7 @@ class ReviewRepositoryFirestore(val auth: AuthRepository, val db: FirebaseFirest
      * @param review Review to save.
      */
     override fun saveReview(review: Review) {
-        if(!auth.hasCurrentUserDirect()) {
+        if (!auth.hasCurrentUserDirect()) {
             return
         }
 
@@ -37,7 +37,7 @@ class ReviewRepositoryFirestore(val auth: AuthRepository, val db: FirebaseFirest
      * @param newReview The new Review.
      */
     override fun editReview(oldReview: Review, newReview: Review) {
-        if(!auth.hasCurrentUserDirect()) {
+        if (!auth.hasCurrentUserDirect()) {
             return
         }
 
@@ -58,7 +58,7 @@ class ReviewRepositoryFirestore(val auth: AuthRepository, val db: FirebaseFirest
      * @param review The target Review to be deleted.
      */
     override fun deleteReview(review: Review) {
-        if(!auth.hasCurrentUserDirect()) {
+        if (!auth.hasCurrentUserDirect()) {
             return
         }
 

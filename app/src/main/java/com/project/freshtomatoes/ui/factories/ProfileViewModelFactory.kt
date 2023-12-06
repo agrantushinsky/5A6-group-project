@@ -4,7 +4,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.project.freshtomatoes.ui.FreshTomatoes
 import com.project.freshtomatoes.ui.pages.Profile.ProfileViewModel
-import com.project.freshtomatoes.ui.pages.YourReviews.YourReviewsViewModel
 
 // Factory for ProfileViewModelFactory, passing authRepository.
 class ProfileViewModelFactory : ViewModelProvider.Factory {

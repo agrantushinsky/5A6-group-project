@@ -1,11 +1,9 @@
 package com.project.freshtomatoes.ui.layout
 
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
 import com.project.freshtomatoes.ui.firebase.AuthRepository
 import com.project.freshtomatoes.ui.firebase.User
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.launch
 
 class AuthViewModel(private val authRepository: AuthRepository) : ViewModel() {
     // Return a StateFlow so that the composable can always update

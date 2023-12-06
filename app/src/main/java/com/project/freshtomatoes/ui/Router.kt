@@ -6,9 +6,9 @@ import androidx.navigation.compose.composable
 import androidx.navigation.navDeepLink
 import com.project.freshtomatoes.LocalNavController
 import com.project.freshtomatoes.ui.pages.About.AboutUs
-import com.project.freshtomatoes.ui.pages.DeepScreen
 import com.project.freshtomatoes.ui.pages.AuthLogin.AuthLoginScreen
 import com.project.freshtomatoes.ui.pages.AuthSignUp.AuthSignUpScreen
+import com.project.freshtomatoes.ui.pages.DeepScreen
 import com.project.freshtomatoes.ui.pages.GenrePage.Genre
 import com.project.freshtomatoes.ui.pages.Home.Home
 import com.project.freshtomatoes.ui.pages.Info.Information
@@ -40,8 +40,7 @@ sealed class Router(val route: String) {
     object Profile : Router("Profile")
     object Info : Router("Info")
 
-    object GenreMovieList : Router(route = "Genre/{id}")
-    {
+    object GenreMovieList : Router(route = "Genre/{id}") {
         fun go(id: Int) = "Genre/$id"
     }
 }
@@ -63,7 +62,7 @@ fun NavGraph() {
         composable(Router.Account.route) { AuthLoginScreen() }
         composable(Router.SignUp.route) { AuthSignUpScreen() }
         composable(Router.Review.route) { Review(id = it.arguments?.getString("index")?.toInt() ?: -1) }
-        composable(Router.Info.route){Information()}
+        composable(Router.Info.route) { Information() }
         composable(Router.Profile.route) { Profile() }
         composable(
             "deeplink2?id={id}",

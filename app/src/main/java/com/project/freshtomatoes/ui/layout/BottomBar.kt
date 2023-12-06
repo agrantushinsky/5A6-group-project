@@ -35,7 +35,7 @@ val items = listOf(
     NavBarIcon(route = Router.Home.route, icon = Icons.Filled.Home),
     NavBarIcon(route = Router.YourReviews.route, icon = Icons.Filled.PlaylistAddCircle),
     NavBarIcon(route = Router.About.route, icon = Icons.Filled.PsychologyAlt),
-    NavBarIcon(route = Router.Info.route,Icons.Filled.Info)
+    NavBarIcon(route = Router.Info.route, Icons.Filled.Info)
 )
 
 /**

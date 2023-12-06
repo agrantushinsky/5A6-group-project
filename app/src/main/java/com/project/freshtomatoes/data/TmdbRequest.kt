@@ -150,8 +150,7 @@ class TmdbRequest {
      * @param genreId Genre ID for query movies for.
      * @param page Page number to query movies from.
      */
-    suspend fun getMoviesByGenre(genreId: Int, page: Int = 1): MovieResponse
-    {
+    suspend fun getMoviesByGenre(genreId: Int, page: Int = 1): MovieResponse {
         val response = getTmdb(listOf("discover", "movie")) {
             url {
                 parameters.apply {
@@ -168,7 +167,7 @@ class TmdbRequest {
      *
      * @param page Page to get movies from.
      */
-    suspend fun getActionMovies(page: Int = 1) : MovieResponse{
+    suspend fun getActionMovies(page: Int = 1): MovieResponse {
         return getMoviesByGenre(28, page)
     }
 
@@ -177,7 +176,7 @@ class TmdbRequest {
      *
      * @param page Page to get movies from.
      */
-    suspend fun getAdventureMovies(page: Int = 1) : MovieResponse{
+    suspend fun getAdventureMovies(page: Int = 1): MovieResponse {
         return getMoviesByGenre(12, page)
     }
 }

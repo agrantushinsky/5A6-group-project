@@ -1,9 +1,7 @@
 package com.project.freshtomatoes.ui.components
 
-import androidx.compose.runtime.collectAsState
 import androidx.lifecycle.ViewModel
 import com.project.freshtomatoes.data.FilterConfig
-import com.project.freshtomatoes.data.Movie
 import com.project.freshtomatoes.data.MovieReview
 import com.project.freshtomatoes.data.SortState
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -21,10 +19,12 @@ import java.util.Date
 class ShowReviewsViewModel : ViewModel() {
     // Sorting comparators
     private val dateComparator = Comparator {
-        mr1: MovieReview, mr2: MovieReview -> if(Date(mr1.review.reviewDate).time < Date(mr2.review.reviewDate).time) 1 else -1
+            mr1: MovieReview, mr2: MovieReview ->
+        if (Date(mr1.review.reviewDate).time < Date(mr2.review.reviewDate).time) 1 else -1
     }
     private val ratingComparator = Comparator {
-        mr1: MovieReview, mr2: MovieReview -> if(mr1.review.rating > mr2.review.rating) 1 else -1
+            mr1: MovieReview, mr2: MovieReview ->
+        if (mr1.review.rating > mr2.review.rating) 1 else -1
     }
 
     // Store original, unsorted list
@@ -42,7 +42,7 @@ class ShowReviewsViewModel : ViewModel() {
     // Update the stored list of movies
     fun updateList(newList: List<MovieReview>) {
         // Make sure it's not the same list, by checking size & set.
-        if(unsortedList.size == newList.size && unsortedList.toSet() == newList.toSet()) {
+        if (unsortedList.size == newList.size && unsortedList.toSet() == newList.toSet()) {
             return
         }
 
@@ -104,12 +104,12 @@ class ShowReviewsViewModel : ViewModel() {
         var filtered = reviews
 
         // Min filter
-        if(filterConfig.value.minRating != null) {
+        if (filterConfig.value.minRating != null) {
             filtered = filtered.filter { it.review.rating >= filterConfig.value.minRating!! }
         }
 
         // Max filter
-        if(filterConfig.value.maxRating != null) {
+        if (filterConfig.value.maxRating != null) {
             filtered = filtered.filter { it.review.rating <= filterConfig.value.maxRating!! }
         }
 

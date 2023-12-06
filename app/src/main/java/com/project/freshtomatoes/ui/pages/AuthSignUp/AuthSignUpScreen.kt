@@ -58,7 +58,7 @@ fun AuthSignUpScreen(viewmodel: AuthSignUpViewModel = viewModel(factory = (AuthS
         Spacer(modifier = Modifier.height(10.dp))
 
         Row(horizontalArrangement = Arrangement.SpaceEvenly, modifier = Modifier.fillMaxWidth()) {
-            Button(onClick = { viewmodel.signUp() } ) {
+            Button(onClick = { viewmodel.signUp() }) {
                 Text("Sign Up")
             }
             Button(onClick = { navController.navigate(Router.Account.route) }) {
@@ -73,7 +73,7 @@ fun AuthSignUpScreen(viewmodel: AuthSignUpViewModel = viewModel(factory = (AuthS
         AuthStatus(signupState, errorMessage, "Processing signup...")
     }
 
-    if(signupState.value == AuthState.Success) {
+    if (signupState.value == AuthState.Success) {
         navController.navigate(Router.Home.route)
     }
 }

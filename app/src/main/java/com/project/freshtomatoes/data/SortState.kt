@@ -22,5 +22,5 @@ enum class SortState {
         override fun toString(): String {
             return "Date Descending"
         }
-    },
+    }
 }

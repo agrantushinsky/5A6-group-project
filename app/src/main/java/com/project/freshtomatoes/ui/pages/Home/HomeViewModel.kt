@@ -26,7 +26,6 @@ class HomeViewModel : ViewModel() {
     var actionMovies by mutableStateOf(emptyList<Movie>())
     var adventureMovies by mutableStateOf(emptyList<Movie>())
 
-
     init {
         viewModelScope.launch(Dispatchers.IO) {
             popularMovies = _requester.popularMovies().results
@@ -49,19 +48,21 @@ class HomeViewModel : ViewModel() {
         return MovieDisplay(topRatedLabel, topRatedMovies)
     }
 
-    private fun getActionMovies() : MovieDisplay {
+    private fun getActionMovies(): MovieDisplay {
         return MovieDisplay(actionMovieLabel, actionMovies)
     }
 
-    private fun getAdventureMovies() : MovieDisplay {
+    private fun getAdventureMovies(): MovieDisplay {
         return MovieDisplay(adventureMovieLabel, adventureMovies)
     }
 
     fun getAllMovies(): List<MovieDisplay> {
-        return listOf(getPopularMovies(),
+        return listOf(
+            getPopularMovies(),
             getNewMovies(),
             getTopRatedMovies(),
             getActionMovies(),
-            getAdventureMovies())
+            getAdventureMovies()
+        )
     }
 }

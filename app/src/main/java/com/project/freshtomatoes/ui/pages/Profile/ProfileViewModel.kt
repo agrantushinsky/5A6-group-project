@@ -24,7 +24,7 @@ class ProfileViewModel(private val authRepository: AuthRepository) : ViewModel()
     }
 
     fun updateYourReviews() {
-        if(!shouldShowReviews()) {
+        if (!shouldShowReviews()) {
             return
         }
 
@@ -33,7 +33,8 @@ class ProfileViewModel(private val authRepository: AuthRepository) : ViewModel()
             FreshTomatoes.appModule.reviewRepository.getReviewsByUID(uid).collect {
                 val moviereviews = MovieReviewMatcher(it, _requester)
                 val dateComparator = Comparator {
-                    mr1: MovieReview, mr2: MovieReview -> if(Date(mr1.review.reviewDate).time < Date(mr2.review.reviewDate).time) 1 else -1
+                        mr1: MovieReview, mr2: MovieReview ->
+                    if (Date(mr1.review.reviewDate).time < Date(mr2.review.reviewDate).time) 1 else -1
                 }
 
                 moviereviews.sortedWith(dateComparator)
