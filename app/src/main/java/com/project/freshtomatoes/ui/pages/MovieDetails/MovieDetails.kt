@@ -94,7 +94,9 @@ fun MovieDetails(id: Int, viewmodel: MovieDetailsViewModel = viewModel(factory =
         }
         Text(text = "${movie?.tagline}")
         Spacer(modifier = Modifier.padding(5.dp))
+
         movie?.let { GenreList(it.genres) }
+
         Spacer(modifier = Modifier.padding(5.dp))
         Divider(thickness = 3.dp)
         Box(

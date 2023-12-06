@@ -26,7 +26,7 @@ fun GenreList(genres: List<Genre>) {
         items(genres) {
                 genre ->
             Button(
-                onClick = { /*TODO*/ },
+                onClick = { genre.id },
                 border = BorderStroke(1.dp, Color(0xFFC00100)),
                 shape = RoundedCornerShape(80),
                 modifier = Modifier.height(45.dp)
