@@ -61,7 +61,7 @@ fun MovieReviewCard(movieReview: MovieReview) {
                     Text("Rating: ${movieReview.review.rating}/5")
                     Text("Comments: ${movieReview.review.review}")
                 }
-                Column() {
+                Column {
                     // Only display the arrow to expand the editor
                     // if we are logged in and the logged in user is the owner of review.
                     if (currentUser.value != null &&
