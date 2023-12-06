@@ -20,6 +20,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.compose.currentBackStackEntryAsState
 import com.project.freshtomatoes.LocalNavController
 import com.project.freshtomatoes.ui.Router
 import com.project.freshtomatoes.ui.factories.AuthViewModelFactory
@@ -51,13 +52,13 @@ private fun shouldShowBackButton(route: String?): Boolean {
 fun TopBar(authViewModel: AuthViewModel = viewModel(factory = AuthViewModelFactory())) {
     val navController = LocalNavController.current
     val userState = authViewModel.currentUser().collectAsState()
-    val backStack = navController.currentBackStack.collectAsState()
+    val backStack = navController.currentBackStackEntryAsState()
 
     TopAppBar(
         title =
         {
             Row(horizontalArrangement = Arrangement.SpaceBetween, modifier = Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
-                if (shouldShowBackButton(backStack.value.lastOrNull()?.destination?.route)) {
+                if (shouldShowBackButton(backStack.value?.destination?.route)) {
                     IconButton(onClick = {
                         navController.popBackStack()
                     }) {
