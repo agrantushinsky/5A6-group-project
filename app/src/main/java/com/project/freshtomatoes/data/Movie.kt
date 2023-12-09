@@ -1,5 +1,7 @@
 package com.project.freshtomatoes.data
 
+//Coded by Jose
+
 /**
  * Represents a movie genre. Templated to match Tmdb response JSON.
  */

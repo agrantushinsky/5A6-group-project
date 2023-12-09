@@ -8,6 +8,7 @@ import com.project.freshtomatoes.data.TmdbRequest
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
+//Coded by Nitpreet
 data class MovieDisplay(
     val label: String,
     var movieList: List<Movie> = emptyList()

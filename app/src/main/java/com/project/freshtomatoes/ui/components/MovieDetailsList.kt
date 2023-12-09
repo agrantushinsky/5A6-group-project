@@ -18,6 +18,7 @@ import com.project.freshtomatoes.LocalNavController
 import com.project.freshtomatoes.data.Movie
 import com.project.freshtomatoes.ui.Router
 
+//Coded by Aidan
 /**
  * Displays a list of detailed movie cards, with clickable navigation to details page.
  *

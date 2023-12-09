@@ -1,5 +1,6 @@
 package com.project.freshtomatoes.data
 
+//Coded by Jose
 /**
  * MovieReview contains a Movie, and a linked Review.
  */

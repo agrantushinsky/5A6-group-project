@@ -8,6 +8,10 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.LocalContext
 
+//Coded by Nitpreet
+/**
+ * Location screen from launcher apps
+ */
 @Composable
 fun DeepScreen(id: String?) {
     val localContext = LocalContext.current

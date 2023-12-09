@@ -5,6 +5,7 @@ import androidx.compose.ui.Modifier
 import coil.compose.AsyncImage
 import com.project.freshtomatoes.data.Movie
 
+//Coded by Nitpreet
 /**
  * MovieImage displays the movie poster from the relevant movie.
  * Image is fetched from https://image.tmdb.org/t/p/w500/.

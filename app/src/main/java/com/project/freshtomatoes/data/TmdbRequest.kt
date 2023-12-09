@@ -12,8 +12,10 @@ import io.ktor.http.URLProtocol
 import io.ktor.http.appendPathSegments
 import io.ktor.serialization.gson.gson
 
+//Coded by all (everyone editied)
 /**
  * TmdbRequest class to request data from https://www.themoviedb.org/.
+ * Uses ktor http client
  */
 class TmdbRequest {
     // Tmdb base request URL.

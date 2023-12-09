@@ -17,6 +17,7 @@ import com.project.freshtomatoes.LocalNavController
 import com.project.freshtomatoes.data.Genre
 import com.project.freshtomatoes.ui.Router
 
+//Coded by Nitpreet
 /**
  * GenreList displays a list of Genre in a row.
  *

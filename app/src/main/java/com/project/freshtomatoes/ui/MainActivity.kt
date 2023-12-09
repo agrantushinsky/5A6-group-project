@@ -12,6 +12,7 @@ import androidx.navigation.compose.rememberNavController
 import com.example.compose.AppTheme
 import com.project.freshtomatoes.ui.NavGraph
 import com.project.freshtomatoes.ui.layout.MainLayout
+//Coded by Aidan
 
 val LocalNavController = compositionLocalOf<NavHostController> { error("No Nav Controller") }
 

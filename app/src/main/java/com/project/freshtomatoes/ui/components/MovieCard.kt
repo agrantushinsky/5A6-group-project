@@ -10,7 +10,7 @@ import androidx.compose.ui.unit.dp
 import com.project.freshtomatoes.LocalNavController
 import com.project.freshtomatoes.data.Movie
 import com.project.freshtomatoes.ui.Router
-
+//Coded by Nitpreet
 /**
  * Clickable MovieCard, which upon being clicked navigates to the MovieDetails page.
  * The movie's poster is displayed within the card.

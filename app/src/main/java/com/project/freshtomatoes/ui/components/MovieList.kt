@@ -17,6 +17,7 @@ import com.project.freshtomatoes.LocalNavController
 import com.project.freshtomatoes.data.Movie
 import com.project.freshtomatoes.ui.Router
 
+//Coded by Nitpreet
 /**
  * MovieList displays a clickable list of movies, which upon being clicked navigates to its
  * movie details page.

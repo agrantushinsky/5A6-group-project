@@ -1,5 +1,6 @@
 package com.project.freshtomatoes.data
 
+//Coded by Nitpreet
 /**
  * Represents a Review in the FireBaseFireStore database.
  * Contains fields:
