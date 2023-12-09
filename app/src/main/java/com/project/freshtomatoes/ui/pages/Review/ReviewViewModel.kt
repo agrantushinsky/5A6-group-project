@@ -1,4 +1,4 @@
-package com.project.freshtomatoes.ui.factories
+package com.project.freshtomatoes.ui.pages.Review
 
 import androidx.compose.runtime.getValue
 import androidx.lifecycle.ViewModel
@@ -9,6 +9,8 @@ import com.project.freshtomatoes.data.TmdbRequest
 import com.project.freshtomatoes.ui.FreshTomatoes
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
 /**
@@ -18,7 +20,31 @@ class ReviewViewModel : ViewModel() {
     private val _requester = TmdbRequest()
 
     // StateFlow for movie.
-    val movie = MutableStateFlow<Movie?>(null)
+    private val _movie = MutableStateFlow<Movie?>(null)
+    private val _rating = MutableStateFlow("🍅🍅🍅🍅🍅")
+    private val _review = MutableStateFlow("")
+
+    // public getters for state
+    val movie = _movie.asStateFlow()
+    val rating = _rating.asStateFlow()
+    val review = _review.asStateFlow()
+
+    // Setters and rating functionality functions:
+    fun setReview(reviewText: String) {
+        _review.update { reviewText }
+    }
+
+    fun growTomato() {
+        if (rating.value.length < 10) {
+            _rating.update { rating.value + "🍅" }
+        }
+    }
+
+    fun throwTomato() {
+        if (rating.value.isNotEmpty()) {
+            _rating.update { rating.value.substring(0, rating.value.length - 2) }
+        }
+    }
 
     /**
      * Posts a review by saving the passed review to the reviewRepository.
@@ -39,7 +65,7 @@ class ReviewViewModel : ViewModel() {
     fun updateMovie(id: Int) {
         viewModelScope.launch(Dispatchers.IO) {
             val response = _requester.details(id)
-            movie.value = response
+            _movie.value = response
         }
     }
 }
