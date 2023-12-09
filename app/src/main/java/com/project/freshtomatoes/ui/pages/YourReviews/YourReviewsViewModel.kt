@@ -10,6 +10,12 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
 
+/**
+ * YourReviewsViewModel for the Your Reviews Page
+ *  Contains:
+ *  - updateYourReviews: Gets all the reviews made by the current user
+ *  - shouldShowReviews: Checks whether there is a user logged in.
+ */
 class YourReviewsViewModel : ViewModel() {
     private val _requester = TmdbRequest()
 

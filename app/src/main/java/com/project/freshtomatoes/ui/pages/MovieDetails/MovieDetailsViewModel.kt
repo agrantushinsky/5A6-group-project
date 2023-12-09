@@ -11,6 +11,10 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
+/**
+ * MovieDetailsViewModel for the Movie Details page
+ * Contains the title, average rating, and checks if the movie has been reviewed by the logged in user.
+ */
 class MovieDetailsViewModel : ViewModel() {
     private val _requester = TmdbRequest()
 

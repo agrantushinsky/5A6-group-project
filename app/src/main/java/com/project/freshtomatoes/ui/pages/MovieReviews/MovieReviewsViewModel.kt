@@ -10,6 +10,11 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
 
+/**
+ * MovieReviewsViewModel for the Movie Reviews Page
+ * Contains:
+ * - updateMovieReviews: Gets all the reviews for the specified movie.
+ */
 class MovieReviewsViewModel : ViewModel() {
     private val _requester = TmdbRequest()
 
