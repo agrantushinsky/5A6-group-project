@@ -1,6 +1,8 @@
 package com.project.freshtomatoes.data
 
-// SortState enum for all sorting states for movies.
+/**
+ * SortState enum for all sorting states for movies.
+ * */
 enum class SortState {
     None,
     RatingAscending {

@@ -14,6 +14,12 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import java.util.Date
 
+/**
+ * ProfileViewModel for the Profile Page.
+ * Contains:
+ *  - Getter for the current user.
+ *  - updateYourReviews : Gets al the reviews made by the current user.
+ */
 class ProfileViewModel(private val authRepository: AuthRepository) : ViewModel() {
     private val _requester = TmdbRequest()
 

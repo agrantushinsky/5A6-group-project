@@ -13,6 +13,15 @@ data class MovieDisplay(
     var movieList: List<Movie> = emptyList()
 )
 
+/**
+ * HomeViewModel for Home screen
+ * Contains:
+ *  - Getter for all movies
+ *  - Getter for popular movies
+ *  - Getter for top-rated movies
+ *  - Getter for New Movies
+ *  - Getters for movies by genre
+ */
 class HomeViewModel : ViewModel() {
     private val _requester = TmdbRequest()
     val popularLabel = "Popular Movies"

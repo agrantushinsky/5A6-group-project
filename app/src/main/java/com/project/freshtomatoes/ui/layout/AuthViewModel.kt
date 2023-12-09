@@ -5,6 +5,9 @@ import com.project.freshtomatoes.ui.firebase.AuthRepository
 import com.project.freshtomatoes.ui.firebase.User
 import kotlinx.coroutines.flow.StateFlow
 
+/**
+ * ViewModel for the User Authentication
+ */
 class AuthViewModel(private val authRepository: AuthRepository) : ViewModel() {
     // Return a StateFlow so that the composable can always update
     // based when the value changes
