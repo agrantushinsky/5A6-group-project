@@ -8,7 +8,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.tasks.await
 import java.util.Date
-
+// Coded by Aidan
 /**
  * AuthRepository class. Implements the AuthRepository interface.
  * Constructor takes in a FirebaseAuth instance.

@@ -5,6 +5,7 @@ import com.google.firebase.Firebase
 import com.google.firebase.auth.auth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.project.freshtomatoes.data.Movie
+// Coded by Aidan
 
 class FreshTomatoes : Application() {
     /* Always be able to access the module ("static") */

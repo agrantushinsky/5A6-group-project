@@ -9,6 +9,13 @@ import com.project.freshtomatoes.ui.firebase.AuthRepositoryFirebase
 import com.project.freshtomatoes.ui.firebase.ReviewRepository
 import com.project.freshtomatoes.ui.firebase.ReviewRepositoryFirestore
 
+/**
+ * Class for information about the current instance of the app.
+ * Contains:
+ * - FirebaseAuth: Used for authenticating with Firebase
+ * - FirebaseFirestore: Used for database access with Firebase's Firestore
+ * - Context
+ */
 class AppModule(
     private val appContext: Context,
     private val auth: FirebaseAuth,

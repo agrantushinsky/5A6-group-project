@@ -6,6 +6,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.project.freshtomatoes.ui.components.ShowReviews
 import com.project.freshtomatoes.ui.factories.MovieReviewsViewModelFactory
 
+// Coded by Jose
 /**
  * MovieReviews page to show reviews for a given movie using ShowReviews.
  *

@@ -21,6 +21,7 @@ import com.project.freshtomatoes.data.MovieReview
 import com.project.freshtomatoes.data.SortState
 import com.project.freshtomatoes.ui.factories.ShowReviewsViewModelFactory
 
+// Coded by Jose
 /**
  * ShowReviews displays a list of movie reviews using MovieReviewCard.
  *

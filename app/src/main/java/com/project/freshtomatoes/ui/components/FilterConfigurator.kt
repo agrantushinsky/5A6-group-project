@@ -21,6 +21,7 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import com.project.freshtomatoes.data.FilterConfig
 
+// Coded by Aidan
 // Clamps an integer to a min/max value.
 private fun ClampInt(value: Int?, min: Int, max: Int): Int? {
     if (value == null) {

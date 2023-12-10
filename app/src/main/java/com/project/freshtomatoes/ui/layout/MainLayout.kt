@@ -8,6 +8,7 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 
+// Coded by Nitpreet
 /**
  * MainLayout for the application using Scaffold. Uses TopBar and BottomBar.
  *

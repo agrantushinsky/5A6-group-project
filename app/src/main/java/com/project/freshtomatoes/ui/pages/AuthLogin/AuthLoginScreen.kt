@@ -25,6 +25,13 @@ import com.project.freshtomatoes.ui.Router
 import com.project.freshtomatoes.ui.components.AuthStatus
 import com.project.freshtomatoes.ui.components.PasswordField
 import com.project.freshtomatoes.ui.factories.AuthLoginViewModelFactory
+// Coded by Jose
+
+/**
+ * AuthLogin page to allow the user to login. Prompting for a email password while offering access to sign up.
+ * All user information is being stored using firebase.
+ * @param viewmodel Viewmodel for page, defaulted to viewModel using AuthLoginViewModelFactory.
+ */
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable

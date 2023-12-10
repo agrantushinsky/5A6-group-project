@@ -12,6 +12,7 @@ import com.project.freshtomatoes.data.MovieReview
 import java.text.SimpleDateFormat
 import java.util.Date
 
+// Coded by Nitpreet
 /**
  * ProfileMovieCard is a card that is used to display a basic summary
  * of a movie review on a user's profile.

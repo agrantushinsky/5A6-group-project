@@ -20,6 +20,7 @@ import com.project.freshtomatoes.ui.components.MovieCard
 import com.project.freshtomatoes.ui.components.SearchBar
 import com.project.freshtomatoes.ui.factories.HomeViewModelFactory
 
+// Coded by Nipreet
 /**
  * Home page for the app.
  *

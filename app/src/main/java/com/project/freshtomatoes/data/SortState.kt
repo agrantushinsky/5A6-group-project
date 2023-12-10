@@ -1,5 +1,7 @@
 package com.project.freshtomatoes.data
 
+// Coded by Nitpreet
+
 /**
  * SortState enum for all sorting states for movies.
  * */

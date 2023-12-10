@@ -10,7 +10,7 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
-
+// Coded by Aidan
 /**
  * AuthSignUpViewModel is the viewmodel for the AuthSignUp page.
  * Getters & Setters for: email, password, confirmPassword.

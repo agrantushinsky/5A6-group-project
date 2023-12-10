@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.project.freshtomatoes.ui.FreshTomatoes
 import com.project.freshtomatoes.ui.pages.AuthLogin.AuthLoginViewModel
 
+// Coded by Aidan
 // Factory for AuthLoginViewModelFactory, passing authRepository.
 class AuthLoginViewModelFactory : ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {

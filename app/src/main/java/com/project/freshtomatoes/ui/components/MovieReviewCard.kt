@@ -28,6 +28,7 @@ import com.project.freshtomatoes.ui.FreshTomatoes
 import java.text.SimpleDateFormat
 import java.util.Date
 
+// Coded by Aidan
 /**
  * MovieReviewCard to represent a user's movie review. Card will show the relevant review, rating, and a
  * dropdown to display a MovieEditor.

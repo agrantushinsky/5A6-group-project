@@ -5,6 +5,7 @@ import com.project.freshtomatoes.ui.firebase.AuthRepository
 import com.project.freshtomatoes.ui.firebase.User
 import kotlinx.coroutines.flow.StateFlow
 
+// Coded by Aidan
 /**
  * ViewModel for the User Authentication
  */

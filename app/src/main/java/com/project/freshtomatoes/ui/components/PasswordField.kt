@@ -20,6 +20,7 @@ import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
 import com.project.freshtomatoes.R
 
+// Coded by Jose
 /**
  * PasswordField represents a text field for users to enter their password. Includes the ability for
  * users to toggle the visibility of their password, by default, passwords are invisible to protect privacy.

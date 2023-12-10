@@ -29,6 +29,7 @@ import com.project.freshtomatoes.ui.components.ProfileMovieCard
 import com.project.freshtomatoes.ui.factories.ProfileViewModelFactory
 import java.text.SimpleDateFormat
 
+// Coded by Jose
 /**
  * Profile screen. Contains user information such as:
  * - Email, Date Joined, and Total Movies Reviewed

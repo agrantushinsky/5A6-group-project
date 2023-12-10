@@ -2,7 +2,7 @@ package com.project.freshtomatoes.ui.firebase
 
 import kotlinx.coroutines.flow.StateFlow
 import java.util.Date
-
+// Coded by Jose
 /**
  * Represents a user in Firebase Authentication.
  */
