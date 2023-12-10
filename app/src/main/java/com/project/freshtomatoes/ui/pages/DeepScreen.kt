@@ -11,6 +11,8 @@ import androidx.compose.ui.platform.LocalContext
 //Coded by Nitpreet
 /**
  * Location screen from launcher apps
+ *
+ * @param id Nullable string to display. Received from launcher app.
  */
 @Composable
 fun DeepScreen(id: String?) {
