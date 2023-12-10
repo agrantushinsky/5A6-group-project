@@ -1,13 +1,15 @@
 # Fresh Tomatoes
 
 ## Goal
-Our goal is to provide users a dynamic appilcation to rank movies they have watched. 
+Our goal is to provide users a dynamic appilcation to review movies they have watched. The FreshTomatoes app also features advanced review filtering, and sorting options. Moreover, users may search, browse suggested movies, or browse by genre to find the movie they're looking for.
 
 ## Technologies
 - Kotlin 
 - Jetpack Compose
 - Firebase
 - Material
+- Ktor
+- TMDB API
 
 ## Quick-start
 ### How to install and run appilcation.
@@ -22,40 +24,35 @@ Since the app is still a working progress we have not deployed it yet on the app
 
 - Home Page /landing page
 
-
-![Screenshot_2023-11-23_210321](https://github.com/agrantushinsky/5A6-group-project/assets/98350822/ab113d71-f0c4-4d2f-a635-0dfe3ab2b056)
-
-
-
+![homepage](https://github.com/agrantushinsky/5A6-group-project/assets/97311487/529bcebe-dd43-440f-93b9-ef3d69f4e82b)
 
 - About Us Page Page
 
-
-![Screenshot_2023-11-23_210648](https://github.com/agrantushinsky/5A6-group-project/assets/98350822/ce007d37-5ecc-4af3-8314-cc103a3ed846)
-
-
-
-
+![about](https://github.com/agrantushinsky/5A6-group-project/assets/97311487/27fc7245-1bc7-4fe6-be62-3a44242e6c68)
 
 - Movie Details
 
-
-![Screenshot_2023-11-23_210353](https://github.com/agrantushinsky/5A6-group-project/assets/98350822/9e27671a-ccf4-4469-8879-78431fc3d3d9)
-
-
+![details](https://github.com/agrantushinsky/5A6-group-project/assets/97311487/2898f7e5-f12a-4504-a2d0-48da4f11facd)
 
 - Movie Rater
 
-  
-![Screenshot_2023-11-23_210717](https://github.com/agrantushinsky/5A6-group-project/assets/98350822/00e09bad-6158-443e-b7ca-1a44fceb8229)
+![rating](https://github.com/agrantushinsky/5A6-group-project/assets/97311487/1813168b-0fd5-4e50-ab75-b07e208bae0c)
 
+- All Movie Reviews
 
+![moviereviews](https://github.com/agrantushinsky/5A6-group-project/assets/97311487/f163e79e-22b3-48ca-abce-031ac5fcb4ab)
 
-- All Movie Review
+- Your Movie Reviews
 
-  
-![3](https://github.com/agrantushinsky/5A6-group-project/assets/98350822/21eb0b54-aa85-470c-bb3f-a0d7852ad625)
+![your_reviews](https://github.com/agrantushinsky/5A6-group-project/assets/97311487/a99a7735-2d0e-470c-994d-1fa2f158c004)
 
+- Movies by genre
+
+![genres](https://github.com/agrantushinsky/5A6-group-project/assets/97311487/b8201404-e11e-48c7-b78d-44dc996d35c9)
+
+- Information
+
+![info](https://github.com/agrantushinsky/5A6-group-project/assets/97311487/e3a5437a-146e-40af-8003-9275125ee4bd)
 
 ## Team members
 List each person's name and email address.
