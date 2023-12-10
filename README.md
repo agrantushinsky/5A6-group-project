@@ -17,6 +17,9 @@ Our goal is to provide users a dynamic appilcation to review movies they have wa
 2. Open in IDE (Android Studio) 
 3. Press the run button and enjoy!
 
+> [!NOTE]  
+> Your device must be capable of running Android API 34.
+
 ### Deployment 
 Since the app is still a working progress we have not deployed it yet on the app store.
 
