@@ -20,7 +20,7 @@ import com.project.freshtomatoes.data.TmdbRequest
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-//Coded by Aidan and Nitpreet
+// Coded by Aidan and Nitpreet
 /**
  * SearchBar for users to search for movies. Search updates per character and displays a
  * list of matching movies.

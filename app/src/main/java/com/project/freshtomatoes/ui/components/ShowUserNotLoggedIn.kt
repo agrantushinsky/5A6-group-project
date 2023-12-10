@@ -13,7 +13,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.em
 
-//Coded by Jose
+// Coded by Jose
 /**
  * ShowUserNotLoggedIn shows the relevant message for when a user is not logged in. Text is centered.
  */

@@ -12,7 +12,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.em
 
-//Coded by Nitpreet
+// Coded by Nitpreet
 /**
  *Information page to inform the user on  how to use the application
  */

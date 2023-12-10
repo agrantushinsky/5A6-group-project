@@ -5,7 +5,7 @@ import androidx.compose.runtime.collectAsState
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.project.freshtomatoes.ui.components.MovieDetailsList
 import com.project.freshtomatoes.ui.factories.GenreViewModelFactory
-//Coded by Aidan
+// Coded by Aidan
 /**
  * Genre page to display a list o movies for a given genreId.
  *

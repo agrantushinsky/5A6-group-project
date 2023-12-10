@@ -1,6 +1,6 @@
 package com.project.freshtomatoes.data
 
-//Coded by Aidan
+// Coded by Aidan
 /**
  * FilterConfig for filtering user reviews.
  * Contains

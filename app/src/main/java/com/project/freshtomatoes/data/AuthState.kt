@@ -1,6 +1,6 @@
 package com.project.freshtomatoes.data
 
-//Coded by Aidan
+// Coded by Aidan
 /**
  * Enum for the states of the user login system.
  */

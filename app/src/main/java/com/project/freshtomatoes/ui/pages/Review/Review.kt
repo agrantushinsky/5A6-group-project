@@ -18,8 +18,6 @@ import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -30,13 +28,12 @@ import com.project.freshtomatoes.LocalNavController
 import com.project.freshtomatoes.data.Review
 import com.project.freshtomatoes.ui.FreshTomatoes
 import com.project.freshtomatoes.ui.components.MovieImage
-import com.project.freshtomatoes.ui.pages.Review.ReviewViewModel
 import com.project.freshtomatoes.ui.factories.ReviewViewModelFactory
 import io.ktor.util.date.toDate
 import io.ktor.util.date.toJvmDate
 import java.util.Calendar
 
-//Coded by Nitpreet
+// Coded by Nitpreet
 /**
  * Review page to facilitate posting reviews. Allows the user to create their tomato rating, and
  * write their review text.

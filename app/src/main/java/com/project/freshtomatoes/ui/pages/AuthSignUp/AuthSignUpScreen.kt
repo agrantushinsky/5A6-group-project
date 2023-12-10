@@ -29,7 +29,7 @@ import com.project.freshtomatoes.ui.Router
 import com.project.freshtomatoes.ui.components.AuthStatus
 import com.project.freshtomatoes.ui.components.PasswordField
 import com.project.freshtomatoes.ui.factories.AuthSignUpModelFactory
-//Coded by Jose
+// Coded by Jose
 /**
  * AuthSignup page to allow the user to sign up. Prompting for a email password a confirmation password while offering access to login.
  * All user information is being stored using firebase while offering good proper validation and user security.

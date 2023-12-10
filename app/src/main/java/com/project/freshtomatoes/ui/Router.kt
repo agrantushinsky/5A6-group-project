@@ -18,7 +18,7 @@ import com.project.freshtomatoes.ui.pages.Profile.Profile
 import com.project.freshtomatoes.ui.pages.Review.Review
 import com.project.freshtomatoes.ui.pages.YourReviews.YourReviews
 
-//Coded by All
+// Coded by All
 /**
  * Router is a sealed class to "statically" represent our routes.
  */

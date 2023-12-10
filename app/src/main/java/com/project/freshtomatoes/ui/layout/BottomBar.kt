@@ -21,7 +21,7 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import com.project.freshtomatoes.LocalNavController
 import com.project.freshtomatoes.ui.Router
 
-//Coded by Jose
+// Coded by Jose
 // Represents a NavBarIcon on the bottom bar.
 // Contains:
 // - route: String => The route the button will use.

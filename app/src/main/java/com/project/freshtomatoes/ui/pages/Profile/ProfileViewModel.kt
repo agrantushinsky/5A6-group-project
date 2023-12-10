@@ -14,7 +14,7 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import java.util.Date
 
-//Coded by Aidan
+// Coded by Aidan
 /**
  * ProfileViewModel for the Profile Page.
  * Contains:

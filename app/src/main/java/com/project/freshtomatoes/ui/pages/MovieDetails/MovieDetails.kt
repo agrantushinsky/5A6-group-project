@@ -37,7 +37,7 @@ import com.project.freshtomatoes.ui.factories.MovieDetailsViewModelFactory
 import java.text.NumberFormat
 import java.util.Locale
 
-//Coded by Nitpreet
+// Coded by Nitpreet
 /**
  * Movie details page to show details for a given movie. Information such as title, average rating,
  * description, genres, poster, overview, release date, length, and revenue. You may also

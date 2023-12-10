@@ -10,7 +10,7 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
-//Coded by Aidan
+// Coded by Aidan
 
 /**
  * AuthLoginViewModel is the viewmodel for the AuthLogin page.

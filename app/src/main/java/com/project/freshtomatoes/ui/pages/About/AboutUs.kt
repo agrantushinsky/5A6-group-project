@@ -21,7 +21,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.project.freshtomatoes.R
-//Coded by Jose
+// Coded by Jose
 /**
 * About us page showing our motivation and images of us
 *@param modifier modifies the column

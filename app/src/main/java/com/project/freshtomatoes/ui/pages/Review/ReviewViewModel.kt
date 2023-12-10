@@ -13,7 +13,7 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
-//Coded by Jose
+// Coded by Jose
 /**
  * ReviewViewModel for the viewmodels page.
  */

@@ -8,7 +8,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.project.freshtomatoes.ui.components.ShowReviews
 import com.project.freshtomatoes.ui.components.ShowUserNotLoggedIn
 import com.project.freshtomatoes.ui.factories.YourReviewsViewModelFactory
-//Coded by Nitpreet
+// Coded by Nitpreet
 
 /**
  * YourReviews displays all the review for the currently logged in user, using ShowReviews.

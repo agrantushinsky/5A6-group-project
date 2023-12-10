@@ -8,7 +8,7 @@ import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.callbackFlow
 
-//Coded by Nitpreet
+// Coded by Nitpreet
 /**
  * ReviewRepositoryFirestore class that implements ReviewRepository interface.
  * Contains all functionality for managing and retrieving reviews on database.

@@ -23,7 +23,7 @@ import com.project.freshtomatoes.data.MovieReview
 import com.project.freshtomatoes.data.Review
 import com.project.freshtomatoes.ui.FreshTomatoes
 
-//Coded by Jose
+// Coded by Jose
 /**
  * MovieEditor implements the functionality to edit a user's MovieReview. The review and rating
  * fields are editable. User has the option to save their changes or delete the review entirely.

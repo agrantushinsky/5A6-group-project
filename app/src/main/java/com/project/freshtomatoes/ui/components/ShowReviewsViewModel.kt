@@ -10,7 +10,7 @@ import kotlinx.coroutines.flow.filter
 import kotlinx.coroutines.flow.update
 import java.util.Date
 
-//Coded by Aidan
+// Coded by Aidan
 /**
  * ShowReviewsViewModel is the viewmodel for the ShowReviews component.
  * Getters & Setters for: sortState, movieReviews.
