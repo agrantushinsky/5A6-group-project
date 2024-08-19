@@ -29,9 +29,6 @@ Since the app is still a working progress we have not deployed it yet on the app
 
 ![homepage](https://github.com/agrantushinsky/5A6-group-project/assets/97311487/529bcebe-dd43-440f-93b9-ef3d69f4e82b)
 
-- About Us Page Page
-
-![about](https://github.com/agrantushinsky/5A6-group-project/assets/97311487/27fc7245-1bc7-4fe6-be62-3a44242e6c68)
 
 - Movie Details
 
